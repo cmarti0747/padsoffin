@@ -339,6 +339,7 @@ public class PanelControlador {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				panelasignatura.getModel().clear();
 				cl.show(panelcontenedor, "panelhomeProfesor");
 
 			}
@@ -438,6 +439,7 @@ public class PanelControlador {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				panelasignaturaalumno.getModel().clear();
 				cl.show(panelcontenedor, "panelhomeAlumno");
 
 			}
