@@ -9,6 +9,7 @@ import academia.*;
 
 public class ControladorPanelControlador {
 
+	
 	private PanelControlador vista;
 	private AcademiaLopez academia;
 
