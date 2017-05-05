@@ -239,6 +239,36 @@ add(labelejercicios);
 	public void setEliminarE(JButton eliminarE) {
 		this.eliminarE = eliminarE;
 	}
+
+
+	public JButton getCrearSub() {
+		return crearSub;
+	}
+
+
+	public JButton getEliminarSub() {
+		return eliminarSub;
+	}
+
+
+	public DefaultListModel<String> getlApuntes() {
+		return lApuntes;
+	}
+
+
+	public DefaultListModel<String> getlEjercicios() {
+		return lEjercicios;
+	}
+
+
+	public DefaultListModel<String> getlSubtemas() {
+		return lSubtemas;
+	}
+
+
+	public JList getSubtemas() {
+		return subtemas;
+	}
 	
 	
 	

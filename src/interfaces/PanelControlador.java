@@ -444,6 +444,15 @@ public class PanelControlador {
 
 			}
 		});
+		
+		paneltema.getCrearA().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cl.show(panelcontenedor, "panelcrearApuntes");
+				
+			}
+		});
 
 	}
 
