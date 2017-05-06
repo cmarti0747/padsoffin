@@ -174,18 +174,70 @@ public class Temas implements Serializable{
 				return a;
 			}
 		}
+		for(Temas t : subtemas){
+			Apuntes a = t.buscarApuntes(titulo);
+			if(a!=null){
+			return a;
+			}
+		}
+		return null;
+	}
+	
+	public Temas buscarSubtemas(String titulo){
+		for(Temas t:subtemas){
+			if(t.getTitulo().equals(titulo)){
+				return t;
+			}
+			
+		}
+		for(Temas t:subtemas){
+			Temas te = t.buscarSubtemas(titulo);
+			if(te!=null){
+				return te;
+			}
+			
+			}
+		return null;
+	}
+	
+	public Ejercicio buscarEjercicio(String titulo){
+		for(Ejercicio e: ejercicios){
+			 if(e.getTitulo().equals(titulo)){
+				 return e;
+			 }
+		}
+		for(Temas t: subtemas){
+			 return t.buscarEjercicio(titulo);
+		 }
+		return null;
+	}
+	
+	public Temas buscarSubtemasPadre(String titulo2) {
+		for(Temas t:subtemas){
+			if(t.getTitulo().equals(titulo2)){
+				return this;
+			}
+			
+		}
+		for(Temas t:subtemas){
+			return  t.buscarSubtemasPadre(titulo2);
+		
+			
+			}
 		return null;
 	}
 	
 
 	@Override
 	/**
-	 * funcion que impime los datos de un tema
+	 * funcion que imprime los datos de un tema
 	 * @return cadena con todos los datos de un tema
 	 */
 	public String toString() {
 		return "Temas [titulo=" + titulo + ", visibilidad=" + visibilidad + ", subtemas=" + subtemas + ", ejercicios="
 				+ ejercicios + ", apuntes=" + apuntes + "]\n";
 	}
+
+	
 
 }

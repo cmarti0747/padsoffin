@@ -35,7 +35,6 @@ public class PanelApuntesAlumno extends JPanel{
 		textofield.setFont(new Font("Arial", 0, 20));
 		textofield.setPreferredSize(new Dimension (750,250));
 		textofield.setBackground(Color.WHITE);
-		textofield.setEditable(false);
 		textofield.setLineWrap(true);
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);

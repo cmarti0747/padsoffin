@@ -222,65 +222,158 @@ public class ControladorPanelControlador {
 	}
 
 	public void crearApuntes(String titulo, String texto, Visibilidad visibilidad) {
-		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
-		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
+	
+		Temas t = academia.buscarTema(vista.getPaneltema().getNombreTema().getText());
+		if(t!=null){
 		t.crearApuntes(titulo, texto);
 		t.buscarApuntes(titulo).setVisibilidad(visibilidad);
+		}else{
+			t= academia.buscarSubtemas(vista.getPaneltema().getNombreTema().getText());
+			t.crearApuntes(titulo, texto);
+			t.buscarApuntes(titulo).setVisibilidad(visibilidad);
+		}
 
 	}
 
 	public void eliminarApuntes(String titulo) {
-		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
-		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
-		t.eliminarApuntes(t.buscarApuntes(titulo));
+		Temas t = academia.buscarTema(vista.getPaneltema().getNombreTema().getText());
+		if(t!=null){
+		t.eliminarApuntes(academia.buscarApuntes(titulo));
+
+		}else{
+			t= academia.buscarSubtemas(vista.getPaneltema().getNombreTema().getText());
+			t.eliminarApuntes(academia.buscarApuntes(titulo));
+		}
+
 	}
 
 	public void cargarApuntesProfesor(String tema) {
-		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
-		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
-		for (String m : getnomTemas(a.getTitulo())) {
-			if (t.getTitulo().equals(m)) {
-				for (Apuntes n : a.buscarTemas(m).getApuntes()) {
-					vista.getPaneltema().getlApuntes().addElement(n.getTitulo());
-				}
+		Temas te = academia.buscarTema(tema);
+		if (te == null) {
+			Temas t = academia.buscarSubtemas(tema);
 
+			if (t.getApuntes() != null) {
+				for (Apuntes n : t.getApuntes()) {
+
+					vista.getPaneltema().getlApuntes().addElement(n.getTitulo());
+
+				}
+			}
+		} else {
+			for (Apuntes n : te.getApuntes()) {
+				vista.getPaneltema().getlApuntes().addElement(n.getTitulo());
 			}
 		}
 
 	}
 
-	public void cargarApuntesAlumno(String selectedValue) {
-		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignaturaalumno().getNombreAsignatura().getText());
-		Temas t = a.buscarTemas(vista.getPaneltemaalumno().getNombreTema().getText());
-		for (String m : getnomTemas(a.getTitulo())) {
-			if (t.getTitulo().equals(m)) {
-				for (Apuntes n : a.buscarTemas(m).getApuntes()) {
-					if (n.getVisibilidad().equals(Visibilidad.VISIBLE)) {
-						vista.getPaneltemaalumno().getlApuntes().addElement(n.getTitulo());
-					}
-				}
+	public void cargarApuntesAlumno(String tema) {
+		Temas te = academia.buscarTema(tema);
+		if (te == null) {
+			Temas t = academia.buscarSubtemas(tema);
 
+			if (t.getApuntes() != null) {
+				for (Apuntes n : t.getApuntes()) {
+					if(n.getVisibilidad().equals(Visibilidad.VISIBLE)){
+					vista.getPaneltemaalumno().getlApuntes().addElement(n.getTitulo());
+					}
+
+				}
+			}
+		} else {
+			for (Apuntes n : te.getApuntes()) {
+				if(n.getVisibilidad().equals(Visibilidad.VISIBLE)){
+					vista.getPaneltemaalumno().getlApuntes().addElement(n.getTitulo());
+					}
 			}
 		}
+
 
 	}
 
 	public void abrirApuntes(String titulo) {
-		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
-		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
-		Apuntes ap = t.buscarApuntes(titulo);
-		
+		Apuntes ap = academia.buscarApuntes(titulo);
+
 		vista.getPanelapuntes().getTextofield().setText(ap.getTexto());
 		vista.getPanelapuntes().getTitulofield().setText(ap.getTitulo());
 	}
-	
+
 	public void abrirApuntesAlumno(String titulo) {
-		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
-		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
-		Apuntes ap = t.buscarApuntes(titulo);
-		
+		Apuntes ap = academia.buscarApuntes(titulo);
+
 		vista.getPanelapuntesalumno().getTextofield().setText(ap.getTexto());
 		vista.getPanelapuntesalumno().getTitulo().setText(ap.getTitulo());
+		vista.getPanelapuntesalumno().getTextofield().setEditable(false);
+	}
+
+	public Visibilidad visibilidadTema(String tema) {
+		Temas t = academia.buscarTema(tema);
+				if(t==null){
+					t = academia.buscarSubtemas(tema);
+				}
+		return t.getVisibilidad();
+	}
+
+	public void cambiarVisTema(String titulo) {
+		if (academia.buscarTema(titulo).getVisibilidad().equals(Visibilidad.INVISIBLE)) {
+			academia.buscarTema(titulo).setVisibilidad(Visibilidad.VISIBLE);
+		} else {
+			academia.buscarTema(titulo).setVisibilidad(Visibilidad.INVISIBLE);
+		}
+
+	}
+
+	public void crearSubtema(String titulo, Visibilidad visibilidad, String tema) {
+		if (academia.buscarTema(tema) == null) {
+			academia.buscarSubtemas(tema).crearSubTemas(titulo);
+			academia.buscarSubtemas(titulo).setVisibilidad(visibilidad);
+		} else {
+			academia.buscarTema(tema).crearSubTemas(titulo);
+			academia.buscarSubtemas(titulo).setVisibilidad(visibilidad);
+		}
+
+	}
+
+	public void cargarSubtemasProfesor(String titulo) {
+		Temas t = academia.buscarTema(titulo);
+		if (t != null) {
+			for (Temas n : t.getSubtemas()) {
+				vista.getPaneltema().getlSubtemas().addElement(n.getTitulo());
+			}
+		}else{
+			t = academia.buscarSubtemas(titulo);
+			for (Temas n : t.getSubtemas()) {
+				vista.getPaneltema().getlSubtemas().addElement(n.getTitulo());
+			}
+		}
+
+	}
+	
+	public void cargarSubtemasAlumno(String titulo) {
+		Temas t = academia.buscarTema(titulo);
+		if (t != null) {
+			for (Temas n : t.getSubtemas()) {
+				if(n.getVisibilidad().equals(Visibilidad.VISIBLE)){
+				vista.getPaneltemaalumno().getlSubtemas().addElement(n.getTitulo());
+				}
+			}
+		}else{
+			t = academia.buscarSubtemas(titulo);
+			for (Temas n : t.getSubtemas()) {
+				if(n.getVisibilidad().equals(Visibilidad.VISIBLE)){
+					vista.getPaneltemaalumno().getlSubtemas().addElement(n.getTitulo());
+					}
+			}
+		}
+
+	}
+
+	public String buscartemaPadre(String titulo) {
+		Temas t =  academia.buscarTemaPadre(titulo);
+		if(t ==null){
+			return null;
+		}
+		return t.getTitulo();
 	}
 
 }

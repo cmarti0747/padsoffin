@@ -150,6 +150,60 @@ public class AcademiaLopez implements Serializable {
 		}
 		return null;
 	}
+	
+	public Temas buscarTema(String titulo){
+		for(Asignaturas a: asignaturas){
+			return a.buscarTemas(titulo);
+		}
+		return null;
+	}
+	
+	public Apuntes buscarApuntes(String titulo){
+		for(Asignaturas a : asignaturas){
+			for(Temas t: a.getTemas()){
+				 return t.buscarApuntes(titulo);
+				}
+			}
+		return null;
+	}
+	
+	public Temas buscarSubtemas(String titulo){
+		for(Asignaturas a : asignaturas){
+			for(Temas t: a.getTemas()){
+				Temas st = t.buscarSubtemas(titulo);
+				if(st!=null){
+					 if(st.getTitulo().equals(titulo)){
+						 return st;
+					 }
+				}
+				}
+			}
+		return null;
+	}
+	
+	public Ejercicio buscarEjercicio(String titulo){
+		for(Asignaturas a : asignaturas){
+			for(Temas t: a.getTemas()){
+				return t.buscarEjercicio(titulo);
+					 
+				 }
+				}
+	return null;
+	}
+	
+	public Temas buscarTemaPadre(String titulo){
+		for(Asignaturas a : asignaturas){
+			for(Temas t: a.getTemas()){
+				Temas st = t.buscarSubtemasPadre(titulo);
+				if(st!=null){
+						 return st;
+					 
+				}
+				}
+			}
+		return null;
+		
+	}
 
 	/**
 	 * Funci�n que desconecta a un usuario de la academia y guarda los cambios

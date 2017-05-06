@@ -429,6 +429,7 @@ public class Ejercicio implements Serializable {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
+	
 
 	@Override
 	/**

@@ -46,6 +46,7 @@ public class PanelControlador {
 	private PanelTemaAlumno paneltemaalumno;
 	private PanelApuntes panelapuntes;
 	private PanelApuntesAlumno panelapuntesalumno;
+	private PanelCrearSubtema panelcrearsubtema;
 
 	public PanelControlador() {
 
@@ -64,6 +65,7 @@ public class PanelControlador {
 		panelcrearejercicio = new PanelCrearEjercicio();
 		panelcreartema = new PanelCrearTema();
 		paneltemaalumno = new PanelTemaAlumno();
+		panelcrearsubtema = new PanelCrearSubtema();
 		panelapuntes = new PanelApuntes();
 		panelapuntesalumno = new PanelApuntesAlumno();
 		panelcontenedor = new JPanel();
@@ -103,9 +105,11 @@ public class PanelControlador {
 		panelcontenedor.add(panelcreartema, "panelcrearTema");
 		panelcontenedor.add(panelhomealumno, "panelhomeAlumno");
 		panelcontenedor.add(panelasignaturaalumno, "panelasignaturaAlumno");
-		panelcontenedor.add(paneltemaalumno,"paneltemaAlumno");
-		panelcontenedor.add(panelapuntes,"panelApuntes");
-		panelcontenedor.add(panelapuntesalumno,"panelapuntesAlumno");
+		panelcontenedor.add(paneltemaalumno, "paneltemaAlumno");
+		panelcontenedor.add(panelapuntes, "panelApuntes");
+		panelcontenedor.add(panelapuntesalumno, "panelapuntesAlumno");
+		panelcontenedor.add(panelcrearsubtema, "panelcrearSubtema");
+
 		contenedor.add(panelcontenedor, BorderLayout.CENTER);
 		contenedor.add(ExitField, BorderLayout.NORTH);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -256,10 +260,10 @@ public class PanelControlador {
 						String asignatura = panelhomeprofesor.getListaAsignaturas().getSelectedValue();
 
 						JOptionPane.showMessageDialog(null, "Estado:" + controlador.visibilidadAsignatura(asignatura));
-					}else{
+					} else {
 						JOptionPane.showMessageDialog(null, "Seleccione una asignatura");
 					}
-					
+
 				}
 			}
 
@@ -289,9 +293,14 @@ public class PanelControlador {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panelasignaturaalumno.setNombreAsignatura((String) panelhomealumno.getListamisasignaturas().getSelectedItem());
-				controlador.cargarTemasAlumno((String) panelhomealumno.getListamisasignaturas().getSelectedItem());
-				cl.show(panelcontenedor, "panelasignaturaAlumno");
+				if (panelhomealumno.getListamisasignaturas().getSelectedItem() != null) {
+					panelasignaturaalumno
+							.setNombreAsignatura((String) panelhomealumno.getListamisasignaturas().getSelectedItem());
+					controlador.cargarTemasAlumno((String) panelhomealumno.getListamisasignaturas().getSelectedItem());
+					cl.show(panelcontenedor, "panelasignaturaAlumno");
+				} else {
+					JOptionPane.showMessageDialog(null, "No hay asignaturas seleccionadas");
+				}
 			}
 
 		});
@@ -366,30 +375,31 @@ public class PanelControlador {
 			}
 		});
 		panelasignatura.getLista().addMouseListener(new MouseAdapter() {
-			
+
 			public void mouseClicked(MouseEvent evt) {
 				JList<String> list = (JList<String>) evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 
 					paneltema.setNombreTema(panelasignatura.getLista().getSelectedValue());
 					controlador.cargarApuntesProfesor(panelasignatura.getLista().getSelectedValue());
+					controlador.cargarSubtemasProfesor(panelasignatura.getLista().getSelectedValue());
 					// Double-click detected
 					cl.show(panelcontenedor, "panelTema");
 
 				} else if (evt.getButton() == MouseEvent.BUTTON3) {
-					if (panelhomeprofesor.getListaAsignaturas().getSelectedValue() != null) {
-						String asignatura = panelhomeprofesor.getListaAsignaturas().getSelectedValue();
+					if (panelasignatura.getLista().getSelectedValue() != null) {
+						String tema = panelasignatura.getLista().getSelectedValue();
 
-						JOptionPane.showMessageDialog(null, "Estado:" + controlador.visibilidadAsignatura(asignatura));
-					}else{
+						JOptionPane.showMessageDialog(null, "Estado:" + controlador.visibilidadTema(tema));
+					} else {
 						JOptionPane.showMessageDialog(null, "Seleccione una asignatura");
 					}
-					
+
 				}
 			}
 
 		});
-		
+
 		panelcreartema.getBoton().addActionListener(new ActionListener() {
 
 			@Override
@@ -417,6 +427,15 @@ public class PanelControlador {
 				String asignatura = panelhomeprofesor.getListaAsignaturas().getSelectedValue();
 				controlador.cambiarVisAsignatura(asignatura);
 
+			}
+		});
+
+		panelasignatura.getCambiarvis().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				controlador.cambiarVisTema(panelasignatura.getLista().getSelectedValue());
 			}
 		});
 
@@ -453,7 +472,7 @@ public class PanelControlador {
 
 			}
 		});
-		
+
 		panelasignaturaalumno.getListatemas().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				JList<String> list = (JList<String>) evt.getSource();
@@ -461,37 +480,42 @@ public class PanelControlador {
 
 					paneltemaalumno.setNombreTema(panelasignaturaalumno.getListatemas().getSelectedValue());
 					controlador.cargarApuntesAlumno(panelasignaturaalumno.getListatemas().getSelectedValue());
+					controlador.cargarSubtemasAlumno(panelasignaturaalumno.getListatemas().getSelectedValue());
 					// Double-click detected
 					cl.show(panelcontenedor, "paneltemaAlumno");
 
 				}
 			}
-			
+
 		});
+
 		paneltema.getApuntes().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				JList<String> list = (JList<String>) evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
+					if (paneltema.getApuntes().getSelectedValue() != null) {
+						panelapuntes.setTitulo((String) paneltema.getApuntes().getSelectedValue());
+						controlador.abrirApuntes((String) paneltema.getApuntes().getSelectedValue());
+						// Double-click detected
+						cl.show(panelcontenedor, "panelApuntes");
 
-					panelapuntes.setTitulo((String) paneltema.getApuntes().getSelectedValue());
-					controlador.abrirApuntes((String) paneltema.getApuntes().getSelectedValue());
-					// Double-click detected
-					cl.show(panelcontenedor, "panelApuntes");
-
+					} else {
+						JOptionPane.showMessageDialog(null, "No hay seleccionado ningun apunte");
+					}
 				}
 			}
 		});
-		
+
 		paneltema.getCrearA().addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cl.show(panelcontenedor, "panelcrearApuntes");
-				
+
 			}
 		});
 		paneltema.getEliminarA().addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String titulo = (String) paneltema.getApuntes().getSelectedValue();
@@ -499,113 +523,240 @@ public class PanelControlador {
 				paneltema.getlApuntes().remove(paneltema.getApuntes().getSelectedIndex());
 			}
 		});
-		
+
 		paneltema.getVolver().addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				String titulo = paneltema.getNombreTema().getText();
+				String tema = controlador.buscartemaPadre(titulo);
 				paneltema.getlApuntes().clear();
 				paneltema.getlEjercicios().clear();
 				paneltema.getlSubtemas().clear();
-				cl.show(panelcontenedor, "panelAsignatura");
-				
+				if (tema==null) {
+					cl.show(panelcontenedor, "panelAsignatura");
+				} else {
+					controlador.cargarApuntesProfesor(tema);
+					controlador.cargarSubtemasProfesor(tema);
+					paneltema.getNombreTema().setText(tema);
+					cl.show(panelcontenedor, "panelTema");
+				}
+
 			}
 		});
+		paneltema.getCrearSub().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cl.show(panelcontenedor, "panelcrearSubtema");
+
+			}
+		});
+
+		panelcrearsubtema.getBoton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String titulo = panelcrearsubtema.getTitulo().getText();
+				boolean visibilidad = panelcrearsubtema.getCheck1().isSelected();
+				String tema = paneltema.getNombreTema().getText();
+				if (visibilidad == true) {
+					controlador.crearSubtema(titulo, Visibilidad.VISIBLE, tema);
+				} else {
+					controlador.crearSubtema(titulo, Visibilidad.INVISIBLE, tema);
+				}
+				cl.show(panelcontenedor, "panelTema");
+				paneltema.getlSubtemas().addElement(titulo);
+
+			}
+		});
+
+		paneltema.getSubtemas().addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent evt) {
+				JList<String> list = (JList<String>) evt.getSource();
+				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
+					String t = (String) paneltema.getSubtemas().getSelectedValue();
+					paneltema.setNombreTema(t);
+					paneltema.getlApuntes().clear();
+					paneltema.getlEjercicios().clear();
+					paneltema.getlSubtemas().clear();
+					controlador.cargarApuntesProfesor(t);
+					controlador.cargarSubtemasProfesor(t);
+					
+					
+					// Double-click detected
+					cl.show(panelcontenedor, "panelTema");
+
+				} else if (evt.getButton() == MouseEvent.BUTTON3) {
+					if ((String) paneltema.getSubtemas().getSelectedValue() != null) {
+						String tema = (String) paneltema.getSubtemas().getSelectedValue();
+
+						JOptionPane.showMessageDialog(null, "Estado:" + controlador.visibilidadTema(tema));
+					} else {
+						JOptionPane.showMessageDialog(null, "Seleccione una asignatura");
+					}
+				}
+			}
+
+		});
 		
+		paneltemaalumno.getSubtemas().addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent evt) {
+				JList<String> list = (JList<String>) evt.getSource();
+				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
+					String t = (String) paneltemaalumno.getSubtemas().getSelectedValue();
+					paneltemaalumno.setNombreTema(t);
+					paneltemaalumno.getlApuntes().clear();
+					paneltemaalumno.getlEjercicios().clear();
+					paneltemaalumno.getlSubtemas().clear();
+					controlador.cargarApuntesAlumno(t);
+					controlador.cargarSubtemasAlumno(t);
+					
+					
+					// Double-click detected
+					cl.show(panelcontenedor, "paneltemaAlumno");
+
+				} else if (evt.getButton() == MouseEvent.BUTTON3) {
+					if ((String) paneltemaalumno.getSubtemas().getSelectedValue() != null) {
+						String tema = (String) paneltemaalumno.getSubtemas().getSelectedValue();
+
+						JOptionPane.showMessageDialog(null, "Estado:" + controlador.visibilidadTema(tema));
+					} else {
+						JOptionPane.showMessageDialog(null, "Seleccione una asignatura");
+					}
+				}
+			}
+
+		});
+
 		paneltemaalumno.getApuntes().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				JList<String> list = (JList<String>) evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 
 					panelapuntesalumno.getTitulo().setText((String) paneltemaalumno.getApuntes().getSelectedValue());
-					controlador.abrirApuntes((String) paneltemaalumno.getApuntes().getSelectedValue());
+					controlador.abrirApuntesAlumno((String) paneltemaalumno.getApuntes().getSelectedValue());
 					// Double-click detected
 					cl.show(panelcontenedor, "panelapuntesAlumno");
 
 				}
 			}
 		});
-		
+
 		paneltemaalumno.getVolver().addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				paneltemaalumno.getlEjercicios().clear();
 				paneltemaalumno.getlApuntes().clear();
 				paneltemaalumno.getlSubtemas().clear();
 				cl.show(panelcontenedor, "panelasignaturaAlumno");
-				
+
 			}
 		});
-		
-		
+
 		panelcrearapuntes.getCrearapunte().addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String titulo = panelcrearapuntes.getTitulofield().getText();
 				String texto = panelcrearapuntes.getTextofield().getText();
-				if(panelcrearapuntes.getCheck1().isSelected()==true){
-					controlador.crearApuntes(titulo,texto,Visibilidad.VISIBLE);
-				}else{
-					controlador.crearApuntes(titulo,texto,Visibilidad.INVISIBLE);
+				if (panelcrearapuntes.getCheck1().isSelected() == true) {
+					controlador.crearApuntes(titulo, texto, Visibilidad.VISIBLE);
+				} else {
+					controlador.crearApuntes(titulo, texto, Visibilidad.INVISIBLE);
 				}
-				
+
 				paneltema.getlApuntes().addElement(titulo);
 				panelcrearapuntes.getTitulofield().setText("");
 				panelcrearapuntes.getTextofield().setText("");
 				cl.show(panelcontenedor, "panelTema");
 			}
 		});
-		
+
+		panelapuntesalumno.getVolver().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				panelapuntesalumno.getTextofield().removeAll();
+				cl.show(panelcontenedor, "paneltemaAlumno");
+
+			}
+		});
 
 	}
 
@@ -726,8 +877,5 @@ public class PanelControlador {
 	public PanelApuntesAlumno getPanelapuntesalumno() {
 		return panelapuntesalumno;
 	}
-	
-	
-	
 
 }

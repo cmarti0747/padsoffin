@@ -27,6 +27,7 @@ public class PanelAsignatura extends JPanel {
 	private JButton crearTema, eliminarTema;
 	private JComboBox<String> combobox;
 	private JLabel volver;
+	private JButton cambiarvis;
 	
 	public PanelAsignatura(){
 		
@@ -48,7 +49,8 @@ volver.setFont(new Font("Arial",0,15));
 		
 		crearTema = new JButton("Crear Tema");
 		eliminarTema = new JButton ("Eliminar Tema");
-		
+		 cambiarvis = new JButton("Cambiar visivilidad");
+		  
 		model = new DefaultListModel<String>();
 		lista = new JList<String>(model); 
 
@@ -89,6 +91,11 @@ layout.putConstraint(SpringLayout.WEST, eliminarTema, 10, SpringLayout.EAST, cre
 		
 		layout.putConstraint(SpringLayout.NORTH, eliminarTema, 0, SpringLayout.NORTH, crearTema);
 		
+layout.putConstraint(SpringLayout.WEST, cambiarvis, 10, SpringLayout.EAST, eliminarTema);
+		
+		layout.putConstraint(SpringLayout.NORTH, cambiarvis, 0, SpringLayout.NORTH, eliminarTema);
+	
+		
 layout.putConstraint(SpringLayout.WEST, combobox, 450, SpringLayout.EAST, lista);
 		
 		layout.putConstraint(SpringLayout.NORTH, combobox, 0, SpringLayout.NORTH, lista);
@@ -113,7 +120,7 @@ layout.putConstraint(SpringLayout.EAST,volver, 0, SpringLayout.EAST, combobox);
 		add(barraDesplazamiento); 
 		add(volver);
 		add(eliminarTema);
-		
+		add(cambiarvis);
 		
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
@@ -165,6 +172,21 @@ layout.putConstraint(SpringLayout.EAST,volver, 0, SpringLayout.EAST, combobox);
 	public void setNombreAsignatura(String nombreAsignatura) {
 		
 		this.nombreAsignatura.setText(nombreAsignatura);;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	public JLabel getLabeltemas() {
+		return labeltemas;
+	}
+
+
+	public JButton getCambiarvis() {
+		return cambiarvis;
 	}
 	
 	
