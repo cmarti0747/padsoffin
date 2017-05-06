@@ -167,6 +167,16 @@ public class Temas implements Serializable{
 		Temas tema = new Temas(titulo);
 		this.subtemas.add(tema);
 	}
+	
+	public Apuntes buscarApuntes(String titulo){
+		for(Apuntes a : apuntes){
+			if(a.getTitulo().equals(titulo)){
+				return a;
+			}
+		}
+		return null;
+	}
+	
 
 	@Override
 	/**

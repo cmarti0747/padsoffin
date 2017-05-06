@@ -42,7 +42,7 @@ public class PanelHomeAlumno extends JPanel{
 		pedirmatricula = new JButton("Solicitar");
 		
 		listamisasignaturas = new JComboBox<String>();
-		listamisasignaturas.addItem("PAPAYA");
+		
 		
 		
 		labelmisasignaturaas = new JLabel("Mis asignaturas");

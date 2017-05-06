@@ -114,7 +114,7 @@ public class VistaLogin {
 		ExitField.setLayout(new BorderLayout());
 		icono = new JLabel();
 		academia= new JLabel("Academia Lopez");
-		academia.setFont(new Font("Arial",Font.PLAIN,90));
+		academia.setFont(new Font("Arial",Font.PLAIN,70));
 		icono.setIcon(new ImageIcon("src/imagenes/descarga.png"));
 		ExitField.setBackground(new Color(255,255,255));
 		ExitField.add(icono,BorderLayout.WEST);

@@ -7,6 +7,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
@@ -14,7 +15,8 @@ public class PanelApuntes extends JPanel{
 
 	
 	private JLabel titulo, texto, volver;
-	private JTextField titulofield, textofield;
+	private JTextArea titulofield;
+	private JTextArea textofield;
 	private JButton modificar;
 	
 	public PanelApuntes(){
@@ -33,10 +35,10 @@ public class PanelApuntes extends JPanel{
 		
 		
 		
-		titulofield = new JTextField();
+		titulofield = new JTextArea();
 		titulofield.setPreferredSize(new Dimension ( 750, 100));
 		titulofield.setFont(new Font("Arial", 0, 20));
-		textofield = new JTextField();
+		textofield = new JTextArea();
 		textofield.setFont(new Font("Arial", 0, 20));
 		textofield.setPreferredSize(new Dimension (750,250));
 		
@@ -74,6 +76,56 @@ public class PanelApuntes extends JPanel{
 		setVisible(true); 
 		
 	}
+
+	public JLabel getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo.setText(titulo);
+	}
+
+	public JLabel getTexto() {
+		return texto;
+	}
+
+	public void setTexto(JLabel texto) {
+		this.texto = texto;
+	}
+
+	public JLabel getVolver() {
+		return volver;
+	}
+
+	public void setVolver(JLabel volver) {
+		this.volver = volver;
+	}
+
+	public JTextArea getTitulofield() {
+		return titulofield;
+	}
+
+	public void setTitulofield(JTextArea titulofield) {
+		this.titulofield = titulofield;
+	}
+
+	public JTextArea getTextofield() {
+		return textofield;
+	}
+
+	public void setTextofield(JTextArea textofield) {
+		this.textofield = textofield;
+	}
+
+	public JButton getModificar() {
+		return modificar;
+	}
+
+	public void setModificar(JButton modificar) {
+		this.modificar = modificar;
+	}
+	
+	
 	
 	
 }

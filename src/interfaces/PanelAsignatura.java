@@ -34,10 +34,10 @@ public class PanelAsignatura extends JPanel {
 volver = new JLabel("Volver");
 volver.setFont(new Font("Arial",0,15));
 		
-	labeltemas = new JLabel ("Lista de temas");
+	labeltemas = new JLabel ("Temas");
 	labeltemas.setFont(new Font("Arial",0,35));
 	
-	matriculados = new JLabel ("Lista de alumnos matriculados");
+	matriculados = new JLabel ("Alumnos");
 	matriculados.setFont(new Font("Arial",0,25));
 		nombreAsignatura = new JLabel();
 		nombreAsignatura.setFont(new Font("Arial",0,50));
@@ -45,7 +45,7 @@ volver.setFont(new Font("Arial",0,15));
 		combobox= new JComboBox<String>();
 		 combobox.setPreferredSize(new Dimension(200,50));
 		 combobox.setFont(new Font("Arial",0,25));
-		 combobox.addItem("hola");
+		
 		crearTema = new JButton("Crear Tema");
 		eliminarTema = new JButton ("Eliminar Tema");
 		
@@ -56,7 +56,7 @@ volver.setFont(new Font("Arial",0,15));
 		
 		
 		JScrollPane barraDesplazamiento = new JScrollPane(lista); 
-		barraDesplazamiento.setPreferredSize(new Dimension(500,500));
+		barraDesplazamiento.setPreferredSize(new Dimension(500,250));
 		barraDesplazamiento.getViewport().setBackground(Color.WHITE);
 		
 		
@@ -73,7 +73,7 @@ volver.setFont(new Font("Arial",0,15));
 		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento, 0, SpringLayout.WEST, labeltemas);
 		
 		
-		layout.putConstraint(SpringLayout.SOUTH, nombreAsignatura, -100, SpringLayout.NORTH, lista);
+		layout.putConstraint(SpringLayout.SOUTH, nombreAsignatura, -75, SpringLayout.NORTH, lista);
 		
 		layout.putConstraint(SpringLayout.WEST, nombreAsignatura, 0, SpringLayout.WEST, lista);
 		
@@ -89,7 +89,7 @@ layout.putConstraint(SpringLayout.WEST, eliminarTema, 10, SpringLayout.EAST, cre
 		
 		layout.putConstraint(SpringLayout.NORTH, eliminarTema, 0, SpringLayout.NORTH, crearTema);
 		
-layout.putConstraint(SpringLayout.WEST, combobox, 575, SpringLayout.EAST, lista);
+layout.putConstraint(SpringLayout.WEST, combobox, 450, SpringLayout.EAST, lista);
 		
 		layout.putConstraint(SpringLayout.NORTH, combobox, 0, SpringLayout.NORTH, lista);
 		
@@ -97,9 +97,9 @@ layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, matriculados, 0, SpringLayo
 		
 		layout.putConstraint(SpringLayout.SOUTH, matriculados, -22, SpringLayout.NORTH, combobox);
 		
-layout.putConstraint(SpringLayout.WEST,volver, 60, SpringLayout.EAST, combobox);
+layout.putConstraint(SpringLayout.EAST,volver, 0, SpringLayout.EAST, combobox);
 		
-		layout.putConstraint(SpringLayout.NORTH, volver, 500, SpringLayout.SOUTH, combobox);
+		layout.putConstraint(SpringLayout.NORTH, volver, 200, SpringLayout.SOUTH, combobox);
 		
 		lista.setFont(new Font("Arial",0,30));
 		 

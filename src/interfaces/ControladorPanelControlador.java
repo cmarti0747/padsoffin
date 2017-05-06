@@ -9,7 +9,6 @@ import academia.*;
 
 public class ControladorPanelControlador {
 
-	
 	private PanelControlador vista;
 	private AcademiaLopez academia;
 
@@ -50,22 +49,21 @@ public class ControladorPanelControlador {
 		List<String> nombresMatr = new ArrayList<String>();
 		if (AcademiaLopez.getAsignaturas() != null) {
 			for (Matriculado a : AcademiaLopez.getMatriculas()) {
-				if (a.getEstado().equals(EstadoAlumno.PENDIENTE)){
+				if (a.getEstado().equals(EstadoAlumno.PENDIENTE)) {
 					nombresMatr.add(a.getUsuario().getNia() + "/" + a.getAsignatura().getTitulo());
 				}
 			}
 		} else {
 			nombresMatr.add("");
 		}
-			
+
 		return nombresMatr;
 	}
-		
 
 	public void cargarDatos() {
-		//Solicitud Matriculas
+		// Solicitud Matriculas
 		for (String n : getnomMatriculas()) {
-			
+
 			vista.getPanelhomeprofesor().getModel().addElement(n);
 		}
 
@@ -75,8 +73,7 @@ public class ControladorPanelControlador {
 
 		for (String n : getnomAsignaturas()) {
 			Asignaturas a = academia.buscarAsignatura(n);
-				vista.getPanelhomeprofesor().getModelo().addElement(n);
-			
+			vista.getPanelhomeprofesor().getModelo().addElement(n);
 
 		}
 
@@ -91,38 +88,34 @@ public class ControladorPanelControlador {
 		for (String n : getnomAsignaturas()) {
 			Matriculado m = academia.buscarMatricula(n, academia.getUsuarioOnline().getNia());
 			if (m != null) {
-				if (m.getEstado().equals(EstadoAlumno.ADMITIDO) && 
-						academia.buscarAsignatura(n).getVisibilidad().equals(Visibilidad.VISIBLE)) {
+				if (m.getEstado().equals(EstadoAlumno.ADMITIDO)
+						&& academia.buscarAsignatura(n).getVisibilidad().equals(Visibilidad.VISIBLE)) {
 					vista.getPanelhomealumno().getListamisasignaturas().addItem(n);
 					;
 				}
 			}
 		}
-		
-		
 
 	}
-	
-	public void cargarTemasAlumno(String asignatura){
-			for (String m : getnomTemas(asignatura)) {
-				if(academia.buscarAsignatura(asignatura).buscarTemas(m).getVisibilidad().equals(Visibilidad.VISIBLE)){
-				vista.getPanelasignaturaalumno().getModel().addElement(m);
-				}
 
+	public void cargarTemasAlumno(String asignatura) {
+		for (String m : getnomTemas(asignatura)) {
+			if (academia.buscarAsignatura(asignatura).buscarTemas(m).getVisibilidad().equals(Visibilidad.VISIBLE)) {
+				vista.getPanelasignaturaalumno().getModel().addElement(m);
 			}
 
 		}
-	public void cargarTemasProfesor(String asignaturas){
-		
-		
-			for (String m : getnomTemas(asignaturas)) {
-				vista.getPanelasignatura().getModel().addElement(m);;
 
-			}
+	}
 
-		
-		
-		
+	public void cargarTemasProfesor(String asignaturas) {
+
+		for (String m : getnomTemas(asignaturas)) {
+			vista.getPanelasignatura().getModel().addElement(m);
+			;
+
+		}
+
 	}
 
 	private List<String> getnomTemas(String n) {
@@ -132,7 +125,7 @@ public class ControladorPanelControlador {
 			for (Temas t : a.getTemas()) {
 				nombresTemas.add(t.getTitulo());
 			}
-		}else{
+		} else {
 			nombresTemas.add("");
 		}
 
@@ -188,44 +181,97 @@ public class ControladorPanelControlador {
 
 	}
 
-	public void crearTema(String asignatura,String titulo, Visibilidad visibilidad) {
+	public void crearTema(String asignatura, String titulo, Visibilidad visibilidad) {
 
 		academia.buscarAsignatura(asignatura).crearTemas(titulo);
 		academia.buscarAsignatura(asignatura).buscarTemas(titulo).setVisibilidad(visibilidad);
-		
+
 	}
 
 	public void eliminarTema(String tema, String asignatura) {
 		Temas t = academia.buscarAsignatura(asignatura).buscarTemas(tema);
 		academia.buscarAsignatura(asignatura).eliminarTema(t);
-		
+
 	}
 
 	public void cambiarVisAsignatura(String asignatura) {
-		
+
 		Visibilidad visi = academia.buscarAsignatura(asignatura).getVisibilidad();
-		if(visi.equals(Visibilidad.INVISIBLE)){
+		if (visi.equals(Visibilidad.INVISIBLE)) {
 			academia.buscarAsignatura(asignatura).setVisibilidad(Visibilidad.VISIBLE);
-		}else{
+		} else {
 			academia.buscarAsignatura(asignatura).setVisibilidad(Visibilidad.INVISIBLE);
 		}
 	}
 
 	public Visibilidad visibilidadAsignatura(String asignatura) {
-		
+
 		return academia.buscarAsignatura(asignatura).getVisibilidad();
 	}
 
 	public void alumnosMatriculados(String asignatura) {
-		for(Matriculado a:AcademiaLopez.getMatriculas()){
+		for (Matriculado a : AcademiaLopez.getMatriculas()) {
 			Alumno al = academia.buscarAlumno(a.getUsuario().getNia());
-			if(a.getAsignatura().getTitulo().equals(asignatura) && al !=null){
-				String nombre = al.getNombre() + 
-						" "+al.getApellidos();
+			if (a.getAsignatura().getTitulo().equals(asignatura) && al != null
+					&& a.getEstado().equals(EstadoAlumno.ADMITIDO)) {
+				String nombre = al.getNombre() + " " + al.getApellidos();
 				vista.getPanelasignatura().getCombobox().addItem(nombre);
 			}
 		}
+
+	}
+
+	public void crearApuntes(String titulo, String texto, Visibilidad visibilidad) {
+		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
+		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
+		t.crearApuntes(titulo, texto);
+		t.buscarApuntes(titulo).setVisibilidad(visibilidad);
+
+	}
+
+	public void eliminarApuntes(String titulo) {
+		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
+		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
+		t.eliminarApuntes(t.buscarApuntes(titulo));
+	}
+
+	public void cargarApuntesProfesor(String tema) {
+		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
+		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
+		for (String m : getnomTemas(a.getTitulo())) {
+			if (t.getTitulo().equals(m)) {
+				for (Apuntes n : a.buscarTemas(m).getApuntes()) {
+					vista.getPaneltema().getlApuntes().addElement(n.getTitulo());
+				}
+
+			}
+		}
+
+	}
+
+	public void cargarApuntesAlumno(String selectedValue) {
+		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignaturaalumno().getNombreAsignatura().getText());
+		Temas t = a.buscarTemas(vista.getPaneltemaalumno().getNombreTema().getText());
+		for (String m : getnomTemas(a.getTitulo())) {
+			if (t.getTitulo().equals(m)) {
+				for (Apuntes n : a.buscarTemas(m).getApuntes()) {
+					if (n.getVisibilidad().equals(Visibilidad.VISIBLE)) {
+						vista.getPaneltemaalumno().getlApuntes().addElement(n.getTitulo());
+					}
+				}
+
+			}
+		}
+
+	}
+
+	public void abrirApuntes(String titulo) {
+		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
+		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
+		Apuntes ap = t.buscarApuntes(titulo);
 		
+		vista.getPanelapuntes().getTextofield().setText(ap.getTexto());
+		vista.getPanelapuntes().getTitulo().setText(ap.getTitulo());
 	}
 
 }

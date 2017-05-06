@@ -85,7 +85,7 @@ public class Apuntes implements Serializable {
 	 * @param visibilidad: Nueva visibilidad
 	 */
 	public void setVisibilidad(Visibilidad visibilidad) {
-		if (visibilidad == academia.Visibilidad.INVISIBLE || visibilidad == academia.Visibilidad.VISIBLE_COMENZADO)
+		if (visibilidad == academia.Visibilidad.INVISIBLE || visibilidad == academia.Visibilidad.VISIBLE)
 			this.visibilidad = visibilidad;
 	}
 

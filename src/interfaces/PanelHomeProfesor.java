@@ -26,20 +26,36 @@ public class PanelHomeProfesor extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private DefaultListModel<String> model,modelo;
 	private JComboBox<String> alumnos;
-	private JButton crearAsignatura , aceptar, denegar;
+	private JButton n , aceptar, denegar, crearAsignatura;
 	private JList<String> listaMatriculas,listaAsignaturas;
 	private JScrollPane matriculas,asignaturas;
 	private JButton cambiarvis;
+	private JLabel labelalumnos, labelasignaturas, labelmatriculas;
 	public PanelHomeProfesor() {
 
-		crearAsignatura= new JButton("Crear Asignatura");
+		n= new JButton("");
 		aceptar= new JButton("Aceptar matricula");
 		denegar= new JButton("Denegar matricula");
+		
+		crearAsignatura = new JButton("Crear Asignatura");
 		
 		setBackground(new Color(0,255,255));
 		
 		alumnos= new JComboBox<String>();
+		
+		labelalumnos = new JLabel("Alumnos");
+		labelalumnos.setFont(new Font( "Arial",0,30));
+		
 
+		labelasignaturas = new JLabel("Asignaturas");
+		labelasignaturas.setFont(new Font( "Arial",0,30));
+		
+		labelmatriculas = new JLabel("Matriculas pendientes");
+		labelmatriculas.setFont(new Font( "Arial",0,30));
+		
+		
+		
+		
 		 model = new DefaultListModel<String>();
 		 listaMatriculas = new JList<String>(model); 
 		 modelo = new DefaultListModel<String>();
@@ -66,25 +82,50 @@ public class PanelHomeProfesor extends JPanel{
 		 
 		 
 		 
-		 layout.putConstraint("HorizontalCenter", alumnos, -100, "HorizontalCenter", this);
-			layout.putConstraint("VerticalCenter", alumnos, 0, "VerticalCenter", this);
+		 layout.putConstraint("HorizontalCenter", alumnos, -350, "HorizontalCenter", this);
+			layout.putConstraint("VerticalCenter", alumnos, -150, "VerticalCenter", this);
 			
-			layout.putConstraint(SpringLayout.NORTH, crearAsignatura, 30, SpringLayout.SOUTH, alumnos);
+			layout.putConstraint(SpringLayout.NORTH, n, 30, SpringLayout.SOUTH, alumnos);
 			// El norte de field estará a 5 pixels desde el norte del contenedor
-			layout.putConstraint(SpringLayout.EAST, crearAsignatura, 0, SpringLayout.EAST, alumnos);	
+			layout.putConstraint(SpringLayout.EAST, n, 40, SpringLayout.EAST, alumnos);	
 		 
-			layout.putConstraint(SpringLayout.NORTH, matriculas, 0, SpringLayout.NORTH, crearAsignatura);
+			layout.putConstraint(SpringLayout.NORTH, matriculas, -80, SpringLayout.NORTH, n);
 			
-			layout.putConstraint(SpringLayout.WEST, matriculas, 200, SpringLayout.EAST, crearAsignatura);
+			layout.putConstraint(SpringLayout.WEST, matriculas, 360, SpringLayout.EAST, n);
 			
 			
 			layout.putConstraint(SpringLayout.NORTH, asignaturas, 0, SpringLayout.NORTH, matriculas);
 			
-			layout.putConstraint(SpringLayout.EAST, asignaturas, -100, SpringLayout.WEST, matriculas);
+			layout.putConstraint(SpringLayout.EAST, asignaturas, -60, SpringLayout.WEST, matriculas);
 		 
-layout.putConstraint(SpringLayout.NORTH, cambiarvis, 3, SpringLayout.SOUTH, asignaturas);
+layout.putConstraint(SpringLayout.NORTH, crearAsignatura, 3, SpringLayout.SOUTH, asignaturas);
 			
-			layout.putConstraint(SpringLayout.WEST, cambiarvis, 0, SpringLayout.WEST, asignaturas);
+			layout.putConstraint(SpringLayout.WEST, crearAsignatura, 0, SpringLayout.WEST, asignaturas);
+			
+layout.putConstraint(SpringLayout.NORTH, cambiarvis, 0, SpringLayout.NORTH, crearAsignatura);
+			
+			layout.putConstraint(SpringLayout.WEST, cambiarvis, 4, SpringLayout.EAST, crearAsignatura);
+			
+layout.putConstraint(SpringLayout.NORTH, aceptar, 3, SpringLayout.SOUTH, matriculas);
+			
+			layout.putConstraint(SpringLayout.WEST, aceptar, 0, SpringLayout.WEST, matriculas);
+			
+layout.putConstraint(SpringLayout.NORTH, denegar, 0, SpringLayout.NORTH, aceptar);
+			
+			layout.putConstraint(SpringLayout.WEST, denegar, 4, SpringLayout.EAST, aceptar);
+			
+layout.putConstraint(SpringLayout.SOUTH, labelalumnos, -15, SpringLayout.NORTH, alumnos);
+			
+			layout.putConstraint(SpringLayout.WEST, labelalumnos, 0, SpringLayout.WEST, alumnos);
+			
+			
+layout.putConstraint(SpringLayout.SOUTH, labelasignaturas, -15, SpringLayout.NORTH, asignaturas);
+			
+			layout.putConstraint(SpringLayout.WEST, labelasignaturas, 0, SpringLayout.WEST, asignaturas);
+			
+layout.putConstraint(SpringLayout.SOUTH, labelmatriculas, -15, SpringLayout.NORTH, matriculas);
+			
+			layout.putConstraint(SpringLayout.WEST, labelmatriculas, 0, SpringLayout.WEST, matriculas);
 			
 			
 		 add(crearAsignatura);
@@ -94,6 +135,9 @@ layout.putConstraint(SpringLayout.NORTH, cambiarvis, 3, SpringLayout.SOUTH, asig
       add(matriculas); 
       add(asignaturas);
       add(cambiarvis);
+      add(labelalumnos);
+      add(labelasignaturas);
+      add(labelmatriculas);
   }
 
 

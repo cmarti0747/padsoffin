@@ -6,6 +6,7 @@ import java.awt.Font;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -14,14 +15,19 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
 public class PanelTema extends JPanel{
-	private JList apuntes, ejercicios;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JList<String> apuntes, ejercicios;
 	private JLabel nombreTema, labelapuntes, labelejercicios;
 	private JButton crearA, eliminarA, crearE, eliminarE;
 	private JButton crearSub;
 	private JButton eliminarSub;
 	private DefaultListModel<String> lApuntes,lEjercicios;
 	private DefaultListModel<String> lSubtemas;
-	private JList subtemas;
+	private JList<String> subtemas;
+	private JLabel volver;
 	
 	public PanelTema(){
 		
@@ -31,6 +37,9 @@ public class PanelTema extends JPanel{
 		labelapuntes.setFont(new Font("Arial",0,35));
 		labelejercicios = new JLabel("Lista de ejercicios");
 		labelejercicios.setFont(new Font("Arial",0,35));
+		
+		volver = new JLabel ("Volver");
+		volver.setFont(new Font("Arial",0,20));
 		
 		
 		crearA = new JButton("Crear Apunte");
@@ -43,7 +52,7 @@ public class PanelTema extends JPanel{
 		eliminarSub = new JButton("Eliminar Subtema");
 		
 		lApuntes = new DefaultListModel<String>();
-		apuntes = new JList(lApuntes);
+		apuntes = new JList<String>(lApuntes);
 		apuntes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION); 
 		JScrollPane barraDesplazamiento = new JScrollPane(apuntes); 
 		barraDesplazamiento.setPreferredSize(new Dimension(250,250));
@@ -51,7 +60,7 @@ public class PanelTema extends JPanel{
 		apuntes.setFont(new Font("Arial",0,30));
 		
 		lEjercicios = new DefaultListModel<String>();
-		ejercicios = new JList(lEjercicios);
+		ejercicios = new JList<String>(lEjercicios);
 		ejercicios.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION); 
 		JScrollPane barraDesplazamiento2 = new JScrollPane(ejercicios); 
 		barraDesplazamiento2.setPreferredSize(new Dimension(250,250));
@@ -126,6 +135,8 @@ layout.putConstraint(SpringLayout.NORTH, eliminarSub, 0, SpringLayout.NORTH, cre
 		
 		layout.putConstraint(SpringLayout.WEST, eliminarSub, 10, SpringLayout.EAST, crearSub);
 		
+		layout.putConstraint(SpringLayout.NORTH, volver, 50, SpringLayout.SOUTH, crearSub);
+		layout.putConstraint(SpringLayout.EAST, volver, 0, SpringLayout.EAST, barraDesplazamiento3);
 		
 
 
@@ -140,7 +151,7 @@ layout.putConstraint(SpringLayout.NORTH, eliminarSub, 0, SpringLayout.NORTH, cre
 		add(eliminarE);
 		add(crearSub);
 		add(eliminarSub);
-		
+		add(volver);
 add(labelapuntes);
 add(labelejercicios);
 		add(nombreTema);
@@ -268,6 +279,16 @@ add(labelejercicios);
 
 	public JList getSubtemas() {
 		return subtemas;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	public JLabel getVolver() {
+		return volver;
 	}
 	
 	

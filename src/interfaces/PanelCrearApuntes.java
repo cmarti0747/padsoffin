@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -16,6 +17,7 @@ public class PanelCrearApuntes extends JPanel{
 	private JLabel titulo, texto, volver;
 	private JTextField titulofield, textofield;
 	private JButton crearapunte;
+	private JCheckBox check1;
 	
 	public PanelCrearApuntes(){
 		
@@ -26,11 +28,14 @@ public class PanelCrearApuntes extends JPanel{
 		titulo.setFont(new Font("Arial",0,35));
 		
 		volver = new JLabel ("Volver");
-		titulo.setFont(new Font("Arial",0,20));
+		volver.setFont(new Font("Arial",0,20));
 		
 		texto = new JLabel("TEXTO DEL APUNTE");
 		texto.setFont(new Font("Arial",0,35));
 		
+		check1=new JCheckBox("Visbilidad");
+        check1.setBounds(10,10,150,30);
+        check1.setBackground(new Color(0,255,255));
 		
 		
 		titulofield = new JTextField();
@@ -55,6 +60,10 @@ public class PanelCrearApuntes extends JPanel{
 		layout.putConstraint(SpringLayout.NORTH, textofield, 20, SpringLayout.SOUTH, texto);
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, textofield, 0, SpringLayout.HORIZONTAL_CENTER, titulo);
 		
+		layout.putConstraint(SpringLayout.NORTH, check1, 20, SpringLayout.SOUTH, textofield);
+		layout.putConstraint(SpringLayout.WEST, check1, 0, SpringLayout.WEST, textofield);
+		
+		
 		layout.putConstraint(SpringLayout.NORTH, crearapunte, 15, SpringLayout.SOUTH, textofield);
 		layout.putConstraint(SpringLayout.EAST, crearapunte, 0, SpringLayout.EAST, textofield);
 		
@@ -68,11 +77,39 @@ public class PanelCrearApuntes extends JPanel{
 		add(titulofield);
 		add(crearapunte);
 		add(volver);
-		
+		add(check1);
 		
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
 		
+	}
+
+	public JLabel getTitulo() {
+		return titulo;
+	}
+
+	public JLabel getTexto() {
+		return texto;
+	}
+
+	public JLabel getVolver() {
+		return volver;
+	}
+
+	public JTextField getTitulofield() {
+		return titulofield;
+	}
+
+	public JTextField getTextofield() {
+		return textofield;
+	}
+
+	public JButton getCrearapunte() {
+		return crearapunte;
+	}
+
+	public JCheckBox getCheck1() {
+		return check1;
 	}
 	
 	
