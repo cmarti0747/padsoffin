@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
@@ -15,7 +16,8 @@ public class PanelCrearApuntes extends JPanel{
 
 	
 	private JLabel titulo, texto, volver;
-	private JTextField titulofield, textofield;
+	private JTextArea titulofield;
+	JTextArea textofield;
 	private JButton crearapunte;
 	private JCheckBox check1;
 	
@@ -38,12 +40,13 @@ public class PanelCrearApuntes extends JPanel{
         check1.setBackground(new Color(0,255,255));
 		
 		
-		titulofield = new JTextField();
+		titulofield = new JTextArea();
 		titulofield.setPreferredSize(new Dimension ( 750, 100));
 		titulofield.setFont(new Font("Arial", 0, 20));
-		textofield = new JTextField();
+		textofield = new JTextArea();
 		textofield.setFont(new Font("Arial", 0, 20));
 		textofield.setPreferredSize(new Dimension (750,250));
+		textofield.setLineWrap(true);
 		
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);
@@ -96,11 +99,11 @@ public class PanelCrearApuntes extends JPanel{
 		return volver;
 	}
 
-	public JTextField getTitulofield() {
+	public JTextArea getTitulofield() {
 		return titulofield;
 	}
 
-	public JTextField getTextofield() {
+	public JTextArea getTextofield() {
 		return textofield;
 	}
 

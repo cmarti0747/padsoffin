@@ -271,7 +271,16 @@ public class ControladorPanelControlador {
 		Apuntes ap = t.buscarApuntes(titulo);
 		
 		vista.getPanelapuntes().getTextofield().setText(ap.getTexto());
-		vista.getPanelapuntes().getTitulo().setText(ap.getTitulo());
+		vista.getPanelapuntes().getTitulofield().setText(ap.getTitulo());
+	}
+	
+	public void abrirApuntesAlumno(String titulo) {
+		Asignaturas a = academia.buscarAsignatura(vista.getPanelasignatura().getNombreAsignatura().getText());
+		Temas t = a.buscarTemas(vista.getPaneltema().getNombreTema().getText());
+		Apuntes ap = t.buscarApuntes(titulo);
+		
+		vista.getPanelapuntesalumno().getTextofield().setText(ap.getTexto());
+		vista.getPanelapuntesalumno().getTitulo().setText(ap.getTitulo());
 	}
 
 }

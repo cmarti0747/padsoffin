@@ -41,7 +41,7 @@ public class PanelApuntes extends JPanel{
 		textofield = new JTextArea();
 		textofield.setFont(new Font("Arial", 0, 20));
 		textofield.setPreferredSize(new Dimension (750,250));
-		
+		textofield.setLineWrap(true);
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);
 		

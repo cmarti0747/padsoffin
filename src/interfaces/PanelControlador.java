@@ -45,6 +45,7 @@ public class PanelControlador {
 	private PanelAsignaturaAlumno panelasignaturaalumno;
 	private PanelTemaAlumno paneltemaalumno;
 	private PanelApuntes panelapuntes;
+	private PanelApuntesAlumno panelapuntesalumno;
 
 	public PanelControlador() {
 
@@ -64,6 +65,7 @@ public class PanelControlador {
 		panelcreartema = new PanelCrearTema();
 		paneltemaalumno = new PanelTemaAlumno();
 		panelapuntes = new PanelApuntes();
+		panelapuntesalumno = new PanelApuntesAlumno();
 		panelcontenedor = new JPanel();
 		desconectar = new JButton("Desconectar");
 
@@ -103,7 +105,7 @@ public class PanelControlador {
 		panelcontenedor.add(panelasignaturaalumno, "panelasignaturaAlumno");
 		panelcontenedor.add(paneltemaalumno,"paneltemaAlumno");
 		panelcontenedor.add(panelapuntes,"panelApuntes");
-
+		panelcontenedor.add(panelapuntesalumno,"panelapuntesAlumno");
 		contenedor.add(panelcontenedor, BorderLayout.CENTER);
 		contenedor.add(ExitField, BorderLayout.NORTH);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -533,6 +535,21 @@ public class PanelControlador {
 				
 			}
 		});
+		
+		paneltemaalumno.getApuntes().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				JList<String> list = (JList<String>) evt.getSource();
+				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
+
+					panelapuntesalumno.getTitulo().setText((String) paneltemaalumno.getApuntes().getSelectedValue());
+					controlador.abrirApuntes((String) paneltemaalumno.getApuntes().getSelectedValue());
+					// Double-click detected
+					cl.show(panelcontenedor, "panelapuntesAlumno");
+
+				}
+			}
+		});
+		
 		paneltemaalumno.getVolver().addMouseListener(new MouseListener() {
 			
 			@Override
@@ -568,6 +585,7 @@ public class PanelControlador {
 				
 			}
 		});
+		
 		
 		panelcrearapuntes.getCrearapunte().addActionListener(new ActionListener() {
 			
@@ -703,6 +721,10 @@ public class PanelControlador {
 
 	public PanelApuntes getPanelapuntes() {
 		return panelapuntes;
+	}
+
+	public PanelApuntesAlumno getPanelapuntesalumno() {
+		return panelapuntesalumno;
 	}
 	
 	
