@@ -91,7 +91,7 @@ public class ControladorPanelControlador {
 				if (m.getEstado().equals(EstadoAlumno.ADMITIDO)
 						&& academia.buscarAsignatura(n).getVisibilidad().equals(Visibilidad.VISIBLE)) {
 					vista.getPanelhomealumno().getModelo().addElement(n);
-					
+
 				}
 			}
 		}
@@ -406,8 +406,8 @@ public class ControladorPanelControlador {
 		Apuntes a = academia.buscarApuntes(apuntes);
 		if (a != null) {
 			if (a.getVisibilidad().equals(Visibilidad.VISIBLE)) {
-					a.setVisibilidad(Visibilidad.INVISIBLE);
-			}else{
+				a.setVisibilidad(Visibilidad.INVISIBLE);
+			} else {
 				a.setVisibilidad(Visibilidad.VISIBLE);
 			}
 
@@ -416,31 +416,168 @@ public class ControladorPanelControlador {
 
 	public void cambiarVisSub(String titulo) {
 		Temas t = academia.buscarSubtemas(titulo);
-		if(t!=null){
-			if(t.getVisibilidad().equals(Visibilidad.VISIBLE)){
+		if (t != null) {
+			if (t.getVisibilidad().equals(Visibilidad.VISIBLE)) {
 				t.setVisibilidad(Visibilidad.INVISIBLE);
-			}else{
+			} else {
 				t.setVisibilidad(Visibilidad.VISIBLE);
 			}
 		}
-		
+
 	}
 
 	public void crearPreguntaLibre(String enunciado, String solucion, double ponderacion, Visibilidad visibilidad) {
 		academia.buscarEjercicio("titulo").crearPreguntaLibre(enunciado, ponderacion, solucion, false);
-		academia.buscarEjercicio("titulo").setVisibilidad(visibilidad);
-		
+		academia.buscarEjercicio("titulo").buscarPregunta(enunciado).setVisibilidad(visibilidad);
+
 	}
 
 	public void crearEjercicio(String titulo, LocalDate fechaInicio, LocalDate fechaFin, double peso) {
 		String tema = vista.getPaneltema().getNombreTema().getText();
 		Temas t = academia.buscarTema(tema);
-		if(t!=null){
+		if (t != null) {
 			t.crearEjercicio(titulo, fechaInicio, fechaFin, 0, peso);
-		}else{
+		} else {
 			t = academia.buscarSubtemas(tema);
 			t.crearEjercicio(titulo, fechaInicio, fechaFin, 0, peso);
 		}
+
+	}
+
+	public void crearPreguntaMultiple(String enunciado, Double ponderacion, int[] soluciones, List<String> opciones,
+			Visibilidad visibilidad) {
+		academia.buscarEjercicio("titulo").crearPreguntaMultiple(enunciado, ponderacion, soluciones, false, opciones);
+		academia.buscarEjercicio("titulo").buscarPregunta(enunciado).setVisibilidad(visibilidad);
+
+	}
+
+	public void cancelarCrearEjercicio(String tema) {
+		Temas t = academia.buscarTema(tema);
+		if(vista.getPanelcrearEjercicio().getCrearEjercicio().getText().equals("Crear Ejercicio")){
+			if (t != null) {
+				t.eliminarEjercicio(t.buscarEjercicio("titulo"));
+			}else{
+				t = academia.buscarSubtemas(tema);
+				t.eliminarEjercicio(t.buscarEjercicio("titulo"));
+			}
+		}else{
+			
+				if (t != null) {
+					t.buscarEjercicio("titulo").setTitulo(vista.getPaneltema().getEjercicios().getSelectedValue());
+				}else{
+					t = academia.buscarSubtemas(tema);
+					t.buscarEjercicio("titulo").setTitulo(vista.getPaneltema().getEjercicios().getSelectedValue());
+
+				}
+		}
+		
+		
+
+	}
+
+	public void crearEjercicioFin(String titulo, LocalDate fechainicio, LocalDate fechafin, Double peso,Visibilidad visibilidad) {
+		String tema = vista.getPaneltema().getNombreTema().getText();
+		Temas t = academia.buscarTema(tema);
+		
+		if (t != null) {
+			t.buscarEjercicio("titulo").setTitulo(titulo);
+			t.buscarEjercicio(titulo).setFechaInicio(fechainicio);
+			t.buscarEjercicio(titulo).setFechaFin(fechafin);
+			t.buscarEjercicio(titulo).setPeso(peso);
+			t.buscarEjercicio(titulo).setVisibilidad(visibilidad);
+		} else {
+			t = academia.buscarSubtemas(tema);
+			t.buscarEjercicio("titulo").setTitulo(titulo);
+			t.buscarEjercicio(titulo).setFechaInicio(fechainicio);
+			t.buscarEjercicio(titulo).setFechaFin(fechafin);
+			t.buscarEjercicio(titulo).setPeso(peso);
+			t.buscarEjercicio(titulo).setVisibilidad(visibilidad);
+		}
+
+	}
+
+	public void crearPreguntaTest(String enunciado, Double ponderacion, int solucion, List<String> opciones,
+			Visibilidad visibilidad) {
+		academia.buscarEjercicio("titulo").crearPreguntaUnica(enunciado, ponderacion, solucion, false, opciones);
+		academia.buscarEjercicio("titulo").buscarPregunta(enunciado).setVisibilidad(visibilidad);
+
+	}
+
+	public void cargarEjerciciosProfesor(String titulo) {
+		Temas t = academia.buscarTema(titulo);
+		if (t != null) {
+			for (Ejercicio n : t.getEjercicios()) {
+
+				vista.getPaneltema().getlEjercicios().addElement(n.getTitulo());
+
+			}
+		} else {
+			t = academia.buscarSubtemas(titulo);
+			for (Ejercicio n : t.getEjercicios()) {
+				vista.getPaneltema().getlEjercicios().addElement(n.getTitulo());
+
+			}
+		}
+
+	}
+
+	public void cargarEjerciciosAlumno(String titulo) {
+		Temas t = academia.buscarTema(titulo);
+		if (t != null) {
+			for (Ejercicio n : t.getEjercicios()) {
+				if (n.getVisibilidad().equals(Visibilidad.VISIBLE)) {
+					vista.getPaneltemaalumno().getlEjercicios().addElement(n.getTitulo());
+				}
+
+			}
+		} else {
+			t = academia.buscarSubtemas(titulo);
+			for (Ejercicio n : t.getEjercicios()) {
+				if (n.getVisibilidad().equals(Visibilidad.INVISIBLE)) {
+					
+				}else{
+					vista.getPaneltemaalumno().getlEjercicios().addElement(n.getTitulo());
+				}
+			}
+		}
+
+	}
+
+	public void eliminarEjercicios(String titulo) {
+		Temas t = academia.buscarTema(vista.getPaneltema().getNombreTema().getText());
+		if (t != null) {
+			t.eliminarEjercicio(academia.buscarEjercicio(titulo));
+
+		} else {
+			t = academia.buscarSubtemas(vista.getPaneltema().getNombreTema().getText());
+			t.eliminarEjercicio(academia.buscarEjercicio(titulo));
+		}
+		
+	}
+
+	public void abrirEjercicio(String titulo) {
+		Ejercicio e = academia.buscarEjercicio(titulo);
+		ArrayList<Preguntas> preguntas= e.getPreguntas();
+		String ponderacion = String.valueOf(e.getPeso());
+		vista.getPanelcrearejercicio().setPonderacionfield(ponderacion);
+		vista.getPanelcrearejercicio().setFechafinfield(e.getFechaFin().toString());
+		vista.getPanelcrearejercicio().setFechainiciofield(e.getFechaInicio().toString());
+		for(Preguntas p: preguntas){
+			vista.getPanelcrearejercicio().getModelo().addElement(p.getEnunciado());
+		}
+		e.setTitulo("titulo");
+		
+		
+	}
+
+	public boolean eliminarPregunta(String titulo) {
+		if(academia.buscarEjercicio("titulo").esEliminable()==true){
+			academia.buscarEjercicio("titulo").eliminarPregunta(titulo);
+			return true;
+		}
+		return false;
+
+		
 		
 	}
 

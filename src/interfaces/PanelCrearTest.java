@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
-public class PanelCrearMultiple extends JPanel{
+public class PanelCrearTest extends JPanel{
 
 	
 	/**
@@ -31,7 +31,7 @@ public class PanelCrearMultiple extends JPanel{
 	private JButton eliminarOpcion;
 	private JButton crearPregunta;
 	
-	public PanelCrearMultiple(){
+	public PanelCrearTest(){
 		
 		
 		
@@ -79,7 +79,7 @@ public class PanelCrearMultiple extends JPanel{
 		model = new DefaultListModel<String>();
 		listaopciones = new JList<String>(model); 
 
-		listaopciones.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION); 
+		listaopciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
 		
 		
 		JScrollPane barraDesplazamiento = new JScrollPane(listaopciones); 

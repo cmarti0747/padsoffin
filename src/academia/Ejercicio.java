@@ -120,12 +120,12 @@ public class Ejercicio implements Serializable {
 	 * @param solucion:
 	 *            Solucion de la pregunta
 	 */
-	public void crearPreguntaUnica(String enunciado, double ponderacion, int solucion, boolean aleatorio) {
+	public void crearPreguntaUnica(String enunciado, double ponderacion, int solucion, boolean aleatorio,List<String> opciones) {
 		Preguntas p;
 		if (ponderacion == 0) {
-			p = new PreguntaUnica(enunciado, solucion);
+			p = new PreguntaUnica(enunciado, solucion,opciones);
 		} else {
-			p = new PreguntaUnica(enunciado, ponderacion, solucion);
+			p = new PreguntaUnica(enunciado, ponderacion, solucion,opciones);
 		}
 
 		this.preguntas.add(p);
@@ -190,7 +190,9 @@ public class Ejercicio implements Serializable {
 		} else if (visibilidad == academia.Visibilidad.VISIBLE_COMENZADO
 				|| visibilidad == academia.Visibilidad.VISIBLE_CONTESTADO
 				|| visibilidad == academia.Visibilidad.VISIBLE_NOCOMENZADO
-				|| visibilidad == academia.Visibilidad.VISIBLE_TERIMNADO) {
+				|| visibilidad == academia.Visibilidad.VISIBLE_TERIMNADO
+				||visibilidad == academia.Visibilidad.VISIBLE
+				|| visibilidad == academia.Visibilidad.INVISIBLE) {
 			this.visibilidad = visibilidad;
 		}
 	}
@@ -248,7 +250,7 @@ public class Ejercicio implements Serializable {
 	 */
 	public boolean esEliminable() {
 		if (this.visibilidad == academia.Visibilidad.VISIBLE_NOCOMENZADO
-				|| this.visibilidad == academia.Visibilidad.VISIBLE_COMENZADO
+				|| this.visibilidad == academia.Visibilidad.VISIBLE
 				|| this.visibilidad == academia.Visibilidad.INVISIBLE) {
 			return true;
 		}
@@ -426,9 +428,27 @@ public class Ejercicio implements Serializable {
 	public double getPeso() {
 		return peso;
 	}
+	
+	public Preguntas buscarPregunta(String enunciado){
+		for(Preguntas p: preguntas){
+			if(p.getEnunciado().equals(enunciado)){
+				return p;
+			}
+		}
+		return null;
+	}
 
 	public void setPeso(double peso) {
 		this.peso = peso;
+	}
+	
+	public void eliminarPregunta(String enunciado){
+		for(Preguntas p: preguntas){
+			if(p.getEnunciado().equals(enunciado)){
+				preguntas.remove(p);
+			}
+		}
+		
 	}
 	
 

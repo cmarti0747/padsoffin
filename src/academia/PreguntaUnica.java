@@ -1,6 +1,7 @@
 package academia;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Modulo que se encarga de gestionar las preguntas de tipo unica
@@ -13,6 +14,7 @@ public class PreguntaUnica extends Preguntas {
 	private static final long serialVersionUID = -6851216462100371793L;
 	private int solucion;
 	private ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
+	private List<String> opciones = new ArrayList<String>();
 
 	/**
 	 * Constructor de la clase PreguntaLibre
@@ -20,9 +22,10 @@ public class PreguntaUnica extends Preguntas {
 	 * @param ponderacion: Ponderacion de la pregunta
 	 * @param solucion: Solucion de la pregunta
 	 */
-	public PreguntaUnica(String enunciado, double ponderacion, int solucion) {
+	public PreguntaUnica(String enunciado, double ponderacion, int solucion,List<String> opciones) {
 		super(enunciado, ponderacion);
 		this.solucion = solucion;
+		this.opciones = opciones;
 
 	}
 
@@ -31,8 +34,8 @@ public class PreguntaUnica extends Preguntas {
 	 * @param enunciado: Enunciado de la pregunta
 	 * @param solucion: Solucion de la pregunta
 	 */
-	public PreguntaUnica(String enunciado, int solucion) {
-		this(enunciado, 1, solucion);
+	public PreguntaUnica(String enunciado, int solucion,List<String> opciones) {
+		this(enunciado, 1, solucion,opciones);
 
 	}
 
@@ -90,6 +93,24 @@ public class PreguntaUnica extends Preguntas {
 			return true;
 		}
 		return false;
+	}
+	
+	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public int getSolucion() {
+		return solucion;
+	}
+
+	public ArrayList<Respuesta> getRespuestas() {
+		return respuestas;
+	}
+
+	public List<String> getOpciones() {
+		return opciones;
 	}
 
 	@Override
