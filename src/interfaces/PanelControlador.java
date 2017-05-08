@@ -115,6 +115,8 @@ public class PanelControlador {
 		panelcontenedor.add(panelapuntes, "panelApuntes");
 		panelcontenedor.add(panelapuntesalumno, "panelapuntesAlumno");
 		panelcontenedor.add(panelcrearsubtema, "panelcrearSubtema");
+		panelcontenedor.add(panelcrearlibre,"panelcrearLibre");
+		panelcontenedor.add(panelcrearmultiple,"panelcrearMultiple");
 
 		contenedor.add(panelcontenedor, BorderLayout.CENTER);
 		contenedor.add(ExitField, BorderLayout.NORTH);
@@ -640,6 +642,15 @@ public class PanelControlador {
 
 			}
 		});
+		
+		paneltema.getCrearE().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cl.show(panelcontenedor, "panelcrearEjercicio");
+				
+			}
+		});
 
 		paneltema.getSubtemas().addMouseListener(new MouseAdapter() {
 
@@ -810,6 +821,7 @@ public class PanelControlador {
 
 			}
 		});
+		
 
 	}
 

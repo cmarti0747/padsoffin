@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -26,16 +28,16 @@ public class PanelCrearEjercicio extends JPanel{
 	private JTextField titulofield;
 	private JRadioButton preguntatest, preguntamultiple, preguntalibre;
 	private ButtonGroup group;
+	private DefaultListModel<String> modelo;
+	private JButton crearPregunta;
 	
 	
 	public PanelCrearEjercicio(){
-		String[] nombres = {"Ana","Margarita","Daniela","Divian", 
-				"Leslie","Paz","Andrea","Macarena"}; 
 		
 		
 		
-		
-		listapreguntas = new JList<String>(nombres);
+		modelo = new DefaultListModel<String>();
+		listapreguntas = new JList<String>(modelo);
 		listapreguntas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION); 
 		JScrollPane barraDesplazamiento = new JScrollPane(listapreguntas); 
 		barraDesplazamiento.setPreferredSize(new Dimension(400,400));
@@ -43,7 +45,7 @@ public class PanelCrearEjercicio extends JPanel{
 		listapreguntas.setFont(new Font("Arial",0,17));
 		
 		
-		
+		crearPregunta = new JButton("Añadir pregunta");
 		
 		labeltitulo = new JLabel("TITULO DEL EJERCICIO");
 		labeltitulo.setFont(new Font("Arial",0,40));
@@ -109,7 +111,11 @@ layout.putConstraint(SpringLayout.NORTH, preguntamultiple, 50, SpringLayout.NORT
 layout.putConstraint(SpringLayout.NORTH, preguntalibre, 50, SpringLayout.NORTH, preguntamultiple);
 		
 		layout.putConstraint(SpringLayout.WEST, preguntalibre, 0, SpringLayout.WEST, preguntamultiple);
+
+layout.putConstraint(SpringLayout.NORTH, crearPregunta, 25, SpringLayout.SOUTH, preguntalibre);
 		
+		layout.putConstraint(SpringLayout.WEST, crearPregunta, 0, SpringLayout.WEST, preguntalibre);
+
 		
 layout.putConstraint(SpringLayout.SOUTH, seleccion, -30, SpringLayout.NORTH, preguntatest);
 		
@@ -124,7 +130,7 @@ layout.putConstraint(SpringLayout.SOUTH, seleccion, -30, SpringLayout.NORTH, pre
 		add(preguntamultiple);
 		add(preguntalibre);
 		add(seleccion);
-		
+		add(crearPregunta);
 		
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
