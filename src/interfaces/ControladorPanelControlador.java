@@ -72,7 +72,6 @@ public class ControladorPanelControlador {
 		}
 
 		for (String n : getnomAsignaturas()) {
-			Asignaturas a = academia.buscarAsignatura(n);
 			vista.getPanelhomeprofesor().getModelo().addElement(n);
 
 		}
@@ -385,6 +384,24 @@ public class ControladorPanelControlador {
 		}
 		
 		
+	}
+
+	public void modificarApuntes(String titulo) {
+		String titulonuevo = vista.getPanelapuntes().getTitulofield().getText();
+		String textonuevo = vista.getPanelapuntes().getTextofield().getText();
+		boolean visibilidad = vista.getPanelapuntes().getCheck1().isSelected();
+		if(visibilidad == true){
+			academia.buscarApuntes(titulo).modificarApunte(titulonuevo, textonuevo, Visibilidad.VISIBLE);
+		}else{
+			academia.buscarApuntes(titulo).modificarApunte(titulonuevo, textonuevo, Visibilidad.INVISIBLE);
+
+		}
+		
+		
+	}
+
+	public Visibilidad visibilidadApuntes(String titulo) {
+		return academia.buscarApuntes(titulo).getVisibilidad();
 	}
 
 }

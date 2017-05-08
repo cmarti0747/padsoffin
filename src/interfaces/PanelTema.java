@@ -6,7 +6,6 @@ import java.awt.Font;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -29,6 +28,9 @@ public class PanelTema extends JPanel {
 	private JList<String> subtemas;
 	private JLabel volver;
 	private String subtemaAnterior;
+	private JButton cambiarvisA;
+	private JButton cambiarvisSub;
+	private JButton cambiarvisE;
 
 	public PanelTema() {
 
@@ -44,12 +46,15 @@ public class PanelTema extends JPanel {
 
 		crearA = new JButton("Crear Apunte");
 		eliminarA = new JButton("Eliminar Apunte");
+		cambiarvisA = new JButton("Cambiar visibilidad");
 
 		crearE = new JButton("Crear Ejercicio");
 		eliminarE = new JButton("Eliminar Ejercicio");
+		cambiarvisE = new JButton("Cambiar visibilidad");
 
 		crearSub = new JButton("Crear Subtema");
 		eliminarSub = new JButton("Eliminar Subtema");
+		cambiarvisSub = new JButton("Cambiar visibilidad");
 
 		lApuntes = new DefaultListModel<String>();
 		apuntes = new JList<String>(lApuntes);
@@ -121,8 +126,23 @@ public class PanelTema extends JPanel {
 		layout.putConstraint(SpringLayout.NORTH, eliminarSub, 0, SpringLayout.NORTH, crearSub);
 
 		layout.putConstraint(SpringLayout.WEST, eliminarSub, 10, SpringLayout.EAST, crearSub);
+		
+		layout.putConstraint(SpringLayout.NORTH, cambiarvisA,10 , SpringLayout.SOUTH, crearA);
+		
+		layout.putConstraint(SpringLayout.WEST, cambiarvisA,45 , SpringLayout.WEST, crearA);
+		
+layout.putConstraint(SpringLayout.NORTH, cambiarvisE,10 , SpringLayout.SOUTH, crearE);
+		
+		layout.putConstraint(SpringLayout.WEST, cambiarvisE,45 , SpringLayout.WEST, crearE);
+		
+layout.putConstraint(SpringLayout.NORTH, cambiarvisSub,10 , SpringLayout.SOUTH, crearSub);
+		
+		layout.putConstraint(SpringLayout.WEST, cambiarvisSub,45 , SpringLayout.WEST, crearSub);
+
+
 
 		layout.putConstraint(SpringLayout.NORTH, volver, 50, SpringLayout.SOUTH, crearSub);
+		
 		layout.putConstraint(SpringLayout.EAST, volver, 0, SpringLayout.EAST, barraDesplazamiento3);
 
 		add(barraDesplazamiento);
@@ -139,7 +159,9 @@ public class PanelTema extends JPanel {
 		add(labelapuntes);
 		add(labelejercicios);
 		add(nombreTema);
-
+		add(cambiarvisA);
+		add(cambiarvisE);
+		add(cambiarvisSub);
 		setBackground(new Color(0, 255, 255));
 		setVisible(true);
 
@@ -158,19 +180,19 @@ public class PanelTema extends JPanel {
 
 
 
-	public JList getApuntes() {
+	public JList<String> getApuntes() {
 		return apuntes;
 	}
 
-	public void setApuntes(JList apuntes) {
+	public void setApuntes(JList<String> apuntes) {
 		this.apuntes = apuntes;
 	}
 
-	public JList getEjercicios() {
+	public JList<String> getEjercicios() {
 		return ejercicios;
 	}
 
-	public void setEjercicios(JList ejercicios) {
+	public void setEjercicios(JList<String> ejercicios) {
 		this.ejercicios = ejercicios;
 	}
 
@@ -261,5 +283,25 @@ public class PanelTema extends JPanel {
 	public JLabel getVolver() {
 		return volver;
 	}
+
+
+
+	public JButton getCambiarvisA() {
+		return cambiarvisA;
+	}
+
+
+
+	public JButton getCambiarvisSub() {
+		return cambiarvisSub;
+	}
+
+
+
+	public JButton getCambiarvisE() {
+		return cambiarvisE;
+	}
+	
+	
 
 }

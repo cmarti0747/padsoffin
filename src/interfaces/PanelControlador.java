@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -246,7 +246,7 @@ public class PanelControlador {
 		panelhomeprofesor.getListaAsignaturas().addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent evt) {
-				JList<String> list = (JList<String>) evt.getSource();
+				evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 
 					panelasignatura.setNombreAsignatura(panelhomeprofesor.getListaAsignaturas().getSelectedValue());
@@ -377,7 +377,7 @@ public class PanelControlador {
 		panelasignatura.getLista().addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent evt) {
-				JList<String> list = (JList<String>) evt.getSource();
+				evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 
 					paneltema.setNombreTema(panelasignatura.getLista().getSelectedValue());
@@ -475,7 +475,7 @@ public class PanelControlador {
 
 		panelasignaturaalumno.getListatemas().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				JList<String> list = (JList<String>) evt.getSource();
+				evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 
 					paneltemaalumno.setNombreTema(panelasignaturaalumno.getListatemas().getSelectedValue());
@@ -491,7 +491,7 @@ public class PanelControlador {
 
 		paneltema.getApuntes().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				JList<String> list = (JList<String>) evt.getSource();
+				evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 					if (paneltema.getApuntes().getSelectedValue() != null) {
 						panelapuntes.setTitulo((String) paneltema.getApuntes().getSelectedValue());
@@ -501,6 +501,14 @@ public class PanelControlador {
 
 					} else {
 						JOptionPane.showMessageDialog(null, "No hay seleccionado ningun apunte");
+					}
+				} else if (evt.getButton() == MouseEvent.BUTTON3) {
+					if ((String) paneltema.getApuntes().getSelectedValue() != null) {
+						String titulo = (String) paneltema.getApuntes().getSelectedValue();
+
+						JOptionPane.showMessageDialog(null, "Estado:" + controlador.visibilidadApuntes(titulo));
+					} else {
+						JOptionPane.showMessageDialog(null, "Seleccione una asignatura");
 					}
 				}
 			}
@@ -557,7 +565,7 @@ public class PanelControlador {
 				paneltema.getlApuntes().clear();
 				paneltema.getlEjercicios().clear();
 				paneltema.getlSubtemas().clear();
-				if (tema==null) {
+				if (tema == null) {
 					cl.show(panelcontenedor, "panelAsignatura");
 				} else {
 					controlador.cargarApuntesProfesor(tema);
@@ -590,27 +598,42 @@ public class PanelControlador {
 					controlador.crearSubtema(titulo, Visibilidad.INVISIBLE, tema);
 				}
 				cl.show(panelcontenedor, "panelTema");
+				panelcrearsubtema.getTitulo().setText("");
+				panelcrearsubtema.getCheck1().setSelected(false);
 				paneltema.getlSubtemas().addElement(titulo);
 
 			}
 		});
-		
+
 		paneltema.getEliminarSub().addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String titulo = paneltema.getSubtemas().getSelectedValue();
-				String tema  = paneltema.getNombreTema().getText();
-				controlador.eliminarSubtemas(tema,titulo);
+				String tema = paneltema.getNombreTema().getText();
+				controlador.eliminarSubtemas(tema, titulo);
 				paneltema.getlSubtemas().remove(paneltema.getSubtemas().getSelectedIndex());
-				
+
+			}
+		});
+
+		panelapuntes.getModificar().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String titulo = panelapuntes.getTitulo().getText();
+				controlador.modificarApuntes(titulo);
+				paneltema.getlApuntes().clear();
+				controlador.cargarApuntesProfesor(paneltema.getNombreTema().getText());
+				cl.show(panelcontenedor, "panelTema");
+
 			}
 		});
 
 		paneltema.getSubtemas().addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent evt) {
-				JList<String> list = (JList<String>) evt.getSource();
+				evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 					String t = (String) paneltema.getSubtemas().getSelectedValue();
 					paneltema.setNombreTema(t);
@@ -619,8 +642,7 @@ public class PanelControlador {
 					paneltema.getlSubtemas().clear();
 					controlador.cargarApuntesProfesor(t);
 					controlador.cargarSubtemasProfesor(t);
-					
-					
+
 					// Double-click detected
 					cl.show(panelcontenedor, "panelTema");
 
@@ -636,11 +658,11 @@ public class PanelControlador {
 			}
 
 		});
-		
+
 		paneltemaalumno.getSubtemas().addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent evt) {
-				JList<String> list = (JList<String>) evt.getSource();
+				evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 					String t = (String) paneltemaalumno.getSubtemas().getSelectedValue();
 					paneltemaalumno.setNombreTema(t);
@@ -649,8 +671,7 @@ public class PanelControlador {
 					paneltemaalumno.getlSubtemas().clear();
 					controlador.cargarApuntesAlumno(t);
 					controlador.cargarSubtemasAlumno(t);
-					
-					
+
 					// Double-click detected
 					cl.show(panelcontenedor, "paneltemaAlumno");
 
@@ -669,7 +690,7 @@ public class PanelControlador {
 
 		paneltemaalumno.getApuntes().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				JList<String> list = (JList<String>) evt.getSource();
+				evt.getSource();
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 
 					panelapuntesalumno.getTitulo().setText((String) paneltemaalumno.getApuntes().getSelectedValue());

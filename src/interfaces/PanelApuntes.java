@@ -5,19 +5,24 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 public class PanelApuntes extends JPanel{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel titulo, texto, volver;
 	private JTextArea titulofield;
 	private JTextArea textofield;
 	private JButton modificar;
+	private JCheckBox check1;
 	
 	public PanelApuntes(){
 		
@@ -33,6 +38,9 @@ public class PanelApuntes extends JPanel{
 		texto = new JLabel("TEXTO DEL APUNTE");
 		texto.setFont(new Font("Arial",0,35));
 		
+		check1=new JCheckBox("Visbilidad");
+        check1.setBounds(10,10,150,30);
+        check1.setBackground(new Color(0,255,255));
 		
 		
 		titulofield = new JTextArea();
@@ -63,6 +71,10 @@ public class PanelApuntes extends JPanel{
 		layout.putConstraint(SpringLayout.NORTH, volver, 50, SpringLayout.SOUTH, modificar);
 		layout.putConstraint(SpringLayout.WEST, volver, 40, SpringLayout.EAST, modificar);
 		
+layout.putConstraint(SpringLayout.WEST, check1, 0, SpringLayout.WEST, textofield);
+		
+		layout.putConstraint(SpringLayout.NORTH, check1, 20, SpringLayout.SOUTH,textofield);
+		
 		
 		add(titulo);
 		add(texto);
@@ -70,7 +82,7 @@ public class PanelApuntes extends JPanel{
 		add(titulofield);
 		add(modificar);
 		add(volver);
-		
+		add(check1);
 		
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
@@ -123,6 +135,10 @@ public class PanelApuntes extends JPanel{
 
 	public void setModificar(JButton modificar) {
 		this.modificar = modificar;
+	}
+
+	public JCheckBox getCheck1() {
+		return check1;
 	}
 	
 	
