@@ -221,13 +221,13 @@ public class ControladorPanelControlador {
 	}
 
 	public void crearApuntes(String titulo, String texto, Visibilidad visibilidad) {
-	
+
 		Temas t = academia.buscarTema(vista.getPaneltema().getNombreTema().getText());
-		if(t!=null){
-		t.crearApuntes(titulo, texto);
-		t.buscarApuntes(titulo).setVisibilidad(visibilidad);
-		}else{
-			t= academia.buscarSubtemas(vista.getPaneltema().getNombreTema().getText());
+		if (t != null) {
+			t.crearApuntes(titulo, texto);
+			t.buscarApuntes(titulo).setVisibilidad(visibilidad);
+		} else {
+			t = academia.buscarSubtemas(vista.getPaneltema().getNombreTema().getText());
 			t.crearApuntes(titulo, texto);
 			t.buscarApuntes(titulo).setVisibilidad(visibilidad);
 		}
@@ -236,11 +236,11 @@ public class ControladorPanelControlador {
 
 	public void eliminarApuntes(String titulo) {
 		Temas t = academia.buscarTema(vista.getPaneltema().getNombreTema().getText());
-		if(t!=null){
-		t.eliminarApuntes(academia.buscarApuntes(titulo));
+		if (t != null) {
+			t.eliminarApuntes(academia.buscarApuntes(titulo));
 
-		}else{
-			t= academia.buscarSubtemas(vista.getPaneltema().getNombreTema().getText());
+		} else {
+			t = academia.buscarSubtemas(vista.getPaneltema().getNombreTema().getText());
 			t.eliminarApuntes(academia.buscarApuntes(titulo));
 		}
 
@@ -273,20 +273,19 @@ public class ControladorPanelControlador {
 
 			if (t.getApuntes() != null) {
 				for (Apuntes n : t.getApuntes()) {
-					if(n.getVisibilidad().equals(Visibilidad.VISIBLE)){
-					vista.getPaneltemaalumno().getlApuntes().addElement(n.getTitulo());
+					if (n.getVisibilidad().equals(Visibilidad.VISIBLE)) {
+						vista.getPaneltemaalumno().getlApuntes().addElement(n.getTitulo());
 					}
 
 				}
 			}
 		} else {
 			for (Apuntes n : te.getApuntes()) {
-				if(n.getVisibilidad().equals(Visibilidad.VISIBLE)){
+				if (n.getVisibilidad().equals(Visibilidad.VISIBLE)) {
 					vista.getPaneltemaalumno().getlApuntes().addElement(n.getTitulo());
-					}
+				}
 			}
 		}
-
 
 	}
 
@@ -307,9 +306,9 @@ public class ControladorPanelControlador {
 
 	public Visibilidad visibilidadTema(String tema) {
 		Temas t = academia.buscarTema(tema);
-				if(t==null){
-					t = academia.buscarSubtemas(tema);
-				}
+		if (t == null) {
+			t = academia.buscarSubtemas(tema);
+		}
 		return t.getVisibilidad();
 	}
 
@@ -339,7 +338,7 @@ public class ControladorPanelControlador {
 			for (Temas n : t.getSubtemas()) {
 				vista.getPaneltema().getlSubtemas().addElement(n.getTitulo());
 			}
-		}else{
+		} else {
 			t = academia.buscarSubtemas(titulo);
 			for (Temas n : t.getSubtemas()) {
 				vista.getPaneltema().getlSubtemas().addElement(n.getTitulo());
@@ -347,29 +346,29 @@ public class ControladorPanelControlador {
 		}
 
 	}
-	
+
 	public void cargarSubtemasAlumno(String titulo) {
 		Temas t = academia.buscarTema(titulo);
 		if (t != null) {
 			for (Temas n : t.getSubtemas()) {
-				if(n.getVisibilidad().equals(Visibilidad.VISIBLE)){
-				vista.getPaneltemaalumno().getlSubtemas().addElement(n.getTitulo());
+				if (n.getVisibilidad().equals(Visibilidad.VISIBLE)) {
+					vista.getPaneltemaalumno().getlSubtemas().addElement(n.getTitulo());
 				}
 			}
-		}else{
+		} else {
 			t = academia.buscarSubtemas(titulo);
 			for (Temas n : t.getSubtemas()) {
-				if(n.getVisibilidad().equals(Visibilidad.VISIBLE)){
+				if (n.getVisibilidad().equals(Visibilidad.VISIBLE)) {
 					vista.getPaneltemaalumno().getlSubtemas().addElement(n.getTitulo());
-					}
+				}
 			}
 		}
 
 	}
 
 	public String buscartemaPadre(String titulo) {
-		Temas t =  academia.buscarTemaPadre(titulo);
-		if(t ==null){
+		Temas t = academia.buscarTemaPadre(titulo);
+		if (t == null) {
 			return null;
 		}
 		return t.getTitulo();
@@ -377,31 +376,41 @@ public class ControladorPanelControlador {
 
 	public void eliminarSubtemas(String tema, String titulo) {
 		Temas t = academia.buscarTema(tema);
-		if(t==null){
+		if (t == null) {
 			academia.buscarSubtemas(tema).eliminarSubTema(academia.buscarSubtemas(titulo));
-		}else{
+		} else {
 			t.eliminarSubTema(academia.buscarSubtemas(titulo));
 		}
-		
-		
+
 	}
 
 	public void modificarApuntes(String titulo) {
 		String titulonuevo = vista.getPanelapuntes().getTitulofield().getText();
 		String textonuevo = vista.getPanelapuntes().getTextofield().getText();
 		boolean visibilidad = vista.getPanelapuntes().getCheck1().isSelected();
-		if(visibilidad == true){
+		if (visibilidad == true) {
 			academia.buscarApuntes(titulo).modificarApunte(titulonuevo, textonuevo, Visibilidad.VISIBLE);
-		}else{
+		} else {
 			academia.buscarApuntes(titulo).modificarApunte(titulonuevo, textonuevo, Visibilidad.INVISIBLE);
 
 		}
-		
-		
+
 	}
 
 	public Visibilidad visibilidadApuntes(String titulo) {
 		return academia.buscarApuntes(titulo).getVisibilidad();
+	}
+
+	public void cambiarVisApuntes(String apuntes) {
+		Apuntes a = academia.buscarApuntes(apuntes);
+		if (a != null) {
+			if (a.getVisibilidad().equals(Visibilidad.VISIBLE)) {
+					a.setVisibilidad(Visibilidad.INVISIBLE);
+			}else{
+				a.setVisibilidad(Visibilidad.VISIBLE);
+			}
+
+		}
 	}
 
 }

@@ -485,8 +485,19 @@ public class PanelControlador {
 					cl.show(panelcontenedor, "paneltemaAlumno");
 
 				}
+
 			}
 
+		});
+		
+		paneltema.getCambiarvisA().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String apuntes = paneltema.getApuntes().getSelectedValue();
+				controlador.cambiarVisApuntes(apuntes);
+				
+			}
 		});
 
 		paneltema.getApuntes().addMouseListener(new MouseAdapter() {
