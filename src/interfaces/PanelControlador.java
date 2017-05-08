@@ -594,6 +594,18 @@ public class PanelControlador {
 
 			}
 		});
+		
+		paneltema.getEliminarSub().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String titulo = paneltema.getSubtemas().getSelectedValue();
+				String tema  = paneltema.getNombreTema().getText();
+				controlador.eliminarSubtemas(tema,titulo);
+				paneltema.getlSubtemas().remove(paneltema.getSubtemas().getSelectedIndex());
+				
+			}
+		});
 
 		paneltema.getSubtemas().addMouseListener(new MouseAdapter() {
 

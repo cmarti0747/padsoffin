@@ -376,4 +376,15 @@ public class ControladorPanelControlador {
 		return t.getTitulo();
 	}
 
+	public void eliminarSubtemas(String tema, String titulo) {
+		Temas t = academia.buscarTema(tema);
+		if(t==null){
+			academia.buscarSubtemas(tema).eliminarSubTema(academia.buscarSubtemas(titulo));
+		}else{
+			t.eliminarSubTema(academia.buscarSubtemas(titulo));
+		}
+		
+		
+	}
+
 }
