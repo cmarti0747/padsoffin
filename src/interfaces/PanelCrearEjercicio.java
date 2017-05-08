@@ -30,6 +30,9 @@ public class PanelCrearEjercicio extends JPanel{
 	private ButtonGroup group;
 	private DefaultListModel<String> modelo;
 	private JButton crearPregunta;
+	private JButton crearEjercicio;
+	private JButton cancelar;
+	private JButton eliminarPregunta;
 	
 	
 	public PanelCrearEjercicio(){
@@ -46,6 +49,9 @@ public class PanelCrearEjercicio extends JPanel{
 		
 		
 		crearPregunta = new JButton("Añadir pregunta");
+		crearEjercicio = new JButton("Crear Ejercicio");
+		cancelar = new JButton("Cancelar");
+		eliminarPregunta = new JButton("Eliminar pregunta");
 		
 		labeltitulo = new JLabel("TITULO DEL EJERCICIO");
 		labeltitulo.setFont(new Font("Arial",0,40));
@@ -115,6 +121,20 @@ layout.putConstraint(SpringLayout.NORTH, preguntalibre, 50, SpringLayout.NORTH, 
 layout.putConstraint(SpringLayout.NORTH, crearPregunta, 25, SpringLayout.SOUTH, preguntalibre);
 		
 		layout.putConstraint(SpringLayout.WEST, crearPregunta, 0, SpringLayout.WEST, preguntalibre);
+		
+layout.putConstraint(SpringLayout.NORTH, crearEjercicio,60 , SpringLayout.SOUTH, crearPregunta);
+		
+		layout.putConstraint(SpringLayout.WEST, crearEjercicio, 0, SpringLayout.WEST, crearPregunta);
+
+layout.putConstraint(SpringLayout.NORTH, cancelar,0 , SpringLayout.NORTH, crearEjercicio);
+		
+		layout.putConstraint(SpringLayout.WEST, cancelar, 20, SpringLayout.EAST, crearEjercicio);
+
+layout.putConstraint(SpringLayout.NORTH, eliminarPregunta,0 , SpringLayout.NORTH, crearPregunta);
+		
+		layout.putConstraint(SpringLayout.WEST, eliminarPregunta, 20, SpringLayout.EAST, crearPregunta);
+
+
 
 		
 layout.putConstraint(SpringLayout.SOUTH, seleccion, -30, SpringLayout.NORTH, preguntatest);
@@ -131,11 +151,91 @@ layout.putConstraint(SpringLayout.SOUTH, seleccion, -30, SpringLayout.NORTH, pre
 		add(preguntalibre);
 		add(seleccion);
 		add(crearPregunta);
+		add(crearEjercicio);
+		add(cancelar);
+		add(eliminarPregunta);
 		
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
 		
 	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	public JList<String> getListapreguntas() {
+		return listapreguntas;
+	}
+
+
+	public JLabel getLabeltitulo() {
+		return labeltitulo;
+	}
+
+
+	public JLabel getLabellistapreguntas() {
+		return labellistapreguntas;
+	}
+
+
+	public JLabel getSeleccion() {
+		return seleccion;
+	}
+
+
+	public JTextField getTitulofield() {
+		return titulofield;
+	}
+
+
+	public JRadioButton getPreguntatest() {
+		return preguntatest;
+	}
+
+
+	public JRadioButton getPreguntamultiple() {
+		return preguntamultiple;
+	}
+
+
+	public JRadioButton getPreguntalibre() {
+		return preguntalibre;
+	}
+
+
+	public ButtonGroup getGroup() {
+		return group;
+	}
+
+
+	public DefaultListModel<String> getModelo() {
+		return modelo;
+	}
+
+
+	public JButton getCrearPregunta() {
+		return crearPregunta;
+	}
+
+
+	public JButton getCrearEjercicio() {
+		return crearEjercicio;
+	}
+
+
+	public JButton getCancelar() {
+		return cancelar;
+	}
+
+
+	public JButton getEliminarPregunta() {
+		return eliminarPregunta;
+	}
+	
+	
 	
 	
 	

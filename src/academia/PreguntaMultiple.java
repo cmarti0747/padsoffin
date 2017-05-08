@@ -13,6 +13,7 @@ public class PreguntaMultiple extends Preguntas {
 
 	private static final long serialVersionUID = -5058094786278779932L;
 	private ArrayList<Integer> soluciones = new ArrayList<Integer>();
+	private List<String> opciones = new ArrayList<String>();
 	private ArrayList<Respuesta> respuestas= new ArrayList<Respuesta>();
 
 	/**
@@ -21,9 +22,10 @@ public class PreguntaMultiple extends Preguntas {
 	 * @param ponderacion: Ponderacion de la pregunta
 	 * @param solucion: Soluciones de la pregunta
 	 */
-	public PreguntaMultiple(String enunciado, double ponderacion, int[] solucion) {
+	public PreguntaMultiple(String enunciado, double ponderacion, int[] solucion,List<String> opciones) {
 		super(enunciado, ponderacion);
 		anyadirSoluciones(solucion);
+		this.opciones = opciones;
 	}
 
 	/**
@@ -31,8 +33,8 @@ public class PreguntaMultiple extends Preguntas {
 	 * @param enunciado: Enunciado de la pregunta
 	 * @param solucion: Soluciones de la pregunta
 	 */
-	public PreguntaMultiple(String enunciado, int[] solucion) {
-		this(enunciado, 1, solucion);
+	public PreguntaMultiple(String enunciado, int[] solucion,List<String> opciones) {
+		this(enunciado, 1, solucion, opciones);
 	}
 
 	/**
@@ -120,6 +122,16 @@ public class PreguntaMultiple extends Preguntas {
 	 */
 	public List<Respuesta> getRespuestas(){
 		return Collections.unmodifiableList(this.respuestas);
+	}
+	
+	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public List<String> getOpciones() {
+		return opciones;
 	}
 
 	@Override

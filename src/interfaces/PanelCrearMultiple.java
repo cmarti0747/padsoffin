@@ -18,12 +18,18 @@ import javax.swing.SpringLayout;
 public class PanelCrearMultiple extends JPanel{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel enunciado, volver, ponderacion, opcion, opciones;
 	private JTextArea enunciadofield, opcionfield, ponderacionfield;
 	private JCheckBox check1;
 	private JButton anyadirOpcion;
 	private DefaultListModel<String> model;
 	private JList<String> listaopciones;
+	private JButton eliminarOpcion;
+	private JButton crearPregunta;
 	
 	public PanelCrearMultiple(){
 		
@@ -48,6 +54,8 @@ public class PanelCrearMultiple extends JPanel{
 		volver.setFont(new Font("Arial",0,20));
 		
 		anyadirOpcion = new JButton("Añadir opcion");
+		eliminarOpcion = new JButton("Eliminar opcion");
+		crearPregunta = new JButton("Crear pregunta");
 		
 		check1=new JCheckBox("Visbilidad");
 		check1.setFont(new Font("Arial", 0, 20));
@@ -116,6 +124,12 @@ public class PanelCrearMultiple extends JPanel{
 		layout.putConstraint(SpringLayout.NORTH, barraDesplazamiento, 0, SpringLayout.NORTH, opcionfield);
 		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento, 100, SpringLayout.EAST, opcionfield);
 		
+		layout.putConstraint(SpringLayout.NORTH, eliminarOpcion, 0, SpringLayout.NORTH, anyadirOpcion);
+		layout.putConstraint(SpringLayout.WEST, eliminarOpcion, 20, SpringLayout.EAST, anyadirOpcion);
+		
+		layout.putConstraint(SpringLayout.NORTH, crearPregunta, 0, SpringLayout.SOUTH, barraDesplazamiento);
+		layout.putConstraint(SpringLayout.WEST, crearPregunta, 0, SpringLayout.WEST, ponderacionfield);
+		
 		layout.putConstraint(SpringLayout.SOUTH, opciones, -20, SpringLayout.NORTH, barraDesplazamiento);
 		layout.putConstraint(SpringLayout.WEST, opciones, 0, SpringLayout.WEST, barraDesplazamiento);
 		
@@ -129,10 +143,10 @@ public class PanelCrearMultiple extends JPanel{
 		add(ponderacion);
 		add(ponderacionfield);
 		add(opcion);
-		
+		add(crearPregunta);
 		add(barraDesplazamiento);
 		add(opciones);
-		
+		add(eliminarOpcion);
 		add(check1);
 		
 		
@@ -141,6 +155,68 @@ public class PanelCrearMultiple extends JPanel{
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JLabel getEnunciado() {
+		return enunciado;
+	}
+
+	public JLabel getVolver() {
+		return volver;
+	}
+
+	public JLabel getPonderacion() {
+		return ponderacion;
+	}
+
+	public JLabel getOpcion() {
+		return opcion;
+	}
+
+	public JLabel getOpciones() {
+		return opciones;
+	}
+
+	public JTextArea getEnunciadofield() {
+		return enunciadofield;
+	}
+
+	public JTextArea getOpcionfield() {
+		return opcionfield;
+	}
+
+	public JTextArea getPonderacionfield() {
+		return ponderacionfield;
+	}
+
+	public JCheckBox getCheck1() {
+		return check1;
+	}
+
+	public JButton getAnyadirOpcion() {
+		return anyadirOpcion;
+	}
+
+	public DefaultListModel<String> getModel() {
+		return model;
+	}
+
+	public JList<String> getListaopciones() {
+		return listaopciones;
+	}
+
+	public JButton getEliminarOpcion() {
+		return eliminarOpcion;
+	}
+
+	public JButton getCrearPregunta() {
+		return crearPregunta;
+	}
+	
+	
 	
 	
 }

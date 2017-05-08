@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Modulo que se encarga de gestionar los ejercicios de un tema
@@ -144,12 +145,12 @@ public class Ejercicio implements Serializable {
 	 * @param solucion:
 	 *            Soluciones de la pregunta
 	 */
-	public void crearPreguntaMultiple(String enunciado, double ponderacion, int[] solucion, boolean aleatorio) {
+	public void crearPreguntaMultiple(String enunciado, double ponderacion, int[] solucion, boolean aleatorio,List<String> opciones) {
 		Preguntas p;
 		if (ponderacion == 0) {
-			p = new PreguntaMultiple(enunciado, solucion);
+			p = new PreguntaMultiple(enunciado, solucion,opciones);
 		} else {
-			p = new PreguntaMultiple(enunciado, ponderacion, solucion);
+			p = new PreguntaMultiple(enunciado, ponderacion, solucion,opciones);
 		}
 
 		this.preguntas.add(p);

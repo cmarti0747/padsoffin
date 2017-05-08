@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,9 +14,14 @@ import javax.swing.SpringLayout;
 public class PanelCrearLibre extends JPanel{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel enunciado, solucion, volver, ponderacion;
 	private JTextArea enunciadofield, solucionfield, ponderacionfield;
 	private JCheckBox check1;
+	private JButton crearPregunta;
 	
 	public PanelCrearLibre(){
 		
@@ -35,6 +41,8 @@ public class PanelCrearLibre extends JPanel{
 		check1.setFont(new Font("Arial", 0, 20));
         check1.setBounds(10,10,150,30);
         check1.setBackground(new Color(0,255,255));
+        
+        crearPregunta = new JButton("Crear Pregunta");
 		
 		enunciadofield = new JTextArea();
 		enunciadofield.setPreferredSize(new Dimension ( 750, 100));
@@ -80,6 +88,10 @@ public class PanelCrearLibre extends JPanel{
 		layout.putConstraint(SpringLayout.WEST, check1, 35, SpringLayout.EAST, ponderacion);
 		
 		
+		layout.putConstraint(SpringLayout.NORTH, crearPregunta, 20, SpringLayout.SOUTH, solucionfield);
+		layout.putConstraint(SpringLayout.EAST, crearPregunta, 0, SpringLayout.EAST, solucionfield);
+		
+		
 		add(enunciado);
 		add(enunciadofield);
 		add(solucion);
@@ -88,12 +100,54 @@ public class PanelCrearLibre extends JPanel{
 		add(ponderacion);
 		add(ponderacionfield);
 		add(check1);
-		
+		add(crearPregunta);
 		
 		
 		
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JLabel getEnunciado() {
+		return enunciado;
+	}
+
+	public JLabel getSolucion() {
+		return solucion;
+	}
+
+	public JLabel getVolver() {
+		return volver;
+	}
+
+	public JLabel getPonderacion() {
+		return ponderacion;
+	}
+
+	public JTextArea getEnunciadofield() {
+		return enunciadofield;
+	}
+
+	public JTextArea getSolucionfield() {
+		return solucionfield;
+	}
+
+	public JTextArea getPonderacionfield() {
+		return ponderacionfield;
+	}
+
+	public JCheckBox getCheck1() {
+		return check1;
+	}
+
+	public JButton getCrearPregunta() {
+		return crearPregunta;
+	}
+	
+	
 	
 }

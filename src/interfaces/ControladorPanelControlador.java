@@ -2,6 +2,7 @@ package interfaces;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -421,6 +422,24 @@ public class ControladorPanelControlador {
 			}else{
 				t.setVisibilidad(Visibilidad.VISIBLE);
 			}
+		}
+		
+	}
+
+	public void crearPreguntaLibre(String enunciado, String solucion, double ponderacion, Visibilidad visibilidad) {
+		academia.buscarEjercicio("titulo").crearPreguntaLibre(enunciado, ponderacion, solucion, false);
+		academia.buscarEjercicio("titulo").setVisibilidad(visibilidad);
+		
+	}
+
+	public void crearEjercicio(String titulo, LocalDate fechaInicio, LocalDate fechaFin, double peso) {
+		String tema = vista.getPaneltema().getNombreTema().getText();
+		Temas t = academia.buscarTema(tema);
+		if(t!=null){
+			t.crearEjercicio(titulo, fechaInicio, fechaFin, 0, peso);
+		}else{
+			t = academia.buscarSubtemas(tema);
+			t.crearEjercicio(titulo, fechaInicio, fechaFin, 0, peso);
 		}
 		
 	}

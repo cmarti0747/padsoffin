@@ -11,6 +11,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -647,6 +649,8 @@ public class PanelControlador {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				LocalDate date = LocalDate.parse("2012-10-30");
+				controlador.crearEjercicio("titulo",date,date,0);
 				cl.show(panelcontenedor, "panelcrearEjercicio");
 				
 			}
@@ -679,6 +683,54 @@ public class PanelControlador {
 				}
 			}
 
+		});
+		
+		panelcrearejercicio.getCrearPregunta().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(panelcrearejercicio.getPreguntalibre().isSelected()==true){
+					cl.show(panelcontenedor, "panelcrearLibre");
+				}else if(panelcrearejercicio.getPreguntatest().isSelected()==true){
+					//cl.show(panelcontenedor, "panelcrearTest");
+				}else if(panelcrearejercicio.getPreguntamultiple().isSelected()==true){
+					cl.show(panelcontenedor, "panelcrearMultiple");
+				}else{
+					JOptionPane.showMessageDialog(null, "Seleccione un tipo de pregunta");
+				}
+				
+			}
+		});
+		
+		panelcrearmultiple.getCrearPregunta().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				List<String> opciones = panelcrearmultiple.getListaopciones().getSelectedValuesList();
+				
+			}
+		});
+		
+		
+		panelcrearlibre.getCrearPregunta().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean visibilidad = panelcrearlibre.getCheck1().isSelected();
+				String enunciado = panelcrearlibre.getEnunciadofield().getText();
+				String solucion = panelcrearlibre.getSolucionfield().getText();
+				double ponderacion = Double.parseDouble(panelcrearlibre.getPonderacionfield().getText());
+				if(visibilidad == true){
+					controlador.crearPreguntaLibre(enunciado,solucion,ponderacion,Visibilidad.VISIBLE);
+				}else{
+					controlador.crearPreguntaLibre(enunciado,solucion,ponderacion,Visibilidad.INVISIBLE);
+
+				}
+				panelcrearejercicio.getModelo().addElement(enunciado);
+				cl.show(panelcontenedor, "panelcrearEjercicio");
+				
+				
+			}
 		});
 
 		paneltemaalumno.getSubtemas().addMouseListener(new MouseAdapter() {
