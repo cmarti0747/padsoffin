@@ -1,7 +1,6 @@
 package interfaces;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -18,7 +17,11 @@ import javax.swing.SpringLayout;
 
 public class PanelCrearEjercicio extends JPanel{
 	
-	private JList listapreguntas;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JList<String> listapreguntas;
 	private JLabel labeltitulo, labellistapreguntas, seleccion;
 	private JTextField titulofield;
 	private JRadioButton preguntatest, preguntamultiple, preguntalibre;
@@ -32,7 +35,7 @@ public class PanelCrearEjercicio extends JPanel{
 		
 		
 		
-		listapreguntas = new JList(nombres);
+		listapreguntas = new JList<String>(nombres);
 		listapreguntas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION); 
 		JScrollPane barraDesplazamiento = new JScrollPane(listapreguntas); 
 		barraDesplazamiento.setPreferredSize(new Dimension(400,400));

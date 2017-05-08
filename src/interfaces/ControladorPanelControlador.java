@@ -89,8 +89,8 @@ public class ControladorPanelControlador {
 			if (m != null) {
 				if (m.getEstado().equals(EstadoAlumno.ADMITIDO)
 						&& academia.buscarAsignatura(n).getVisibilidad().equals(Visibilidad.VISIBLE)) {
-					vista.getPanelhomealumno().getListamisasignaturas().addItem(n);
-					;
+					vista.getPanelhomealumno().getModelo().addElement(n);
+					
 				}
 			}
 		}
@@ -411,6 +411,18 @@ public class ControladorPanelControlador {
 			}
 
 		}
+	}
+
+	public void cambiarVisSub(String titulo) {
+		Temas t = academia.buscarSubtemas(titulo);
+		if(t!=null){
+			if(t.getVisibilidad().equals(Visibilidad.VISIBLE)){
+				t.setVisibilidad(Visibilidad.INVISIBLE);
+			}else{
+				t.setVisibilidad(Visibilidad.VISIBLE);
+			}
+		}
+		
 	}
 
 }

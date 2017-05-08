@@ -12,6 +12,10 @@ import javax.swing.SpringLayout;
 
 public class PanelCrearSubtema extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton boton;
 	JTextField titulo;
 	JLabel introduzca, volver;

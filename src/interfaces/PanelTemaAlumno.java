@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -56,7 +54,7 @@ public class PanelTemaAlumno extends JPanel{
 		
 		
 		lSubtemas = new DefaultListModel<String>();
-		subtemas = new JList(lSubtemas);
+		subtemas = new JList<String>(lSubtemas);
 		subtemas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION); 
 		JScrollPane barraDesplazamiento3 = new JScrollPane(subtemas); 
 		barraDesplazamiento3.setPreferredSize(new Dimension(250,250));
@@ -111,22 +109,22 @@ add(labelejercicios);
 	}
 
 
-	public JList getApuntes() {
+	public JList<String> getApuntes() {
 		return apuntes;
 	}
 
 
-	public void setApuntes(JList apuntes) {
+	public void setApuntes(JList<String> apuntes) {
 		this.apuntes = apuntes;
 	}
 
 
-	public JList getEjercicios() {
+	public JList<String> getEjercicios() {
 		return ejercicios;
 	}
 
 
-	public void setEjercicios(JList ejercicios) {
+	public void setEjercicios(JList<String> ejercicios) {
 		this.ejercicios = ejercicios;
 	}
 
@@ -175,7 +173,7 @@ add(labelejercicios);
 	}
 
 
-	public JList getSubtemas() {
+	public JList<String> getSubtemas() {
 		return subtemas;
 	}
 

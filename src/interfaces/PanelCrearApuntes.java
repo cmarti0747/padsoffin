@@ -9,12 +9,15 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 public class PanelCrearApuntes extends JPanel{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel titulo, texto, volver;
 	private JTextArea titulofield;
 	JTextArea textofield;

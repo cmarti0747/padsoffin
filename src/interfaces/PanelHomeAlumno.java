@@ -6,7 +6,6 @@ import java.awt.Font;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -20,12 +19,11 @@ public class PanelHomeAlumno extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JComboBox<String> listamisasignaturas;
 	private JLabel labelmisasignaturaas, logeadocomo, labeltodasasignaturas;
-	private JList<String> todasasignaturas;
+	private JList<String> todasasignaturas,listamisasignaturas;
 	private JButton pedirmatricula;
 	private DefaultListModel<String> model,modelo;
-	JScrollPane barraDesplazamiento ;
+	JScrollPane barraDesplazamiento, barradesplazamiento2;
 	
 	
 	public PanelHomeAlumno(){
@@ -41,7 +39,14 @@ public class PanelHomeAlumno extends JPanel{
 		
 		pedirmatricula = new JButton("Solicitar");
 		
-		listamisasignaturas = new JComboBox<String>();
+		modelo = new DefaultListModel<String>();
+		listamisasignaturas = new JList<String>(modelo);
+		
+		listamisasignaturas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION); 
+		listamisasignaturas.setFont(new Font("Arial", 0, 25));
+		barradesplazamiento2 = new JScrollPane(listamisasignaturas); 
+		barradesplazamiento2.setPreferredSize(new Dimension(500,400));
+		barradesplazamiento2.getViewport().setBackground(Color.WHITE);
 		
 		
 		
@@ -64,11 +69,11 @@ public class PanelHomeAlumno extends JPanel{
 		layout.putConstraint(SpringLayout.NORTH, labelmisasignaturaas, 25, SpringLayout.SOUTH, logeadocomo);
 		layout.putConstraint(SpringLayout.EAST, labelmisasignaturaas, -150, SpringLayout.WEST, logeadocomo);
 		
-		layout.putConstraint(SpringLayout.NORTH, listamisasignaturas, 25, SpringLayout.SOUTH, labelmisasignaturaas);
-		layout.putConstraint(SpringLayout.WEST, listamisasignaturas, 0, SpringLayout.WEST, labelmisasignaturaas);
+		layout.putConstraint(SpringLayout.NORTH, barradesplazamiento2, 25, SpringLayout.SOUTH, labelmisasignaturaas);
+		layout.putConstraint(SpringLayout.WEST, barradesplazamiento2, 0, SpringLayout.WEST, labelmisasignaturaas);
 		
-		layout.putConstraint(SpringLayout.NORTH, barraDesplazamiento, 0, SpringLayout.NORTH, listamisasignaturas);
-		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento, 100, SpringLayout.EAST, listamisasignaturas);
+		layout.putConstraint(SpringLayout.NORTH, barraDesplazamiento, 0, SpringLayout.NORTH, barradesplazamiento2);
+		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento, 100, SpringLayout.EAST, barradesplazamiento2);
 		
 		layout.putConstraint(SpringLayout.SOUTH, labeltodasasignaturas, -25, SpringLayout.NORTH, listamisasignaturas);
 		layout.putConstraint(SpringLayout.WEST, labeltodasasignaturas, 0, SpringLayout.WEST, barraDesplazamiento);
@@ -79,7 +84,7 @@ public class PanelHomeAlumno extends JPanel{
 		
 		add(logeadocomo);
 		add(labelmisasignaturaas);
-		add(listamisasignaturas);
+		add(barradesplazamiento2);
 		add(labeltodasasignaturas);
 		add(barraDesplazamiento);
 		add(pedirmatricula);
@@ -88,18 +93,6 @@ public class PanelHomeAlumno extends JPanel{
 		setVisible(true);
 		
 	}
-
-
-
-
-
-	public JComboBox<String> getListamisasignaturas() {
-		return listamisasignaturas;
-	}
-
-
-
-
 
 	public JList<String> getTodasasignaturas() {
 		return todasasignaturas;
@@ -120,6 +113,41 @@ public class PanelHomeAlumno extends JPanel{
 	public DefaultListModel<String> getModel() {
 		return model;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JLabel getLabelmisasignaturaas() {
+		return labelmisasignaturaas;
+	}
+
+	public JLabel getLogeadocomo() {
+		return logeadocomo;
+	}
+
+	public JLabel getLabeltodasasignaturas() {
+		return labeltodasasignaturas;
+	}
+
+	public JList<String> getListamisasignaturas() {
+		return listamisasignaturas;
+	}
+
+	public DefaultListModel<String> getModelo() {
+		return modelo;
+	}
+
+	public JScrollPane getBarraDesplazamiento() {
+		return barraDesplazamiento;
+	}
+
+	public JScrollPane getBarradesplazamiento2() {
+		return barradesplazamiento2;
+	}
+	
+	
+	
 	
 	
 	

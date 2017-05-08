@@ -1,7 +1,6 @@
 package academia;
 
 import java.io.Serializable;
-import java.util.HashMap;
 
 /**
  * Modulo que se encarga de gestionar las matriculas
