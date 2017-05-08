@@ -443,11 +443,13 @@ public class Ejercicio implements Serializable {
 	}
 	
 	public void eliminarPregunta(String enunciado){
+		List<Preguntas> aeliminar = new ArrayList<Preguntas>();
 		for(Preguntas p: preguntas){
 			if(p.getEnunciado().equals(enunciado)){
-				preguntas.remove(p);
+				aeliminar.add(p);
 			}
 		}
+		preguntas.removeAll(aeliminar);
 		
 	}
 	

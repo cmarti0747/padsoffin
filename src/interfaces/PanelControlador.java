@@ -52,6 +52,7 @@ public class PanelControlador {
 	private PanelCrearLibre panelcrearlibre;
 	private PanelCrearMultiple panelcrearmultiple;
 	private PanelCrearTest panelcreartest;
+	private PanelPreguntaLibre panelpreguntalibre;
 
 
 	public PanelControlador() {
@@ -77,7 +78,7 @@ public class PanelControlador {
 		panelcrearlibre = new PanelCrearLibre();
 		panelcrearmultiple = new PanelCrearMultiple();
 		panelcreartest = new PanelCrearTest();
-
+		panelpreguntalibre = new PanelPreguntaLibre();
 
 		panelcontenedor = new JPanel();
 
@@ -124,6 +125,7 @@ public class PanelControlador {
 		panelcontenedor.add(panelcrearlibre, "panelcrearLibre");
 		panelcontenedor.add(panelcrearmultiple, "panelcrearMultiple");
 		panelcontenedor.add(panelcreartest, "panelcrearTest");
+		panelcontenedor.add(panelpreguntalibre,"panelpreguntaLibre");
 
 		contenedor.add(panelcontenedor, BorderLayout.CENTER);
 		contenedor.add(ExitField, BorderLayout.NORTH);
@@ -509,6 +511,16 @@ public class PanelControlador {
 
 			}
 		});
+		
+		paneltema.getCambiarvisE().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String titulo = paneltema.getEjercicios().getSelectedValue();
+				controlador.cambiarVisE(titulo);
+
+			}
+		});
 
 		paneltema.getApuntes().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
@@ -550,10 +562,10 @@ public class PanelControlador {
 						JOptionPane.showMessageDialog(null, "No hay seleccionado ningun ejercicios");
 					}
 				} else if (evt.getButton() == MouseEvent.BUTTON3) {
-					if ((String) paneltema.getApuntes().getSelectedValue() != null) {
-						String titulo = (String) paneltema.getApuntes().getSelectedValue();
+					if ((String) paneltema.getEjercicios().getSelectedValue() != null) {
+						String titulo = (String) paneltema.getEjercicios().getSelectedValue();
 
-						JOptionPane.showMessageDialog(null, "Estado:" + controlador.visibilidadApuntes(titulo));
+						JOptionPane.showMessageDialog(null, "Estado:" + controlador.visibilidadEjercicio(titulo));
 					} else {
 						JOptionPane.showMessageDialog(null, "Seleccione un ejercicio");
 					}
@@ -799,7 +811,7 @@ public class PanelControlador {
 			public void actionPerformed(ActionEvent e) {
 				String titulo = panelcrearejercicio.getListapreguntas().getSelectedValue();
 				if(controlador.eliminarPregunta(titulo)==true){
-				paneltema.getlEjercicios().remove(paneltema.getEjercicios().getSelectedIndex());
+					panelcrearejercicio.getModelo().remove(panelcrearejercicio.getListapreguntas().getSelectedIndex());
 				}else{
 					JOptionPane.showMessageDialog(null, "Pregunta no eliminable");
 				}
@@ -1153,6 +1165,68 @@ public class PanelControlador {
 				}
 			}
 		});
+		
+		panelpreguntalibre.getSiguiente().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String titulo = paneltemaalumno.getEjercicios().getSelectedValue();
+				if(controlador.comprobarClase(titulo,panelpreguntalibre.getPreguntas().getSelectedValue()).equals("academia.PreguntaLibre")){
+					panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+					controlador.guardarRespuestaLibre(panelpreguntalibre.getPreguntas().getSelectedIndex());
+					cl.show(panelcontenedor, "panelpreguntaLibre");
+				}
+				
+			}
+		});
+		
+		
+		panelpreguntalibre.getTerminarEjercicio().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String titulo = paneltemaalumno.getEjercicios().getSelectedValue();
+				double nota = controlador.terminarEjercicio(titulo);
+				JOptionPane.showMessageDialog(null, "Tu nota es " + nota);
+				cl.show(panelcontenedor, "paneltemaAlumno");
+				
+			}
+		});
+		
+		
+		
+		paneltemaalumno.getEjercicios().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				evt.getSource();
+				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
+					String titulo = paneltemaalumno.getEjercicios().getSelectedValue();
+					if(controlador.realizarEjercicio(titulo)==false){
+						JOptionPane.showMessageDialog(null,"El ejercicio no se puede realizar. Compruebe el estado.");
+						return;
+					}
+					panelpreguntalibre.getPreguntas().setSelectedIndex(0);
+					if(controlador.comprobarClase(titulo,panelpreguntalibre.getPreguntas().getSelectedValue()).equals("academia.PreguntaLibre")){
+						panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						cl.show(panelcontenedor, "panelpreguntaLibre");
+					}
+					// Double-click detected
+					
+
+				}else if(evt.getButton() == MouseEvent.BUTTON3){
+					if ((String) paneltemaalumno.getEjercicios().getSelectedValue() != null) {
+						String tema = (String) paneltemaalumno.getEjercicios().getSelectedValue();
+
+						JOptionPane.showMessageDialog(null, "Estado:" + controlador.visibilidadEjercicio(tema));
+					} else {
+						JOptionPane.showMessageDialog(null, "Seleccione una asignatura");
+					}
+					
+				}
+			}
+			
+		});
+		
 
 		panelcrearapuntes.getCrearapunte().addActionListener(new ActionListener() {
 
@@ -1301,6 +1375,12 @@ public class PanelControlador {
 
 	public PanelCrearAsignatura getPanelcrearasignatura() {
 		return panelcrearasignatura;
+	}
+	
+	
+
+	public PanelPreguntaLibre getPanelpreguntalibre() {
+		return panelpreguntalibre;
 	}
 
 	public PanelCrearApuntes getPanelcrearapuntes() {

@@ -12,6 +12,7 @@ public class ControladorPanelControlador {
 
 	private PanelControlador vista;
 	private AcademiaLopez academia;
+	private ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
 
 	public ControladorPanelControlador(PanelControlador vista, AcademiaLopez academia) {
 		this.academia = academia;
@@ -507,13 +508,26 @@ public class ControladorPanelControlador {
 		Temas t = academia.buscarTema(titulo);
 		if (t != null) {
 			for (Ejercicio n : t.getEjercicios()) {
+				if(n.getFechaInicio().isBefore(LocalDate.now())|| n.getFechaInicio().isEqual((LocalDate.now()))){
+					n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
+				}
+				if(n.getFechaFin().isBefore(LocalDate.now())){
+					n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
 
+				}
 				vista.getPaneltema().getlEjercicios().addElement(n.getTitulo());
 
 			}
 		} else {
 			t = academia.buscarSubtemas(titulo);
 			for (Ejercicio n : t.getEjercicios()) {
+				if(n.getFechaInicio().isBefore(LocalDate.now())|| n.getFechaInicio().isEqual((LocalDate.now()))){
+					n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
+				}
+				if(n.getFechaFin().isBefore(LocalDate.now())){
+					n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
+
+				}
 				vista.getPaneltema().getlEjercicios().addElement(n.getTitulo());
 
 			}
@@ -525,7 +539,14 @@ public class ControladorPanelControlador {
 		Temas t = academia.buscarTema(titulo);
 		if (t != null) {
 			for (Ejercicio n : t.getEjercicios()) {
-				if (n.getVisibilidad().equals(Visibilidad.VISIBLE)) {
+				if(n.getFechaInicio().isBefore(LocalDate.now())|| n.getFechaInicio().isEqual((LocalDate.now()))){
+					n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
+				}
+				if(n.getFechaFin().isBefore(LocalDate.now())){
+					n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
+
+				}
+				if (n.getVisibilidad().equals(Visibilidad.INVISIBLE)==false) {
 					vista.getPaneltemaalumno().getlEjercicios().addElement(n.getTitulo());
 				}
 
@@ -533,9 +554,14 @@ public class ControladorPanelControlador {
 		} else {
 			t = academia.buscarSubtemas(titulo);
 			for (Ejercicio n : t.getEjercicios()) {
-				if (n.getVisibilidad().equals(Visibilidad.INVISIBLE)) {
-					
-				}else{
+				if(n.getFechaInicio().isBefore(LocalDate.now())|| n.getFechaInicio().isEqual((LocalDate.now()))){
+					n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
+				}
+				if(n.getFechaFin().isBefore(LocalDate.now())){
+					n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
+
+				}
+				if (n.getVisibilidad().equals(Visibilidad.INVISIBLE)==false) {
 					vista.getPaneltemaalumno().getlEjercicios().addElement(n.getTitulo());
 				}
 			}
@@ -579,6 +605,57 @@ public class ControladorPanelControlador {
 
 		
 		
+	}
+
+	public void cambiarVisE(String titulo) {
+		Ejercicio t = academia.buscarEjercicio(titulo);
+		if (t != null) {
+			if (t.getVisibilidad().equals(Visibilidad.INVISIBLE)) {
+				t.setVisibilidad(Visibilidad.VISIBLE_NOCOMENZADO);
+			} else {
+				t.setVisibilidad(Visibilidad.INVISIBLE);
+			}
+		}
+		
+	}
+
+	public boolean realizarEjercicio(String titulo) {
+		Ejercicio e = academia.buscarEjercicio(titulo);
+		if(e!=null && e.getVisibilidad().equals(Visibilidad.VISIBLE_COMENZADO)){
+			for(Preguntas p:e.getPreguntas()){
+				vista.getPanelpreguntalibre().getlPreguntas().addElement(p.getEnunciado());
+			}
+			
+			return true;
+		}
+		return false;
+	}
+
+	public String comprobarClase(String titulo, String enunciado) {
+		Ejercicio e = academia.buscarEjercicio(titulo);
+		Preguntas p = e.buscarPregunta(enunciado);
+		Class<? extends Preguntas> c = p.getClass();
+		String clase = c.getName();
+		
+		return clase;
+		
+		
+	}
+	
+	public void guardarRespuestaLibre(int i){
+		String respuesta = vista.getPanelpreguntalibre().getTextofield().getText();
+		Respuesta res = new RespuestaLibre(academia.getUsuarioOnline().getNia(),respuesta);
+		respuestas.add(i, res);
+		
+	}
+
+	public String visibilidadEjercicio(String titulo) {
+		return academia.buscarEjercicio(titulo).getVisibilidad().toString();
+	}
+
+	public double terminarEjercicio(String titulo) {
+		academia.buscarEjercicio(titulo).terminarEjercicio(respuestas, academia.getUsuarioOnline().getNia());
+		return academia.buscarEjercicio(titulo).getNota();
 	}
 
 }
