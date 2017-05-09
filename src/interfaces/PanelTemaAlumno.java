@@ -22,7 +22,7 @@ public class PanelTemaAlumno extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JList<String> apuntes, ejercicios;
-	private JLabel nombreTema, labelapuntes, labelejercicios;
+	private JLabel nombreTema, labelapuntes, labelejercicios, labelsub;
 	private DefaultListModel<String> lApuntes, lEjercicios;
 	private DefaultListModel<String> lSubtemas;
 	private JList<String> subtemas;
@@ -35,13 +35,16 @@ public class PanelTemaAlumno extends JPanel {
 
 		nombreTema = new JLabel();
 		nombreTema.setFont(new Font("Arial", 0, 40));
-		labelapuntes = new JLabel("Lista de apuntes");
-		labelapuntes.setFont(new Font("Arial", 0, 35));
-		labelejercicios = new JLabel("Lista de ejercicios");
-		labelejercicios.setFont(new Font("Arial", 0, 35));
+		labelapuntes = new JLabel("Apuntes");
+		labelapuntes.setFont(new Font("Arial", 0, 25));
+		labelejercicios = new JLabel("Ejercicios");
+		labelejercicios.setFont(new Font("Arial", 0, 25));
+		labelsub = new JLabel("Subtemas");
+		labelsub.setFont(new Font("Arial", 0, 25));
 
 		volver = new JLabel("Volver");
 		volver.setFont(new Font("Arial", 0, 20));
+		volver.setForeground(Color.BLUE);
 
 		lApuntes = new DefaultListModel<String>();
 		apuntes = new JList<String>(lApuntes);
@@ -74,21 +77,24 @@ public class PanelTemaAlumno extends JPanel {
 
 		layout.putConstraint(SpringLayout.NORTH, barraDesplazamiento, 70, SpringLayout.SOUTH, nombreTema);
 
-		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento, 0, SpringLayout.WEST, nombreTema);
+		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento, -90, SpringLayout.WEST, nombreTema);
 
-		layout.putConstraint(SpringLayout.NORTH, labelapuntes, 25, SpringLayout.SOUTH, nombreTema);
-		layout.putConstraint(SpringLayout.WEST, labelapuntes, 0, SpringLayout.WEST, nombreTema);
+		layout.putConstraint(SpringLayout.NORTH, barraDesplazamiento2, 0, SpringLayout.NORTH, barraDesplazamiento);
 
-		layout.putConstraint(SpringLayout.NORTH, labelejercicios, 25, SpringLayout.SOUTH, nombreTema);
-		layout.putConstraint(SpringLayout.WEST, labelejercicios, 450, SpringLayout.WEST, nombreTema);
+		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento2, 30, SpringLayout.EAST, barraDesplazamiento);
 
-		layout.putConstraint(SpringLayout.NORTH, barraDesplazamiento2, 70, SpringLayout.SOUTH, nombreTema);
+		layout.putConstraint(SpringLayout.NORTH, barraDesplazamiento3, 0, SpringLayout.NORTH, barraDesplazamiento);
 
-		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento2, 325, SpringLayout.WEST, nombreTema);
+		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento3, 30, SpringLayout.EAST, barraDesplazamiento2);
 
-		layout.putConstraint(SpringLayout.NORTH, barraDesplazamiento3, 70, SpringLayout.SOUTH, nombreTema);
+		layout.putConstraint(SpringLayout.SOUTH, labelapuntes, -20, SpringLayout.NORTH, barraDesplazamiento);
+		layout.putConstraint(SpringLayout.WEST, labelapuntes, 0, SpringLayout.WEST, barraDesplazamiento);
 
-		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento3, 650, SpringLayout.WEST, nombreTema);
+		layout.putConstraint(SpringLayout.SOUTH, labelejercicios, -20, SpringLayout.NORTH, barraDesplazamiento2);
+		layout.putConstraint(SpringLayout.WEST, labelejercicios, 0, SpringLayout.WEST, barraDesplazamiento2);
+
+		layout.putConstraint(SpringLayout.SOUTH, labelsub, -20, SpringLayout.NORTH, barraDesplazamiento3);
+		layout.putConstraint(SpringLayout.WEST, labelsub, 0, SpringLayout.WEST, barraDesplazamiento3);
 
 		layout.putConstraint(SpringLayout.NORTH, volver, 30, SpringLayout.SOUTH, barraDesplazamiento3);
 		layout.putConstraint(SpringLayout.EAST, volver, 0, SpringLayout.EAST, barraDesplazamiento3);
@@ -97,6 +103,7 @@ public class PanelTemaAlumno extends JPanel {
 		add(barraDesplazamiento2);
 		add(barraDesplazamiento3);
 		add(volver);
+		add(labelsub);
 		add(labelapuntes);
 		add(labelejercicios);
 		add(nombreTema);
