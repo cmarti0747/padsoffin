@@ -13,7 +13,7 @@ public class PreguntaUnicaTest {
 
 	@Before
 	public void before() {
-		pu = new PreguntaUnica("Enunciado", 3.0, 1);
+		pu = new PreguntaUnica("Enunciado", 3.0,1,null);
 		
 	}
 	

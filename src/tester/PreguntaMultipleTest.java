@@ -15,7 +15,7 @@ public class PreguntaMultipleTest {
 	@Before
 	public void before() {
 		int [] solu ={1,2};
-		pm = new PreguntaMultiple("Enunciado", 3.0, solu);
+		pm = new PreguntaMultiple("Enunciado", 3.0, solu, null);
 		
 	
 	}
