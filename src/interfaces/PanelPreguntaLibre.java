@@ -22,7 +22,7 @@ public class PanelPreguntaLibre extends JPanel{
 	private JList<String> preguntas;
 	private JLabel texto,enunciado;
 	private DefaultListModel<String> lPreguntas;
-	private JLabel cancelar;
+	private JButton cancelar;
 	private JTextArea textofield;
 	private JButton terminarEjercicio;
 	private JButton siguiente;
@@ -46,7 +46,7 @@ public class PanelPreguntaLibre extends JPanel{
 		enunciado = new JLabel();
 		enunciado.setFont(new Font("Arial", 0, 30));
 		
-		cancelar = new JLabel ("Volver");
+		cancelar = new JButton ("Volver");
 		cancelar.setFont(new Font("Arial",0,20));
 		
 		lPreguntas = new DefaultListModel<String>();
@@ -121,7 +121,7 @@ layout.putConstraint(SpringLayout.EAST, anterior, -10, SpringLayout.WEST, siguie
 	}
 
 
-	public JLabel getVolver() {
+	public JButton getVolver() {
 		return cancelar;
 	}
 
@@ -166,12 +166,12 @@ layout.putConstraint(SpringLayout.EAST, anterior, -10, SpringLayout.WEST, siguie
 	}
 
 
-	public JLabel getCancelar() {
+	public JButton getCancelar() {
 		return cancelar;
 	}
 
 
-	public void setCancelar(JLabel cancelar) {
+	public void setCancelar(JButton cancelar) {
 		this.cancelar = cancelar;
 	}
 

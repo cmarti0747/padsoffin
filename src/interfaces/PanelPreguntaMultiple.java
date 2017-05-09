@@ -42,7 +42,9 @@ public class PanelPreguntaMultiple extends JPanel{
 		enunciado = new JLabel();
 		enunciado.setFont(new Font("Arial", 0, 30));
 		siguiente = new JButton("Siguiente");
+		siguiente.setFont(new Font("Arial",0,20));
 		 anterior = new JButton("Anterior");
+		 anterior.setFont(new Font("Arial",0,20));
 		cancelar = new JButton ("Cancelar");
 		cancelar.setFont(new Font("Arial",0,20));
 				
@@ -59,7 +61,7 @@ public class PanelPreguntaMultiple extends JPanel{
 		opciones = new JList<String>(lOpciones);
 		opciones.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		JScrollPane barraDesplazamiento2 = new JScrollPane(opciones); 
-		barraDesplazamiento2.setPreferredSize(new Dimension(250,250));
+		barraDesplazamiento2.setPreferredSize(new Dimension(400,200));
 		barraDesplazamiento2.getViewport().setBackground(Color.WHITE);
 		opciones.setFont(new Font("Arial",0,30));
 		
@@ -72,29 +74,20 @@ public class PanelPreguntaMultiple extends JPanel{
 			
 layout.putConstraint(SpringLayout.SOUTH, texto, -20, SpringLayout.NORTH, barraDesplazamiento2);
 layout.putConstraint(SpringLayout.WEST, texto, 0, SpringLayout.WEST,barraDesplazamiento2);
-		
-layout.putConstraint(SpringLayout.SOUTH, texto, -20, SpringLayout.NORTH, barraDesplazamiento2);
-layout.putConstraint(SpringLayout.WEST, texto, 0, SpringLayout.WEST,barraDesplazamiento2);
-		
-layout.putConstraint(SpringLayout.SOUTH, texto, -20, SpringLayout.NORTH, barraDesplazamiento2);
-layout.putConstraint(SpringLayout.WEST, texto, 0, SpringLayout.WEST,barraDesplazamiento2);
 
-layout.putConstraint(SpringLayout.NORTH, cancelar, 20, SpringLayout.SOUTH, barraDesplazamiento2);
-layout.putConstraint(SpringLayout.EAST, cancelar, 0, SpringLayout.EAST, barraDesplazamiento2);
+layout.putConstraint(SpringLayout.NORTH, cancelar, 80, SpringLayout.SOUTH, barraDesplazamiento2);
+layout.putConstraint(SpringLayout.WEST, cancelar, 50, SpringLayout.EAST, barraDesplazamiento2);
 
 layout.putConstraint(SpringLayout.SOUTH, enunciado, -15, SpringLayout.NORTH, texto);
 layout.putConstraint(SpringLayout.WEST, enunciado, 0, SpringLayout.WEST, texto);
 
 
 
-layout.putConstraint(SpringLayout.NORTH, terminarEjercicio, 0, SpringLayout.NORTH, cancelar);
-layout.putConstraint(SpringLayout.EAST, terminarEjercicio, -10, SpringLayout.WEST, cancelar);
+layout.putConstraint(SpringLayout.NORTH, terminarEjercicio, 10, SpringLayout.SOUTH, barraDesplazamiento2);
+layout.putConstraint(SpringLayout.EAST, terminarEjercicio, 0, SpringLayout.EAST, barraDesplazamiento2);
 
 
-layout.putConstraint(SpringLayout.NORTH, siguiente, 0, SpringLayout.NORTH, cancelar);
-layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, terminarEjercicio);
-
-layout.putConstraint(SpringLayout.NORTH, siguiente, 0, SpringLayout.NORTH, cancelar);
+layout.putConstraint(SpringLayout.NORTH, siguiente, 0, SpringLayout.NORTH, terminarEjercicio);
 layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, terminarEjercicio);
 
 
@@ -106,15 +99,14 @@ layout.putConstraint(SpringLayout.EAST, anterior, -10, SpringLayout.WEST, siguie
 		
 
 
-		add(texto);
-		add(siguiente);
-		add(anterior);
+		add(texto);	
 		add(enunciado);
 		add(terminarEjercicio);
 		add(cancelar);
 		add(siguiente);
 		add(barraDesplazamiento2);
-		
+		add(siguiente);
+		add(anterior);
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
 		

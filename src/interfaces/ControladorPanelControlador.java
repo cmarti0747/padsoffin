@@ -795,4 +795,22 @@ public class ControladorPanelControlador {
 		
 	}
 
+	public double getNota(String titulo) {
+		
+		Ejercicio ejercicio = academia.buscarEjercicio(titulo);
+		int nia =academia.getUsuarioOnline().getNia();
+		
+		for(Resultado r: ejercicio.getResultados()){
+			if(r.getNia()==nia){
+				return r.getNota();
+			}
+		}
+		return 0;
+	}
+
+	public void cancelarEjercicio(String titulo) {
+		
+		academia.buscarEjercicio(titulo).getRespuestas().clear();
+	}
+
 }
