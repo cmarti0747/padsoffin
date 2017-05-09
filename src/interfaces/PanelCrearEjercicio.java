@@ -51,8 +51,10 @@ public class PanelCrearEjercicio extends JPanel{
 		barraDesplazamiento.getViewport().setBackground(Color.WHITE);
 		listapreguntas.setFont(new Font("Arial",0,17));
 		
+		
+		
 		labelponderacion = new JLabel("Peso:");
-		crearPregunta = new JButton("Añadir pregunta");
+		crearPregunta = new JButton("Aï¿½adir pregunta");
 		crearEjercicio = new JButton("Crear Ejercicio");
 		cancelar = new JButton("Cancelar");
 		eliminarPregunta = new JButton("Eliminar pregunta");

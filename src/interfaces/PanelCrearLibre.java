@@ -35,7 +35,8 @@ public class PanelCrearLibre extends JPanel{
 		solucion.setFont(new Font("Arial",0,20));
 		
 		volver = new JLabel("Volver");
-		volver.setFont(new Font("Arial",0,20));
+		volver.setFont(new Font("Arial",0,25));
+		volver.setForeground(Color.BLUE);
 		
 		check1=new JCheckBox("Visbilidad");
 		check1.setFont(new Font("Arial", 0, 20));

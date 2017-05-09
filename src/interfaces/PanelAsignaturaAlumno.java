@@ -46,7 +46,8 @@ public class PanelAsignaturaAlumno extends JPanel{
 		nombreAsignatura.setFont(new Font("Arial", 0, 25));
 		
 		volver = new JLabel("Volver");
-		volver.setFont(new Font("Arial", 0, 17));
+		volver.setFont(new Font("Arial", 0, 25));
+		volver.setForeground(Color.BLUE);
 		
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);

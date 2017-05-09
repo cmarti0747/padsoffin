@@ -33,7 +33,8 @@ public class PanelApuntesAlumno extends JPanel{
 		titulo.setFont(new Font("Arial",0,35));
 		
 		volver = new JLabel ("Volver");
-		titulo.setFont(new Font("Arial",0,20));
+		volver.setFont(new Font("Arial",0,20));
+		volver.setForeground(Color.BLUE);
 
 		textofield = new JTextArea();
 		textofield.setFont(new Font("Arial", 0, 20));

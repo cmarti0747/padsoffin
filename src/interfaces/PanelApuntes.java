@@ -37,7 +37,8 @@ public class PanelApuntes extends JPanel{
 		titulo.setFont(new Font("Arial",0,35));
 		
 		volver = new JLabel ("Volver");
-		titulo.setFont(new Font("Arial",0,20));
+		volver.setFont(new Font("Arial",0,25));
+		volver.setBackground(Color.BLUE);
 		
 		texto = new JLabel("TEXTO DEL APUNTE");
 		texto.setFont(new Font("Arial",0,35));

@@ -32,7 +32,8 @@ public class PanelCrearTema extends JPanel{
 		volver = new JLabel("Volver");
 		
 		introduzca.setFont(new Font("Arial",0,15));
-		volver.setFont(new Font("Arial",0,15));
+		volver.setFont(new Font("Arial",0,25));
+		volver.setForeground(Color.BLUE);
 		
 		check1=new JCheckBox("Visbilidad");
         check1.setBounds(10,10,150,30);

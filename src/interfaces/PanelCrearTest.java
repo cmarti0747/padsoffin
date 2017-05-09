@@ -51,9 +51,10 @@ public class PanelCrearTest extends JPanel{
 		
 		
 		volver = new JLabel("Volver");
-		volver.setFont(new Font("Arial",0,20));
+		volver.setFont(new Font("Arial",0,25));
+		volver.setForeground(Color.BLUE);
 		
-		anyadirOpcion = new JButton("Añadir opcion");
+		anyadirOpcion = new JButton("Aï¿½adir opcion");
 		eliminarOpcion = new JButton("Eliminar opcion");
 		crearPregunta = new JButton("Crear pregunta");
 		

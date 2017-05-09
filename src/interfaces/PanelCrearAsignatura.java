@@ -38,6 +38,7 @@ public class PanelCrearAsignatura extends JPanel{
         check1.setBackground(new Color(0,255,255));
 		introduzca.setFont(new Font("Arial",0,15));
 		volver.setFont(new Font("Arial",0,15));
+		volver.setForeground(Color.BLUE);
 		
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);
