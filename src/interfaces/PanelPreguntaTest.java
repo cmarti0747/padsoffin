@@ -68,9 +68,6 @@ public class PanelPreguntaTest extends JPanel {
 		layout.putConstraint("HorizontalCenter", barraDesplazamiento2, 0, "HorizontalCenter", this);
 		layout.putConstraint("VerticalCenter", barraDesplazamiento2, 50, "VerticalCenter", this);
 
-		layout.putConstraint("HorizontalCenter", barraDesplazamiento2, 0, "HorizontalCenter", this);
-		layout.putConstraint("VerticalCenter", barraDesplazamiento2, 50, "VerticalCenter", this);
-
 		layout.putConstraint(SpringLayout.SOUTH, texto, -20, SpringLayout.NORTH, barraDesplazamiento2);
 		layout.putConstraint(SpringLayout.WEST, texto, 0, SpringLayout.WEST, barraDesplazamiento2);
 
