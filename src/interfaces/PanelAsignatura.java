@@ -31,6 +31,8 @@ public class PanelAsignatura extends JPanel {
 	private JComboBox<String> combobox;
 	private JLabel volver;
 	private JButton cambiarvis;
+	private JButton bloquear;
+	private JButton readmitir;
 
 	/**
 	 * Constructor de la clase PanelAsignatura
@@ -56,6 +58,9 @@ public class PanelAsignatura extends JPanel {
 		crearTema = new JButton("Crear Tema");
 		eliminarTema = new JButton("Eliminar Tema");
 		cambiarvis = new JButton("Cambiar visivilidad");
+		
+		readmitir = new JButton("Readmitir Alumno");
+		bloquear = new JButton("Bloquear Alumno");
 
 		model = new DefaultListModel<String>();
 		lista = new JList<String>(model);
@@ -107,6 +112,15 @@ public class PanelAsignatura extends JPanel {
 		layout.putConstraint(SpringLayout.EAST, volver, 0, SpringLayout.EAST, combobox);
 
 		layout.putConstraint(SpringLayout.NORTH, volver, 200, SpringLayout.SOUTH, combobox);
+		
+		layout.putConstraint(SpringLayout.EAST, readmitir, 0, SpringLayout.EAST, combobox);
+
+		layout.putConstraint(SpringLayout.NORTH, readmitir, 20, SpringLayout.SOUTH, combobox);
+		
+		layout.putConstraint(SpringLayout.EAST, bloquear, 10, SpringLayout.WEST, readmitir);
+
+		layout.putConstraint(SpringLayout.NORTH, bloquear, 0, SpringLayout.NORTH, readmitir);
+
 
 		lista.setFont(new Font("Arial", 0, 30));
 
@@ -119,6 +133,8 @@ public class PanelAsignatura extends JPanel {
 		add(volver);
 		add(eliminarTema);
 		add(cambiarvis);
+		add(readmitir);
+		add(bloquear);
 
 		setBackground(new Color(0, 255, 255));
 		setVisible(true);
@@ -216,5 +232,20 @@ public class PanelAsignatura extends JPanel {
 	public JButton getCambiarvis() {
 		return cambiarvis;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JButton getBloquear() {
+		return bloquear;
+	}
+
+	public JButton getReadmitir() {
+		return readmitir;
+	}
+	
+	
+	
 
 }

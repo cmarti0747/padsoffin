@@ -213,7 +213,7 @@ public class ControladorPanelControlador {
 		for (Matriculado a : AcademiaLopez.getMatriculas()) {
 			Alumno al = academia.buscarAlumno(a.getUsuario().getNia());
 			if (a.getAsignatura().getTitulo().equals(asignatura) && al != null
-					&& a.getEstado().equals(EstadoAlumno.ADMITIDO)) {
+					&& (a.getEstado().equals(EstadoAlumno.ADMITIDO) || a.getEstado().equals(EstadoAlumno.EXPULSADO))) {
 				String nombre = al.getNombre() + " " + al.getApellidos();
 				vista.getPanelasignatura().getCombobox().addItem(nombre);
 			}
@@ -748,6 +748,50 @@ public class ControladorPanelControlador {
 		for(String enunc: p.getOpciones()){
 			vista.getPanelpreguntamultiple().getlOpciones().addElement(enunc);
 		}
+		
+	}
+
+	public void readmitirAlumno(String alumno, String asignatura) {
+		String [] partes = alumno.split(" ");
+		Alumno b = null;
+		for(Alumno a: academia.getAlumnos()){
+			if(a.getNombre().equals(partes[0]) && a.getApellidos().equals(partes[1])){
+				b=a;
+				break;
+			}
+		}
+		
+		academia.buscarAsignatura(asignatura).readmitirAlumno(b);
+		
+	}
+	
+	public void expulsarAlumno(String alumno, String asignatura) {
+		String [] partes = alumno.split(" ");
+		Alumno b = null;
+		for(Alumno a: academia.getAlumnos()){
+			if(a.getNombre().equals(partes[0]) && a.getApellidos().equals(partes[1])){
+				b=a;
+				break;
+			}
+		}
+		
+		academia.buscarAsignatura(asignatura).expulsarAlumno(b);
+		
+	}
+
+	public void cargarEstadistica(String alumno) {
+		String [] partes = alumno.split(" ");
+		
+		Alumno a =null;
+		for(Matriculado m: AcademiaLopez.getMatriculas()){
+			a = (Alumno) m.getUsuario(); 
+			academia.buscarAsignatura(m.getAsignatura().getTitulo()).calcularMedia();
+			if(a.getNombre().equals(partes[0]) && a.getApellidos().equals(partes[1])){
+				vista.getPanelestadistica().getModel().addElement("Nombre de la asignatura: " + m.getAsignatura().getTitulo() + "Nota media: " + m.getAsignatura().getNotaMedia());
+			}
+		}
+		
+		
 		
 	}
 

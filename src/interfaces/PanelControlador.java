@@ -56,6 +56,7 @@ public class PanelControlador {
 	private PanelPreguntaLibre panelpreguntalibre;
 	private PanelPreguntaTest panelpreguntaunica;
 	private PanelPreguntaMultiple panelpreguntamultiple;
+	private PanelEstadisticas panelestadistica;
 
 	public PanelControlador() {
 
@@ -83,6 +84,7 @@ public class PanelControlador {
 		panelpreguntalibre = new PanelPreguntaLibre();
 		panelpreguntaunica = new PanelPreguntaTest();
 		panelpreguntamultiple=new PanelPreguntaMultiple();
+		panelestadistica = new PanelEstadisticas();
 
 		panelcontenedor = new JPanel();
 
@@ -132,6 +134,7 @@ public class PanelControlador {
 		panelcontenedor.add(panelpreguntalibre, "panelpreguntaLibre");
 		panelcontenedor.add(panelpreguntaunica, "panelpreguntaUnica");
 		panelcontenedor.add(panelpreguntamultiple,"panelpreguntaMultiple");
+		panelcontenedor.add(panelestadistica, "panelEstadistica");
 
 		contenedor.add(panelcontenedor, BorderLayout.CENTER);
 		contenedor.add(ExitField, BorderLayout.NORTH);
@@ -262,7 +265,10 @@ public class PanelControlador {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				cl.show(panelcontenedor, "panelAsignatura");
+				
+				panelestadistica.getLabelalumno().setText((String) panelhomeprofesor.getCombobox().getSelectedItem());
+				controlador.cargarEstadistica((String) panelhomeprofesor.getCombobox().getSelectedItem());
+				cl.show(panelcontenedor, "panelEstadistica");
 			}
 		});
 
@@ -1185,9 +1191,11 @@ public class PanelControlador {
 				if (evt.getButton() == MouseEvent.BUTTON1 && evt.getClickCount() == 2) {
 					String titulo = paneltemaalumno.getEjercicios().getSelectedValue();
 					if (controlador.realizarEjercicio(titulo) == false) {
+						if(controlador.visibilidadEjercicio(titulo).equals())
 						JOptionPane.showMessageDialog(null, "El ejercicio no se puede realizar. Compruebe el estado.");
 						return;
 					}
+					
 					panelpreguntalibre.getPreguntas().setSelectedIndex(0);
 					if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaLibre")) {
@@ -1354,7 +1362,32 @@ public class PanelControlador {
 				}
 			}
 		});
-
+		
+		panelasignatura.getReadmitir().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String alumno = (String) panelasignatura.getCombobox().getSelectedItem();
+				String asignatura = panelasignatura.getNombreAsignatura().getText();
+				controlador.readmitirAlumno(alumno,asignatura);
+				
+			}
+		});
+		
+panelasignatura.getBloquear().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String alumno = (String) panelasignatura.getCombobox().getSelectedItem();
+				String asignatura = panelasignatura.getNombreAsignatura().getText();
+				controlador.expulsarAlumno(alumno,asignatura);
+				
+			}
+		});
+		
+	
+		
+		
 		panelpreguntalibre.getTerminarEjercicio().addActionListener(new ActionListener() {
 
 			@Override
@@ -1922,6 +1955,10 @@ public class PanelControlador {
 
 	public PanelPreguntaMultiple getPanelpreguntamultiple() {
 		return panelpreguntamultiple;
+	}
+
+	public PanelEstadisticas getPanelestadistica() {
+		return panelestadistica;
 	}
 	
 	
