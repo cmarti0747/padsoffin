@@ -1252,19 +1252,31 @@ public class PanelControlador {
 				
 					if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaLibre")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
 						cl.show(panelcontenedor, "panelpreguntaLibre");
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaMultiple")) {
-						
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaMultiple(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						cl.show(panelcontenedor, "panelpreguntaMultiple");
 
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaUnica")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
+						
+						
 						panelpreguntaunica.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaUnica(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						cl.show(panelcontenedor, "panelpreguntaUnica");
 
 					}
@@ -1304,20 +1316,34 @@ public class PanelControlador {
 				
 					if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaLibre")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						panelpreguntalibre.getEnunciado().setText(enunciado);
 						controlador.cargarPreguntaLibre(enunciado, i, titulo);
 						cl.show(panelcontenedor, "panelpreguntaLibre");
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaMultiple")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						
+						panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaMultiple(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						panelpreguntamultiple.getEnunciado().setText(enunciado);
 						controlador.cargarPreguntaMultiple(enunciado, i, titulo);
 						cl.show(panelcontenedor, "panelpreguntaMultiple");
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaUnica")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						panelpreguntaunica.getEnunciado().setText(enunciado);
+						
+						panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaUnica(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						controlador.cargarPreguntaUnica(enunciado, i, titulo);
 						cl.show(panelcontenedor, "panelpreguntaUnica");
 
@@ -1376,6 +1402,7 @@ public class PanelControlador {
 
 				} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 						.equals("academia.PreguntaMultiple")) {
+					
 					panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
 					controlador.guardarRespuestaMultiple();
 						
@@ -1393,19 +1420,30 @@ public class PanelControlador {
 				
 					if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaLibre")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
 						cl.show(panelcontenedor, "panelpreguntaLibre");
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaMultiple")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						
 						panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaMultiple(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						cl.show(panelcontenedor, "panelpreguntaMultiple");
 
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaUnica")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						panelpreguntaunica.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaUnica(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						cl.show(panelcontenedor, "panelpreguntaUnica");
 
 					}
@@ -1434,7 +1472,7 @@ public class PanelControlador {
 
 				} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 						.equals("academia.PreguntaUnica")) {
-					panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+					panelpreguntaunica.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
 					controlador.guardarRespuestaUnica();
 
 				}
@@ -1445,19 +1483,32 @@ public class PanelControlador {
 				
 					if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaLibre")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						panelpreguntalibre.getEnunciado().setText(enunciado);
 						controlador.cargarPreguntaLibre(enunciado, i, titulo);
 						cl.show(panelcontenedor, "panelpreguntaLibre");
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaMultiple")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						
+						panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaMultiple(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						panelpreguntamultiple.getEnunciado().setText(enunciado);
 						controlador.cargarPreguntaMultiple(enunciado, i, titulo);
 						cl.show(panelcontenedor, "panelpreguntaMultiple");
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaUnica")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
+						panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaUnica(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						panelpreguntaunica.getEnunciado().setText(enunciado);
 						controlador.cargarPreguntaUnica(enunciado, i, titulo);
 						cl.show(panelcontenedor, "panelpreguntaUnica");
@@ -1485,11 +1536,13 @@ public class PanelControlador {
 						.equals("academia.PreguntaMultiple")) {
 					
 					panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+					controlador.cargarOpcionesPreguntaMultiple(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 					controlador.guardarRespuestaMultiple();
 
 				} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 						.equals("academia.PreguntaUnica")) {
 					panelpreguntaunica.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+					controlador.cargarOpcionesPreguntaUnica(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 					controlador.guardarRespuestaUnica();
 
 				}
@@ -1521,7 +1574,7 @@ public class PanelControlador {
 
 				} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 						.equals("academia.PreguntaUnica")) {
-					panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+					panelpreguntaunica.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
 					controlador.guardarRespuestaUnica();
 					
 
@@ -1532,18 +1585,31 @@ public class PanelControlador {
 				
 					if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaLibre")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
 						cl.show(panelcontenedor, "panelpreguntaLibre");
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaMultiple")) {
-						
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
+						panelpreguntaunica.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaMultiple(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
 						cl.show(panelcontenedor, "panelpreguntaMultiple");
 
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaUnica")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
+						
+						panelpreguntaunica.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaUnica(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						panelpreguntaunica.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
 						cl.show(panelcontenedor, "panelpreguntaUnica");
 
@@ -1584,19 +1650,32 @@ public class PanelControlador {
 				
 					if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaLibre")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						panelpreguntalibre.getEnunciado().setText(enunciado);
 						controlador.cargarPreguntaLibre(enunciado, i, titulo);
 						cl.show(panelcontenedor, "panelpreguntaLibre");
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaMultiple")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
 						
+						panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaMultiple(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						panelpreguntamultiple.getEnunciado().setText(enunciado);
 						controlador.cargarPreguntaMultiple(enunciado, i, titulo);
 						cl.show(panelcontenedor, "panelpreguntaMultiple");
 
 					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
 							.equals("academia.PreguntaUnica")) {
+						panelpreguntaunica.getlOpciones().clear();
+						panelpreguntamultiple.getlOpciones().clear();
+						panelpreguntalibre.getTextofield().setText("");
+						panelpreguntamultiple.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						controlador.cargarOpcionesPreguntaUnica(titulo, panelpreguntalibre.getPreguntas().getSelectedValue());
 						panelpreguntaunica.getEnunciado().setText(enunciado);
 						controlador.cargarPreguntaUnica(enunciado, i, titulo);
 						cl.show(panelcontenedor, "panelpreguntaUnica");

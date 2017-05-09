@@ -746,7 +746,7 @@ public class ControladorPanelControlador {
 		PreguntaMultiple p =(PreguntaMultiple) e.buscarPregunta(enunciado);
 		
 		for(String enunc: p.getOpciones()){
-			vista.getPanelpreguntaunica().getlOpciones().addElement(enunc);
+			vista.getPanelpreguntamultiple().getlOpciones().addElement(enunc);
 		}
 		
 	}
