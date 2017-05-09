@@ -38,7 +38,8 @@ public class PanelAsignatura extends JPanel {
 	public PanelAsignatura() {
 
 		volver = new JLabel("Volver");
-		volver.setFont(new Font("Arial", 0, 15));
+		volver.setFont(new Font("Arial", 0, 25));
+		volver.setForeground(Color.BLUE);
 
 		labeltemas = new JLabel("Temas");
 		labeltemas.setFont(new Font("Arial", 0, 35));
@@ -95,9 +96,9 @@ public class PanelAsignatura extends JPanel {
 
 		layout.putConstraint(SpringLayout.NORTH, cambiarvis, 0, SpringLayout.NORTH, eliminarTema);
 
-		layout.putConstraint(SpringLayout.WEST, combobox, 450, SpringLayout.EAST, lista);
+		layout.putConstraint(SpringLayout.WEST, combobox, 100, SpringLayout.EAST, barraDesplazamiento);
 
-		layout.putConstraint(SpringLayout.NORTH, combobox, 0, SpringLayout.NORTH, lista);
+		layout.putConstraint(SpringLayout.NORTH, combobox, 0, SpringLayout.NORTH, barraDesplazamiento);
 
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, matriculados, 0, SpringLayout.HORIZONTAL_CENTER, combobox);
 
