@@ -23,8 +23,10 @@ public class Ejercicio implements Serializable {
 	private Visibilidad visibilidad;
 	private ArrayList<Preguntas> preguntas = new ArrayList<Preguntas>();
 	private ArrayList<Resultado> resultados = new ArrayList<Resultado>();
+	private ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
 	private Estadistica estadisticas;
 	private double peso;
+	private int numPregunta = 0;
 
 	/**
 	 * Constructor de la clase Ejercicio
@@ -416,6 +418,12 @@ public class Ejercicio implements Serializable {
 
 	}
 	
+	
+	
+
+	public void setNumPregunta(int numPregunta) {
+		this.numPregunta = numPregunta;
+	}
 
 	public Estadistica getEstadisticas() {
 		return estadisticas;
@@ -453,6 +461,24 @@ public class Ejercicio implements Serializable {
 		
 	}
 	
+	public void anyadirRespuesta(int i, Respuesta res){
+		respuestas.add(i, res);
+	}
+	
+	
+	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public ArrayList<Respuesta> getRespuestas() {
+		return respuestas;
+	}
+
+	public int getNumPregunta() {
+		return numPregunta;
+	}
 
 	@Override
 	/**

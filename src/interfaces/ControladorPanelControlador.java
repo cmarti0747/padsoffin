@@ -12,7 +12,7 @@ public class ControladorPanelControlador {
 
 	private PanelControlador vista;
 	private AcademiaLopez academia;
-	private ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
+
 
 	public ControladorPanelControlador(PanelControlador vista, AcademiaLopez academia) {
 		this.academia = academia;
@@ -642,11 +642,12 @@ public class ControladorPanelControlador {
 		
 	}
 	
-	public void guardarRespuestaLibre(int i){
+	public void guardarRespuestaLibre(){
 		String respuesta = vista.getPanelpreguntalibre().getTextofield().getText();
 		Respuesta res = new RespuestaLibre(academia.getUsuarioOnline().getNia(),respuesta);
-		respuestas.add(i, res);
-		
+		Ejercicio e = academia.buscarEjercicio(vista.getPaneltemaalumno().getEjercicios().getSelectedValue());
+		int num = e.getNumPregunta();
+		e.anyadirRespuesta(num, res);
 	}
 
 	public String visibilidadEjercicio(String titulo) {
@@ -654,8 +655,22 @@ public class ControladorPanelControlador {
 	}
 
 	public double terminarEjercicio(String titulo) {
-		academia.buscarEjercicio(titulo).terminarEjercicio(respuestas, academia.getUsuarioOnline().getNia());
-		return academia.buscarEjercicio(titulo).getNota();
+		academia.buscarEjercicio(titulo).terminarEjercicio(academia.buscarEjercicio(titulo).getRespuestas(), academia.getUsuarioOnline().getNia());
+		for(Resultado r :academia.buscarEjercicio(titulo).getResultados()){
+			if(r.getNia()== academia.getUsuarioOnline().getNia()){
+				return r.getNota();
+			}
+		}
+		return 0;
+		
+	}
+
+	public int siguientePregunta(String titulo) {
+		Ejercicio e = academia.buscarEjercicio(titulo);
+		int num = e.getNumPregunta();
+		num = num+1;
+		e.setNumPregunta(num);
+		return num;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,7 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
-public class PanelPreguntaLibre extends JPanel{
+public class PanelPreguntaTest extends JPanel{
 	/**
 	 * 
 	 */
@@ -22,21 +23,18 @@ public class PanelPreguntaLibre extends JPanel{
 	private JList<String> preguntas;
 	private JLabel texto,enunciado;
 	private DefaultListModel<String> lPreguntas;
-	private JLabel cancelar;
+	private JButton cancelar;
 	private JTextArea textofield;
 	private JButton terminarEjercicio;
 	private JButton siguiente;
+	private ButtonGroup group;
 
 	
-	public PanelPreguntaLibre() {
+	public PanelPreguntaTest() {
 		
 		texto = new JLabel("Escriba su respuesta:");
 		texto.setFont(new Font("Arial",0,35));
 		
-		textofield = new JTextArea();
-		textofield.setFont(new Font("Arial", 0, 20));
-		textofield.setPreferredSize(new Dimension (500,250));
-		textofield.setLineWrap(true);
 		
 		terminarEjercicio = new JButton("Terminar Ejercicio");
 		 siguiente = new JButton("Siguiente");
@@ -44,8 +42,10 @@ public class PanelPreguntaLibre extends JPanel{
 		enunciado = new JLabel();
 		enunciado.setFont(new Font("Arial", 0, 30));
 		
-		cancelar = new JLabel ("Volver");
+		cancelar = new JButton ("Cancelar");
 		cancelar.setFont(new Font("Arial",0,20));
+		
+		 group = new ButtonGroup();
 		
 		lPreguntas = new DefaultListModel<String>();
 		preguntas = new JList<String>(lPreguntas);
@@ -97,7 +97,7 @@ layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, termi
 
 		add(textofield);
 		add(texto);
-
+		
 		add(enunciado);
 		add(terminarEjercicio);
 		add(cancelar);
@@ -114,7 +114,7 @@ layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, termi
 	}
 
 
-	public JLabel getVolver() {
+	public JButton getVolver() {
 		return cancelar;
 	}
 
@@ -159,12 +159,12 @@ layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, termi
 	}
 
 
-	public JLabel getCancelar() {
+	public JButton getCancelar() {
 		return cancelar;
 	}
 
 
-	public void setCancelar(JLabel cancelar) {
+	public void setCancelar(JButton cancelar) {
 		this.cancelar = cancelar;
 	}
 
@@ -186,6 +186,11 @@ layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, termi
 
 	public JButton getSiguiente() {
 		return siguiente;
+	}
+
+
+	public ButtonGroup getGroup() {
+		return group;
 	}
 	
 	

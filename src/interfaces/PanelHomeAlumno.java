@@ -45,7 +45,7 @@ public class PanelHomeAlumno extends JPanel{
 		listamisasignaturas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION); 
 		listamisasignaturas.setFont(new Font("Arial", 0, 25));
 		barradesplazamiento2 = new JScrollPane(listamisasignaturas); 
-		barradesplazamiento2.setPreferredSize(new Dimension(500,400));
+		barradesplazamiento2.setPreferredSize(new Dimension(300,300));
 		barradesplazamiento2.getViewport().setBackground(Color.WHITE);
 		
 		
@@ -67,20 +67,20 @@ public class PanelHomeAlumno extends JPanel{
 		layout.putConstraint("VerticalCenter", logeadocomo, -250, "VerticalCenter", this);
 		
 		layout.putConstraint(SpringLayout.NORTH, labelmisasignaturaas, 25, SpringLayout.SOUTH, logeadocomo);
-		layout.putConstraint(SpringLayout.EAST, labelmisasignaturaas, -150, SpringLayout.WEST, logeadocomo);
+		layout.putConstraint(SpringLayout.EAST, labelmisasignaturaas, -200, SpringLayout.WEST, logeadocomo);
 		
 		layout.putConstraint(SpringLayout.NORTH, barradesplazamiento2, 25, SpringLayout.SOUTH, labelmisasignaturaas);
 		layout.putConstraint(SpringLayout.WEST, barradesplazamiento2, 0, SpringLayout.WEST, labelmisasignaturaas);
 		
 		layout.putConstraint(SpringLayout.NORTH, barraDesplazamiento, 0, SpringLayout.NORTH, barradesplazamiento2);
-		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento, 100, SpringLayout.EAST, barradesplazamiento2);
+		layout.putConstraint(SpringLayout.WEST, barraDesplazamiento, 10, SpringLayout.EAST, barradesplazamiento2);
 		
 		layout.putConstraint(SpringLayout.SOUTH, labeltodasasignaturas, -25, SpringLayout.NORTH, listamisasignaturas);
 		layout.putConstraint(SpringLayout.WEST, labeltodasasignaturas, 0, SpringLayout.WEST, barraDesplazamiento);
 		
 		
-		layout.putConstraint(SpringLayout.NORTH, pedirmatricula, 0, SpringLayout.NORTH, barraDesplazamiento);
-		layout.putConstraint(SpringLayout.WEST, pedirmatricula, 50, SpringLayout.EAST, barraDesplazamiento);
+		layout.putConstraint(SpringLayout.NORTH, pedirmatricula, 10, SpringLayout.SOUTH, barraDesplazamiento);
+		layout.putConstraint(SpringLayout.WEST, pedirmatricula, 0, SpringLayout.WEST, barraDesplazamiento);
 		
 		add(logeadocomo);
 		add(labelmisasignaturaas);
