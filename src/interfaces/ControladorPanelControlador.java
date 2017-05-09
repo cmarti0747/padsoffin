@@ -723,4 +723,32 @@ public class ControladorPanelControlador {
 		
 	}
 
+	public void guardarRespuestaMultiple() {
+		int[] n= vista.getPanelpreguntamultiple().getOpciones().getSelectedIndices();
+		Respuesta res = new RespuestaMultiple(academia.getUsuarioOnline().getNia(), n);
+		Ejercicio e = academia.buscarEjercicio(vista.getPaneltemaalumno().getEjercicios().getSelectedValue());
+		int num = e.getNumPregunta();
+		e.anyadirRespuesta(num, res);
+		
+	}
+
+	public void cargarPreguntaMultiple(String enunciado, int i, String titulo) {
+		Ejercicio e= academia.buscarEjercicio(titulo);
+		RespuestaMultiple res = (RespuestaMultiple) e.getRespuestas().get(i);
+		vista.getPanelpreguntamultiple().getOpciones().setSelectedIndices(res.getRespuestas());
+		
+		
+		
+	}
+
+	public void cargarOpcionesPreguntaMultiple(String titulo, String enunciado) {
+		Ejercicio e = academia.buscarEjercicio(titulo);
+		PreguntaMultiple p =(PreguntaMultiple) e.buscarPregunta(enunciado);
+		
+		for(String enunc: p.getOpciones()){
+			vista.getPanelpreguntaunica().getlOpciones().addElement(enunc);
+		}
+		
+	}
+
 }
