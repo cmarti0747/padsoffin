@@ -39,18 +39,18 @@ public class PanelPreguntaTest extends JPanel {
 		enunciado = new JLabel();
 		enunciado.setFont(new Font("Arial", 0, 30));
 		siguiente = new JButton("Siguiente");
-		siguiente.setFont(new Font("Arial", 0, 20));
+		
 		anterior = new JButton("Anterior");
-		anterior.setFont(new Font("Arial", 0, 20));
+		
 		cancelar = new JButton("Cancelar");
-		cancelar.setFont(new Font("Arial", 0, 20));
+		
 
 		lPreguntas = new DefaultListModel<String>();
 		preguntas = new JList<String>(lPreguntas);
 		preguntas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		preguntas.setSelectionInterval(-1, -1);
 		JScrollPane barraDesplazamiento = new JScrollPane(preguntas);
-		barraDesplazamiento.setPreferredSize(new Dimension(250, 250));
+		barraDesplazamiento.setPreferredSize(new Dimension(500, 250));
 		barraDesplazamiento.getViewport().setBackground(Color.WHITE);
 		preguntas.setFont(new Font("Arial", 0, 30));
 
@@ -58,14 +58,14 @@ public class PanelPreguntaTest extends JPanel {
 		opciones = new JList<String>(lOpciones);
 		opciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		JScrollPane barraDesplazamiento2 = new JScrollPane(opciones);
-		barraDesplazamiento2.setPreferredSize(new Dimension(250, 250));
+		barraDesplazamiento2.setPreferredSize(new Dimension(350, 250));
 		barraDesplazamiento2.getViewport().setBackground(Color.WHITE);
 		opciones.setFont(new Font("Arial", 0, 30));
 
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);
 
-		layout.putConstraint("HorizontalCenter", barraDesplazamiento2, 0, "HorizontalCenter", this);
+		layout.putConstraint("HorizontalCenter", barraDesplazamiento2, -100, "HorizontalCenter", this);
 		layout.putConstraint("VerticalCenter", barraDesplazamiento2, 50, "VerticalCenter", this);
 
 		layout.putConstraint(SpringLayout.SOUTH, texto, -20, SpringLayout.NORTH, barraDesplazamiento2);
@@ -92,7 +92,7 @@ public class PanelPreguntaTest extends JPanel {
 		add(enunciado);
 		add(terminarEjercicio);
 		add(cancelar);
-		add(siguiente);
+		
 		add(barraDesplazamiento2);
 
 		setBackground(new Color(0, 255, 255));

@@ -24,10 +24,10 @@ public class PanelPreguntaMultiple extends JPanel{
 	private DefaultListModel<String> lPreguntas;
 	private JButton cancelar;
 	private JButton terminarEjercicio;
-	private JButton siguiente;
+	
 	private JList<String> opciones;
 	private DefaultListModel<String> lOpciones;
-	private JButton anterior;
+	private JButton anterior, siguiente, anteriorbien;
 
 	
 	public PanelPreguntaMultiple() {
@@ -37,14 +37,15 @@ public class PanelPreguntaMultiple extends JPanel{
 		
 		
 		terminarEjercicio = new JButton("Terminar Ejercicio");
-		 siguiente = new JButton("Siguiente");
+	
 		
 		enunciado = new JLabel();
 		enunciado.setFont(new Font("Arial", 0, 30));
-		siguiente = new JButton("Siguiente");
-		siguiente.setFont(new Font("Arial",0,20));
+	
+	
+		 siguiente = new JButton("Siguiente");
 		 anterior = new JButton("Anterior");
-		 anterior.setFont(new Font("Arial",0,20));
+		
 		cancelar = new JButton ("Cancelar");
 		cancelar.setFont(new Font("Arial",0,20));
 				
@@ -87,12 +88,16 @@ layout.putConstraint(SpringLayout.NORTH, terminarEjercicio, 10, SpringLayout.SOU
 layout.putConstraint(SpringLayout.EAST, terminarEjercicio, 0, SpringLayout.EAST, barraDesplazamiento2);
 
 
-layout.putConstraint(SpringLayout.NORTH, siguiente, 0, SpringLayout.NORTH, terminarEjercicio);
-layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, terminarEjercicio);
+
 
 
 layout.putConstraint(SpringLayout.NORTH, anterior, 0, SpringLayout.NORTH, siguiente);
 layout.putConstraint(SpringLayout.EAST, anterior, -10, SpringLayout.WEST, siguiente);
+
+layout.putConstraint(SpringLayout.NORTH, siguiente, 0, SpringLayout.NORTH, terminarEjercicio);
+layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, terminarEjercicio);
+
+
 
 			
 
@@ -103,10 +108,11 @@ layout.putConstraint(SpringLayout.EAST, anterior, -10, SpringLayout.WEST, siguie
 		add(enunciado);
 		add(terminarEjercicio);
 		add(cancelar);
-		add(siguiente);
+	
 		add(barraDesplazamiento2);
-		add(siguiente);
+	
 		add(anterior);
+		add(siguiente);
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
 		
