@@ -7,11 +7,21 @@ import javax.swing.JOptionPane;
 
 import academia.AcademiaLopez;
 
+/**
+ * Modulo de la clase ControladorLogin
+ * @author e336706
+ *
+ */
 public class ControladorLogin {
 
 	private VistaLogin vista;
 	private AcademiaLopez academia;
 
+	/**
+	 * Constructor de la clase ControladorLogin
+	 * @param vista panel del login
+	 * @param academia academia
+	 */
 	public ControladorLogin(VistaLogin vista, AcademiaLopez academia) {
 
 		this.vista = vista;
@@ -20,6 +30,12 @@ public class ControladorLogin {
 
 	}
 
+	/**
+	 * Funcion que entra en la aplicacion
+	 * @throws FileNotFoundException file no encontrado
+	 * @throws ClassNotFoundException clase no encontrada
+	 * @throws IOException IO exception
+	 */
 	public void entrar() throws FileNotFoundException, ClassNotFoundException, IOException {
 		char[] pas = vista.getPassword();
 		String nie = vista.getNia2();
@@ -44,6 +60,11 @@ public class ControladorLogin {
 		}
 	}
 
+	/**
+	 * Funcion que sale de la aplicacion
+	 * @throws FileNotFoundException file no encontrado
+	 * @throws IOException IO Exception
+	 */
 	public void salir() throws FileNotFoundException, IOException {
 		System.exit(0);
 	}

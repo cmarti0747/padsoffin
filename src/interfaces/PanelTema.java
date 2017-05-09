@@ -13,10 +13,13 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
+/**
+ * Modulo de la clase PanelTema
+ * @author Javier Senit Velasco
+ *
+ */
 public class PanelTema extends JPanel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JList<String> apuntes, ejercicios;
 	private JLabel nombreTema, labelapuntes, labelejercicios;
@@ -32,6 +35,9 @@ public class PanelTema extends JPanel {
 	private JButton cambiarvisSub;
 	private JButton cambiarvisE;
 
+	/**
+	 * Constructor de la clase PanelTema
+	 */
 	public PanelTema() {
 
 		nombreTema = new JLabel();
@@ -169,135 +175,257 @@ layout.putConstraint(SpringLayout.NORTH, cambiarvisSub,10 , SpringLayout.SOUTH, 
 	
 	
 
+	/**
+	 * Funcion que devuelve el subtemaanterior
+	 * @return subtemaanterior
+	 */
 	public String getSubtemaAnterior() {
 		return subtemaAnterior;
 	}
 
 
+	/**
+	 * Funcion que modifica el subtemaanterior
+	 * @param subtemaAnterior nuevo subtema
+	 */
 	public void setSubtemaAnterior(String subtemaAnterior) {
 		this.subtemaAnterior = subtemaAnterior;
 	}
 
 
 
+	/**
+	 * Funcion que devuelve la lista de apuntes
+	 * @return lista de apuntes
+	 */
 	public JList<String> getApuntes() {
 		return apuntes;
 	}
 
+	/**
+	 * Funcion que modifica la lista de apuntes
+	 * @param apuntes nueva lista
+	 */
 	public void setApuntes(JList<String> apuntes) {
 		this.apuntes = apuntes;
 	}
 
+	/**
+	 * Funcion que devuelve la lista de ejercicios
+	 * @return lista de ejercicios
+	 */
 	public JList<String> getEjercicios() {
 		return ejercicios;
 	}
 
+	/**
+	 * Funcion que modifica la lista de ejercicios
+	 * @param ejercicios nueva lista
+	 */
 	public void setEjercicios(JList<String> ejercicios) {
 		this.ejercicios = ejercicios;
 	}
 
+	/**
+	 * Funcion que devuelve el label de tema
+	 * @return label de tema
+	 */
 	public JLabel getNombreTema() {
 		return nombreTema;
 	}
 
+	/**
+	 * Funcion que modifica el nombre de un tema
+	 * @param nombreTema nuevo nombre
+	 */
 	public void setNombreTema(String nombreTema) {
 		this.nombreTema.setText(nombreTema);
 	}
 
+	/**
+	 * Funcion que devuelve el label de apuntes
+	 * @return label de apuntes
+	 */
 	public JLabel getLabelapuntes() {
 		return labelapuntes;
 	}
 
+	/**
+	 * Funcion que modifica la label de apuntes
+	 * @param labelapuntes nueva label
+	 */
 	public void setLabelapuntes(JLabel labelapuntes) {
 		this.labelapuntes = labelapuntes;
 	}
 
+	/**
+	 * Funcion que devuelve el label de ejercicios
+	 * @return label de ejercicios
+	 */
 	public JLabel getLabelejercicios() {
 		return labelejercicios;
 	}
 
+	/**
+	 * Funcion que modifica la label de ejercicios
+	 * @param labelejercicios nueva label
+	 */
 	public void setLabelejercicios(JLabel labelejercicios) {
 		this.labelejercicios = labelejercicios;
 	}
 
+	
+	/**
+	 * Funcion que devuelve el boton de crear apuntes
+	 * @return boton de crear apuntes
+	 */
 	public JButton getCrearA() {
 		return crearA;
 	}
 
+	/**
+	 * Funcion que modifica el boton de crear apuntes
+	 * @param crearA nuevos boton
+	 */
 	public void setCrearA(JButton crearA) {
 		this.crearA = crearA;
 	}
 
+	
+	/**
+	 * Funcion que devuelve el boton de eliminar apuntes
+	 * @return boton de eliminar apuntes
+	 */
 	public JButton getEliminarA() {
 		return eliminarA;
 	}
 
+	/**
+	 * Funcion que modifica el boton de eliminar apuntes
+	 * @param eliminarA nuevo boton
+	 */
 	public void setEliminarA(JButton eliminarA) {
 		this.eliminarA = eliminarA;
 	}
 
+	/**
+	 * Funcion que devuelve el boton de crear ejercicios
+	 * @return boton de crear ejercicios
+	 */
 	public JButton getCrearE() {
 		return crearE;
 	}
 
+	
+	/**
+	 * Funcion que modifica el boton de crear ejercicio
+	 * @param crearE nuevo boton
+	 */
 	public void setCrearE(JButton crearE) {
 		this.crearE = crearE;
 	}
 
+	/**
+	 * Funcion que devuelve el boton de eliminar ejercicios
+	 * @return boton de eliminar ejercicios
+	 */
 	public JButton getEliminarE() {
 		return eliminarE;
 	}
 
+	/**
+	 * Funcion que modifica el boton de eliminar ejercicio
+	 * @param eliminarE nuevo boton
+	 */
 	public void setEliminarE(JButton eliminarE) {
 		this.eliminarE = eliminarE;
 	}
 
+	/**
+	 * Funcion que devuelve el boton de crear subtemas
+	 * @return boton de crear subtemas
+	 */
 	public JButton getCrearSub() {
 		return crearSub;
 	}
 
+
+	/**
+	 * Funcion que devuelve el boton de eliminar subtemas
+	 * @return boton de eliminar subtemas
+	 */
 	public JButton getEliminarSub() {
 		return eliminarSub;
 	}
 
+	/**
+	 * Funcion que devuelve el lista de apuntes
+	 * @return lista de apuntes
+	 */
 	public DefaultListModel<String> getlApuntes() {
 		return lApuntes;
 	}
 
+	/**
+	 * Funcion que devuelve el lista de ejercicios
+	 * @return lista de ejercicios
+	 */
 	public DefaultListModel<String> getlEjercicios() {
 		return lEjercicios;
 	}
 
+	/**
+	 * Funcion que devuelve el lista de subtemas
+	 * @return lista de subtemas
+	 */
 	public DefaultListModel<String> getlSubtemas() {
 		return lSubtemas;
 	}
 
+	/**
+	 * Funcion que devuelve la lista de subtemas
+	 * @return lista de subtemas
+	 */
 	public JList<String> getSubtemas() {
 		return subtemas;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 
+	/**
+	 * Funcion que devuelve la label de volver
+	 * @return label volver
+	 */
 	public JLabel getVolver() {
 		return volver;
 	}
 
 
 
+	/**
+	 * Funcion que devuelve el boton de cambiar visibilidad de apuntes
+	 * @return boton de visibilidad
+	 */
 	public JButton getCambiarvisA() {
 		return cambiarvisA;
 	}
 
 
 
+	/**
+	 * Funcion que devuelve el boton de cambiar visibilidad de subtema
+	 * @return boton de visibilidad
+	 */
 	public JButton getCambiarvisSub() {
 		return cambiarvisSub;
 	}
 
 
 
+	/**
+	 * Funcion que devuelve el boton de cambiar visibilidad de ejercicio
+	 * @return boton de visibilidad
+	 */
 	public JButton getCambiarvisE() {
 		return cambiarvisE;
 	}
