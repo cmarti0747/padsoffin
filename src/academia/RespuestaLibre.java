@@ -1,11 +1,13 @@
 package academia;
 
+import java.io.Serializable;
+
 /**
  * Modulo que se encarga de gestionar las respuestas de las preguntas tipo libre
  * @author Javie Senit Velasco y Carlos Marti Gonzalez
  *
  */
-public class RespuestaLibre extends Respuesta {
+public class RespuestaLibre extends Respuesta implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;

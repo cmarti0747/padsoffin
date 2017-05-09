@@ -1,11 +1,13 @@
 package academia;
 
+import java.io.Serializable;
+
 /**
  * Modulo que se encarga de gestionar las respuestas de las preguntas tipo unica
  * @author Javie Senit Velasco y Carlos Marti Gonzalez
  *
  */
-public class RespuestaUnica extends Respuesta{
+public class RespuestaUnica extends Respuesta implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;

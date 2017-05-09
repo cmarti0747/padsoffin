@@ -1,5 +1,6 @@
 package academia;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Arrays;
  * @author Javie Senit Velasco y Carlos Marti Gonzalez
  *
  */
-public class RespuestaMultiple extends Respuesta {
+public class RespuestaMultiple extends Respuesta implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;

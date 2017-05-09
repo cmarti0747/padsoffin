@@ -13,7 +13,6 @@ public class ControladorPanelControlador {
 	private PanelControlador vista;
 	private AcademiaLopez academia;
 
-
 	public ControladorPanelControlador(PanelControlador vista, AcademiaLopez academia) {
 		this.academia = academia;
 		this.vista = vista;
@@ -454,32 +453,31 @@ public class ControladorPanelControlador {
 
 	public void cancelarCrearEjercicio(String tema) {
 		Temas t = academia.buscarTema(tema);
-		if(vista.getPanelcrearEjercicio().getCrearEjercicio().getText().equals("Crear Ejercicio")){
+		if (vista.getPanelcrearEjercicio().getCrearEjercicio().getText().equals("Crear Ejercicio")) {
 			if (t != null) {
 				t.eliminarEjercicio(t.buscarEjercicio("titulo"));
-			}else{
+			} else {
 				t = academia.buscarSubtemas(tema);
 				t.eliminarEjercicio(t.buscarEjercicio("titulo"));
 			}
-		}else{
-			
-				if (t != null) {
-					t.buscarEjercicio("titulo").setTitulo(vista.getPaneltema().getEjercicios().getSelectedValue());
-				}else{
-					t = academia.buscarSubtemas(tema);
-					t.buscarEjercicio("titulo").setTitulo(vista.getPaneltema().getEjercicios().getSelectedValue());
+		} else {
 
-				}
+			if (t != null) {
+				t.buscarEjercicio("titulo").setTitulo(vista.getPaneltema().getEjercicios().getSelectedValue());
+			} else {
+				t = academia.buscarSubtemas(tema);
+				t.buscarEjercicio("titulo").setTitulo(vista.getPaneltema().getEjercicios().getSelectedValue());
+
+			}
 		}
-		
-		
 
 	}
 
-	public void crearEjercicioFin(String titulo, LocalDate fechainicio, LocalDate fechafin, Double peso,Visibilidad visibilidad) {
+	public void crearEjercicioFin(String titulo, LocalDate fechainicio, LocalDate fechafin, Double peso,
+			Visibilidad visibilidad) {
 		String tema = vista.getPaneltema().getNombreTema().getText();
 		Temas t = academia.buscarTema(tema);
-		
+
 		if (t != null) {
 			t.buscarEjercicio("titulo").setTitulo(titulo);
 			t.buscarEjercicio(titulo).setFechaInicio(fechainicio);
@@ -508,12 +506,14 @@ public class ControladorPanelControlador {
 		Temas t = academia.buscarTema(titulo);
 		if (t != null) {
 			for (Ejercicio n : t.getEjercicios()) {
-				if(n.getFechaInicio().isBefore(LocalDate.now())|| n.getFechaInicio().isEqual((LocalDate.now()))){
-					n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
-				}
-				if(n.getFechaFin().isBefore(LocalDate.now())){
-					n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
+				if (n.getVisibilidad().equals(Visibilidad.VISIBLE_CONTESTADO) == false) {
+					if (n.getFechaInicio().isBefore(LocalDate.now()) || n.getFechaInicio().isEqual((LocalDate.now()))) {
+						n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
+					}
+					if (n.getFechaFin().isBefore(LocalDate.now())) {
+						n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
 
+					}
 				}
 				vista.getPaneltema().getlEjercicios().addElement(n.getTitulo());
 
@@ -521,12 +521,15 @@ public class ControladorPanelControlador {
 		} else {
 			t = academia.buscarSubtemas(titulo);
 			for (Ejercicio n : t.getEjercicios()) {
-				if(n.getFechaInicio().isBefore(LocalDate.now())|| n.getFechaInicio().isEqual((LocalDate.now()))){
-					n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
-				}
-				if(n.getFechaFin().isBefore(LocalDate.now())){
-					n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
+				if (n.getVisibilidad().equals(Visibilidad.VISIBLE_CONTESTADO) == false) {
+					if (n.getFechaInicio().isBefore(LocalDate.now()) || n.getFechaInicio().isEqual((LocalDate.now()))) {
 
+						n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
+					}
+					if (n.getFechaFin().isBefore(LocalDate.now())) {
+						n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
+
+					}
 				}
 				vista.getPaneltema().getlEjercicios().addElement(n.getTitulo());
 
@@ -539,14 +542,16 @@ public class ControladorPanelControlador {
 		Temas t = academia.buscarTema(titulo);
 		if (t != null) {
 			for (Ejercicio n : t.getEjercicios()) {
-				if(n.getFechaInicio().isBefore(LocalDate.now())|| n.getFechaInicio().isEqual((LocalDate.now()))){
-					n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
-				}
-				if(n.getFechaFin().isBefore(LocalDate.now())){
-					n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
+				if (n.getVisibilidad().equals(Visibilidad.VISIBLE_CONTESTADO) == false) {
+					if (n.getFechaInicio().isBefore(LocalDate.now()) || n.getFechaInicio().isEqual((LocalDate.now()))) {
+						n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
+					}
+					if (n.getFechaFin().isBefore(LocalDate.now())) {
+						n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
 
+					}
 				}
-				if (n.getVisibilidad().equals(Visibilidad.INVISIBLE)==false) {
+				if (n.getVisibilidad().equals(Visibilidad.INVISIBLE) == false) {
 					vista.getPaneltemaalumno().getlEjercicios().addElement(n.getTitulo());
 				}
 
@@ -554,14 +559,16 @@ public class ControladorPanelControlador {
 		} else {
 			t = academia.buscarSubtemas(titulo);
 			for (Ejercicio n : t.getEjercicios()) {
-				if(n.getFechaInicio().isBefore(LocalDate.now())|| n.getFechaInicio().isEqual((LocalDate.now()))){
-					n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
-				}
-				if(n.getFechaFin().isBefore(LocalDate.now())){
-					n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
+				if (n.getVisibilidad().equals(Visibilidad.VISIBLE_CONTESTADO) == false) {
+					if (n.getFechaInicio().isBefore(LocalDate.now()) || n.getFechaInicio().isEqual((LocalDate.now()))) {
+						n.setVisibilidad(Visibilidad.VISIBLE_COMENZADO);
+					}
+					if (n.getFechaFin().isBefore(LocalDate.now())) {
+						n.setVisibilidad(Visibilidad.VISIBLE_TERIMNADO);
 
+					}
 				}
-				if (n.getVisibilidad().equals(Visibilidad.INVISIBLE)==false) {
+				if (n.getVisibilidad().equals(Visibilidad.INVISIBLE) == false) {
 					vista.getPaneltemaalumno().getlEjercicios().addElement(n.getTitulo());
 				}
 			}
@@ -578,33 +585,30 @@ public class ControladorPanelControlador {
 			t = academia.buscarSubtemas(vista.getPaneltema().getNombreTema().getText());
 			t.eliminarEjercicio(academia.buscarEjercicio(titulo));
 		}
-		
+
 	}
 
 	public void abrirEjercicio(String titulo) {
 		Ejercicio e = academia.buscarEjercicio(titulo);
-		ArrayList<Preguntas> preguntas= e.getPreguntas();
+		ArrayList<Preguntas> preguntas = e.getPreguntas();
 		String ponderacion = String.valueOf(e.getPeso());
 		vista.getPanelcrearejercicio().setPonderacionfield(ponderacion);
 		vista.getPanelcrearejercicio().setFechafinfield(e.getFechaFin().toString());
 		vista.getPanelcrearejercicio().setFechainiciofield(e.getFechaInicio().toString());
-		for(Preguntas p: preguntas){
+		for (Preguntas p : preguntas) {
 			vista.getPanelcrearejercicio().getModelo().addElement(p.getEnunciado());
 		}
 		e.setTitulo("titulo");
-		
-		
+
 	}
 
 	public boolean eliminarPregunta(String titulo) {
-		if(academia.buscarEjercicio("titulo").esEliminable()==true){
+		if (academia.buscarEjercicio("titulo").esEliminable() == true) {
 			academia.buscarEjercicio("titulo").eliminarPregunta(titulo);
 			return true;
 		}
 		return false;
 
-		
-		
 	}
 
 	public void cambiarVisE(String titulo) {
@@ -616,16 +620,16 @@ public class ControladorPanelControlador {
 				t.setVisibilidad(Visibilidad.INVISIBLE);
 			}
 		}
-		
+
 	}
 
 	public boolean realizarEjercicio(String titulo) {
 		Ejercicio e = academia.buscarEjercicio(titulo);
-		if(e!=null && e.getVisibilidad().equals(Visibilidad.VISIBLE_COMENZADO)){
-			for(Preguntas p:e.getPreguntas()){
+		if (e != null && e.getVisibilidad().equals(Visibilidad.VISIBLE_COMENZADO)) {
+			for (Preguntas p : e.getPreguntas()) {
 				vista.getPanelpreguntalibre().getlPreguntas().addElement(p.getEnunciado());
 			}
-			
+
 			return true;
 		}
 		return false;
@@ -636,15 +640,14 @@ public class ControladorPanelControlador {
 		Preguntas p = e.buscarPregunta(enunciado);
 		Class<? extends Preguntas> c = p.getClass();
 		String clase = c.getName();
-		
+
 		return clase;
-		
-		
+
 	}
-	
-	public void guardarRespuestaLibre(){
+
+	public void guardarRespuestaLibre() {
 		String respuesta = vista.getPanelpreguntalibre().getTextofield().getText();
-		Respuesta res = new RespuestaLibre(academia.getUsuarioOnline().getNia(),respuesta);
+		Respuesta res = new RespuestaLibre(academia.getUsuarioOnline().getNia(), respuesta);
 		Ejercicio e = academia.buscarEjercicio(vista.getPaneltemaalumno().getEjercicios().getSelectedValue());
 		int num = e.getNumPregunta();
 		e.anyadirRespuesta(num, res);
@@ -655,20 +658,29 @@ public class ControladorPanelControlador {
 	}
 
 	public double terminarEjercicio(String titulo) {
-		academia.buscarEjercicio(titulo).terminarEjercicio(academia.buscarEjercicio(titulo).getRespuestas(), academia.getUsuarioOnline().getNia());
-		for(Resultado r :academia.buscarEjercicio(titulo).getResultados()){
-			if(r.getNia()== academia.getUsuarioOnline().getNia()){
+		academia.buscarEjercicio(titulo).terminarEjercicio(academia.buscarEjercicio(titulo).getRespuestas(),
+				academia.getUsuarioOnline().getNia());
+		for (Resultado r : academia.buscarEjercicio(titulo).getResultados()) {
+			if (r.getNia() == academia.getUsuarioOnline().getNia()) {
 				return r.getNota();
 			}
 		}
 		return 0;
-		
+
 	}
 
 	public int siguientePregunta(String titulo) {
 		Ejercicio e = academia.buscarEjercicio(titulo);
 		int num = e.getNumPregunta();
-		num = num+1;
+		num = num + 1;
+		e.setNumPregunta(num);
+		return num;
+	}
+	
+	public int anteriorPregunta(String titulo) {
+		Ejercicio e = academia.buscarEjercicio(titulo);
+		int num = e.getNumPregunta();
+		num = num - 1;
 		e.setNumPregunta(num);
 		return num;
 	}

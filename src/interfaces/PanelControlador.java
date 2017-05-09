@@ -99,7 +99,7 @@ public class PanelControlador {
 				try {
 					controlador.desconectar();
 				} catch (IOException e1) {
-					JOptionPane.showInputDialog("Error al desconectar");
+					JOptionPane.showMessageDialog(null, "Error al desconectar");
 				}
 			}
 
@@ -1181,6 +1181,47 @@ public class PanelControlador {
 				}
 
 				int i = controlador.siguientePregunta(titulo);
+				panelpreguntalibre.getPreguntas().setSelectedIndex(i);
+				
+					if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
+							.equals("academia.PreguntaLibre")) {
+						panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+						cl.show(panelcontenedor, "panelpreguntaLibre");
+
+					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
+							.equals("academia.PreguntaMultiple")) {
+
+					} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
+							.equals("academia.PreguntaUnica")) {
+
+					}
+				
+				}else{
+					JOptionPane.showMessageDialog(null, "No hay mas preguntas");
+				}
+			}
+		});
+		
+		panelpreguntalibre.getAnterior().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String titulo = paneltemaalumno.getEjercicios().getSelectedValue();
+				if (panelpreguntalibre.getPreguntas().getSelectedIndex()!=0) {
+				if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
+						.equals("academia.PreguntaLibre")) {
+					panelpreguntalibre.getEnunciado().setText(panelpreguntalibre.getPreguntas().getSelectedValue());
+					controlador.guardarRespuestaLibre();
+
+				} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
+						.equals("academia.PreguntaMultiple")) {
+
+				} else if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())
+						.equals("academia.PreguntaUnica")) {
+
+				}
+
+				int i = controlador.anteriorPregunta(titulo);
 				panelpreguntalibre.getPreguntas().setSelectedIndex(i);
 				
 					if (controlador.comprobarClase(titulo, panelpreguntalibre.getPreguntas().getSelectedValue())

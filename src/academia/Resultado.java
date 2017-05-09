@@ -1,12 +1,18 @@
 package academia;
 
+import java.io.Serializable;
+
 /**
  * Modulo que se encarga de gestionar los esultados de los ejercicios y preguntas
  * @author Javie Senit Velasco y Carlos Marti Gonzalez
  *
  */
-public class Resultado {
+public class Resultado implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int nia;
 	double nota;
 

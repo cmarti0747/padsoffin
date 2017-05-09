@@ -85,7 +85,7 @@ public class Ejercicio implements Serializable {
 	}
 
 	/**
-	 * Funcion que crea una nueva pregunta de tipo libre y la añade a la lista
+	 * Funcion que crea una nueva pregunta de tipo libre y la aï¿½ade a la lista
 	 * de preguntas
 	 * 
 	 * @param enunciado:
@@ -112,7 +112,7 @@ public class Ejercicio implements Serializable {
 	}
 
 	/**
-	 * Funcion que crea una nueva pregunta de tipo unica y la añade a la lista
+	 * Funcion que crea una nueva pregunta de tipo unica y la aï¿½ade a la lista
 	 * de preguntas
 	 * 
 	 * @param enunciado:
@@ -137,7 +137,7 @@ public class Ejercicio implements Serializable {
 	}
 
 	/**
-	 * Funcion que crea una nueva pregunta de tipo multiple y la añade a la
+	 * Funcion que crea una nueva pregunta de tipo multiple y la aï¿½ade a la
 	 * lista de preguntas
 	 * 
 	 * @param enunciado:
@@ -462,6 +462,10 @@ public class Ejercicio implements Serializable {
 	}
 	
 	public void anyadirRespuesta(int i, Respuesta res){
+		if(respuestas.get(i).equals(null)){
+			respuestas.add(i, res);
+		}
+		respuestas.remove(i);
 		respuestas.add(i, res);
 	}
 	

@@ -26,6 +26,7 @@ public class PanelPreguntaLibre extends JPanel{
 	private JTextArea textofield;
 	private JButton terminarEjercicio;
 	private JButton siguiente;
+	private JButton anterior;
 
 	
 	public PanelPreguntaLibre() {
@@ -40,6 +41,7 @@ public class PanelPreguntaLibre extends JPanel{
 		
 		terminarEjercicio = new JButton("Terminar Ejercicio");
 		 siguiente = new JButton("Siguiente");
+		 anterior = new JButton("Anterior");
 		
 		enunciado = new JLabel();
 		enunciado.setFont(new Font("Arial", 0, 30));
@@ -91,6 +93,9 @@ layout.putConstraint(SpringLayout.NORTH, siguiente, 0, SpringLayout.NORTH, cance
 layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, terminarEjercicio);
 
 
+layout.putConstraint(SpringLayout.NORTH, anterior, 0, SpringLayout.NORTH, siguiente);
+layout.putConstraint(SpringLayout.EAST, anterior, -10, SpringLayout.WEST, siguiente);
+
 			
 
 		
@@ -102,6 +107,7 @@ layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, termi
 		add(terminarEjercicio);
 		add(cancelar);
 		add(siguiente);
+		add(anterior);
 		
 		setBackground(new Color(0, 255, 255));
 		setVisible(true); 
@@ -186,6 +192,11 @@ layout.putConstraint(SpringLayout.EAST, siguiente, -10, SpringLayout.WEST, termi
 
 	public JButton getSiguiente() {
 		return siguiente;
+	}
+
+
+	public JButton getAnterior() {
+		return anterior;
 	}
 	
 	
