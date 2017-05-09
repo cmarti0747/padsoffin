@@ -425,6 +425,8 @@ public class ControladorPanelControlador {
 		}
 
 	}
+	
+	
 
 	public void crearPreguntaLibre(String enunciado, String solucion, double ponderacion, Visibilidad visibilidad) {
 		academia.buscarEjercicio("titulo").crearPreguntaLibre(enunciado, ponderacion, solucion, false);
@@ -658,6 +660,7 @@ public class ControladorPanelControlador {
 	}
 
 	public double terminarEjercicio(String titulo) {
+		academia.buscarEjercicio(titulo).setNumPregunta(0);
 		academia.buscarEjercicio(titulo).terminarEjercicio(academia.buscarEjercicio(titulo).getRespuestas(),
 				academia.getUsuarioOnline().getNia());
 		for (Resultado r : academia.buscarEjercicio(titulo).getResultados()) {
@@ -683,6 +686,41 @@ public class ControladorPanelControlador {
 		num = num - 1;
 		e.setNumPregunta(num);
 		return num;
+	}
+
+	public void cargarPreguntaLibre(String enunciado, int i, String titulo) {
+		Ejercicio e= academia.buscarEjercicio(titulo);
+		RespuestaLibre res = (RespuestaLibre) e.getRespuestas().get(i);
+		vista.getPanelpreguntalibre().getTextofield().setText(res.getRespuestas());
+		
+		
+	}
+
+	public void cargarOpcionesPreguntaUnica(String titulo, String enunciado) {
+		Ejercicio e = academia.buscarEjercicio(titulo);
+		PreguntaUnica p =(PreguntaUnica) e.buscarPregunta(enunciado);
+		
+		for(String enunc: p.getOpciones()){
+			vista.getPanelpreguntaunica().getlOpciones().addElement(enunc);
+		}
+		
+	}
+
+	public void guardarRespuestaUnica() {
+		int n= vista.getPanelpreguntaunica().getOpciones().getSelectedIndex();
+		Respuesta res = new RespuestaUnica(academia.getUsuarioOnline().getNia(), n);
+		Ejercicio e = academia.buscarEjercicio(vista.getPaneltemaalumno().getEjercicios().getSelectedValue());
+		int num = e.getNumPregunta();
+		e.anyadirRespuesta(num, res);
+		
+	}
+
+	public void cargarPreguntaUnica(String enunciado, int i, String titulo) {
+		Ejercicio e= academia.buscarEjercicio(titulo);
+		RespuestaUnica res = (RespuestaUnica) e.getRespuestas().get(i);
+		vista.getPanelpreguntaunica().getOpciones().setSelectedIndex(res.getRespuestas());
+		
+		
 	}
 
 }

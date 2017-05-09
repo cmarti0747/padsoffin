@@ -57,6 +57,7 @@ public class PanelPreguntaLibre extends JPanel{
 		barraDesplazamiento.setPreferredSize(new Dimension(250,250));
 		barraDesplazamiento.getViewport().setBackground(Color.WHITE);
 		preguntas.setFont(new Font("Arial",0,30));
+		
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);
 		

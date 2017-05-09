@@ -40,14 +40,14 @@ public class Ejercicio implements Serializable {
 	 * @param nota:
 	 *            Nota del ejercicio
 	 */
-	public Ejercicio(String titulo, LocalDate fechaInicio, LocalDate fechaFin, double nota,double peso) {
+	public Ejercicio(String titulo, LocalDate fechaInicio, LocalDate fechaFin, double nota, double peso) {
 		this.titulo = titulo;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.nota = nota;
 		this.visibilidad = academia.Visibilidad.INVISIBLE;
 		this.estadisticas = new Estadistica();
-		this.peso=peso;
+		this.peso = peso;
 	}
 
 	/**
@@ -122,12 +122,13 @@ public class Ejercicio implements Serializable {
 	 * @param solucion:
 	 *            Solucion de la pregunta
 	 */
-	public void crearPreguntaUnica(String enunciado, double ponderacion, int solucion, boolean aleatorio,List<String> opciones) {
+	public void crearPreguntaUnica(String enunciado, double ponderacion, int solucion, boolean aleatorio,
+			List<String> opciones) {
 		Preguntas p;
 		if (ponderacion == 0) {
-			p = new PreguntaUnica(enunciado, solucion,opciones);
+			p = new PreguntaUnica(enunciado, solucion, opciones);
 		} else {
-			p = new PreguntaUnica(enunciado, ponderacion, solucion,opciones);
+			p = new PreguntaUnica(enunciado, ponderacion, solucion, opciones);
 		}
 
 		this.preguntas.add(p);
@@ -147,12 +148,13 @@ public class Ejercicio implements Serializable {
 	 * @param solucion:
 	 *            Soluciones de la pregunta
 	 */
-	public void crearPreguntaMultiple(String enunciado, double ponderacion, int[] solucion, boolean aleatorio,List<String> opciones) {
+	public void crearPreguntaMultiple(String enunciado, double ponderacion, int[] solucion, boolean aleatorio,
+			List<String> opciones) {
 		Preguntas p;
 		if (ponderacion == 0) {
-			p = new PreguntaMultiple(enunciado, solucion,opciones);
+			p = new PreguntaMultiple(enunciado, solucion, opciones);
 		} else {
-			p = new PreguntaMultiple(enunciado, ponderacion, solucion,opciones);
+			p = new PreguntaMultiple(enunciado, ponderacion, solucion, opciones);
 		}
 
 		this.preguntas.add(p);
@@ -192,8 +194,7 @@ public class Ejercicio implements Serializable {
 		} else if (visibilidad == academia.Visibilidad.VISIBLE_COMENZADO
 				|| visibilidad == academia.Visibilidad.VISIBLE_CONTESTADO
 				|| visibilidad == academia.Visibilidad.VISIBLE_NOCOMENZADO
-				|| visibilidad == academia.Visibilidad.VISIBLE_TERIMNADO
-				||visibilidad == academia.Visibilidad.VISIBLE
+				|| visibilidad == academia.Visibilidad.VISIBLE_TERIMNADO || visibilidad == academia.Visibilidad.VISIBLE
 				|| visibilidad == academia.Visibilidad.INVISIBLE) {
 			this.visibilidad = visibilidad;
 		}
@@ -212,8 +213,9 @@ public class Ejercicio implements Serializable {
 	 * Funcion que termina un ejercicio
 	 */
 	public void terminarEjercicio(ArrayList<Respuesta> respuestas, int nia) {
-	
+
 		for (int i = 0; i < this.preguntas.size(); i++) {
+
 			if (this.preguntas.get(i).enviarRespuesta(respuestas.get(i), nia) == true) {
 				estadisticas.sumarContestadosCorrectos();
 			} else {
@@ -223,13 +225,13 @@ public class Ejercicio implements Serializable {
 		}
 		this.calcularNota();
 		anyadirResultado(nia, this.nota);
-		for(int i =0;i<preguntas.size();i++){
+		for (int i = 0; i < preguntas.size(); i++) {
 			preguntas.get(i).setNota(0);
 		}
-		
+
 		this.setVisibilidad(academia.Visibilidad.VISIBLE_CONTESTADO);
 		estadisticas.restarSinContestar();
-		this.nota=0;
+		this.nota = 0;
 	}
 
 	/**
@@ -406,20 +408,16 @@ public class Ejercicio implements Serializable {
 			for (int j = 0; j < AcademiaLopez.getMatriculas().get(i).getAsignatura().getTemas().size(); j++) {
 				for (int k = 0; k < AcademiaLopez.getMatriculas().get(i).getAsignatura().getTemas().get(j)
 						.getEjercicios().size(); k++) {
-						estadisticas.sumarSinContestar();
-					
+					estadisticas.sumarSinContestar();
 
 				}
 
 			}
-			
+
 		}
 		System.out.println(estadisticas);
 
 	}
-	
-	
-	
 
 	public void setNumPregunta(int numPregunta) {
 		this.numPregunta = numPregunta;
@@ -436,10 +434,10 @@ public class Ejercicio implements Serializable {
 	public double getPeso() {
 		return peso;
 	}
-	
-	public Preguntas buscarPregunta(String enunciado){
-		for(Preguntas p: preguntas){
-			if(p.getEnunciado().equals(enunciado)){
+
+	public Preguntas buscarPregunta(String enunciado) {
+		for (Preguntas p : preguntas) {
+			if (p.getEnunciado().equals(enunciado)) {
 				return p;
 			}
 		}
@@ -449,28 +447,35 @@ public class Ejercicio implements Serializable {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-	
-	public void eliminarPregunta(String enunciado){
+
+	public void eliminarPregunta(String enunciado) {
 		List<Preguntas> aeliminar = new ArrayList<Preguntas>();
-		for(Preguntas p: preguntas){
-			if(p.getEnunciado().equals(enunciado)){
+		for (Preguntas p : preguntas) {
+			if (p.getEnunciado().equals(enunciado)) {
 				aeliminar.add(p);
 			}
 		}
 		preguntas.removeAll(aeliminar);
+
+	}
+
+	public void anyadirRespuesta(int i, Respuesta res) {
 		
-	}
-	
-	public void anyadirRespuesta(int i, Respuesta res){
-		if(respuestas.get(i).equals(null)){
+		if(respuestas.size()>=i){
 			respuestas.add(i, res);
+			return;
 		}
-		respuestas.remove(i);
-		respuestas.add(i, res);
-	}
-	
-	
-	
+		
+			
+			if ( respuestas.get(i).equals(null)) {
+				respuestas.add(i, res);
+				return;
+			} else {
+				respuestas.remove(i);
+				respuestas.add(i, res);
+			}
+			
+		}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

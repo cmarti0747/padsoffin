@@ -112,7 +112,8 @@ public class PreguntaUnica extends Preguntas {
 	public List<String> getOpciones() {
 		return opciones;
 	}
-
+	
+	
 	@Override
 	/**
 	 * Funcion que imprime los datos de la pregunta
