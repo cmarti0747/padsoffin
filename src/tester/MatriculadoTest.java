@@ -20,16 +20,7 @@ Alumno alumno2;
 		mat = new Matriculado(alumno, asignatura);
 		
 	}
-	@Test
-	public void testGetEstado() {
-		assertFalse(mat.getEstado());
-	}
-
-	@Test
-	public void testSetEstado() {
-		mat.setEstado(true);
-		assertTrue(true);
-	}
+	
 
 	@Test
 	public void testGetUsuario() {
@@ -57,15 +48,5 @@ Alumno alumno2;
 		assertEquals(asignatura, mat.getAsignatura());
 	}
 
-	@Test
-	public void testGetPendiente() {
-		assertTrue(mat.getPendiente());
-	}
-
-	@Test
-	public void testSetPendiente() {
-		mat.setPendiente(false);
-		assertFalse(mat.getPendiente());
-	}
 
 }

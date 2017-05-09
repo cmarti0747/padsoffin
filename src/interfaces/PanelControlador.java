@@ -1244,6 +1244,7 @@ public class PanelControlador {
 				panelpreguntaunica.getlOpciones().clear();
 				panelpreguntamultiple.getlOpciones().clear();
 				panelpreguntalibre.getTextofield().setText("");
+				cl.show(panelcontenedor, "paneltemaAlumno");
 			}
 		});
 
@@ -1256,6 +1257,7 @@ public class PanelControlador {
 				panelpreguntaunica.getlOpciones().clear();
 				panelpreguntamultiple.getlOpciones().clear();
 				panelpreguntalibre.getTextofield().setText("");
+				cl.show(panelcontenedor, "paneltemaAlumno");
 			}
 		});
 
