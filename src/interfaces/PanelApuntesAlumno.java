@@ -8,17 +8,22 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
 
+/**
+ * Modulo de la clase PanelApuntesAlumno
+ * @author Javier Senit y Carlos Marti
+ *
+ */
 public class PanelApuntesAlumno extends JPanel{
 
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JLabel titulo, volver;
 	private JTextArea textofield;
 	
-	
+	/**
+	 * Constructor de la clase PanelApuntesAlumno
+	 */
 	public PanelApuntesAlumno(){
 		
 		
@@ -61,39 +66,59 @@ public class PanelApuntesAlumno extends JPanel{
 	}
 
 
+	/**
+	 * Funcion que deveulve la label de titulo
+	 * @return label de titulo
+	 */
 	public JLabel getTitulo() {
 		return titulo;
 	}
 
 
+	/**
+	 * Funcion que modifica la label de titulo
+	 * @param titulo nuevo titulo
+	 */
 	public void setTitulo(JLabel titulo) {
 		this.titulo = titulo;
 	}
 
-
+	/**
+	 * Funcion que deveulve la label de volver
+	 * @return label de volver
+	 */
 	public JLabel getVolver() {
 		return volver;
 	}
 
 
+	/**
+	 * Funcion que modifica la label volver
+	 * @param volver nueva label de volver
+	 */
 	public void setVolver(JLabel volver) {
 		this.volver = volver;
 	}
 
 
+	/**
+	 * Funcion que obtiene el teexto del apunte
+	 * @return texto
+	 */
 	public JTextArea getTextofield() {
 		return textofield;
 	}
 
 
+	/**
+	 * Funcion que modifica el texto del apunte
+	 * @param textofield nuevo texto
+	 */
 	public void setTextofield(JTextArea textofield) {
 		this.textofield = textofield;
 	}
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 	
 	

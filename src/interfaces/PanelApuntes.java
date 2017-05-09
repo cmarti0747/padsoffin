@@ -11,12 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
 
+/**
+ * Modulo de la clase PanelApuntes
+ * @author Javier Senit y Carlos Marti
+ *
+ */
 public class PanelApuntes extends JPanel{
 
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel titulo, texto, volver;
 	private JTextArea titulofield;
@@ -24,6 +25,9 @@ public class PanelApuntes extends JPanel{
 	private JButton modificar;
 	private JCheckBox check1;
 	
+	/**
+	 * Constructor de la clase PanelApuntes
+	 */
 	public PanelApuntes(){
 		
 		modificar = new JButton("Modificar apunte");
@@ -89,54 +93,106 @@ layout.putConstraint(SpringLayout.WEST, check1, 0, SpringLayout.WEST, textofield
 		
 	}
 
+	/**
+	 * Funcion que deveulve el label de titulo
+	 * @return label de titulo
+	 */
 	public JLabel getTitulo() {
 		return titulo;
 	}
 
+	/**
+	 * Funcion que modifica el titulo del apunte
+	 * @param titulo nuevo titulo
+	 */
 	public void setTitulo(String titulo) {
 		this.titulo.setText(titulo);
 	}
 
+	/**
+	 * Funcion que deveulve el label de texto
+	 * @return label de texto
+	 */
 	public JLabel getTexto() {
 		return texto;
 	}
 
+	/**
+	 * Funcion que modifica el texto del apunte
+	 * @param texto nuevo texto
+	 */
 	public void setTexto(JLabel texto) {
 		this.texto = texto;
 	}
 
+	/**
+	 * Funcion que deveulve el label de volver
+	 * @return label de volver
+	 */
 	public JLabel getVolver() {
 		return volver;
 	}
 
+	/**
+	 * Funcion que modifica la label de volver
+	 * @param volver nueva label
+	 */
 	public void setVolver(JLabel volver) {
 		this.volver = volver;
 	}
 
+	/**
+	 * Funcion que deveulve el titulo de un apunte
+	 * @return titulo
+	 */
 	public JTextArea getTitulofield() {
 		return titulofield;
 	}
 
+	/**
+	 * Funcion que modifica el titulo de un apunte
+	 * @param titulofield nuevo titulo
+	 */
 	public void setTitulofield(JTextArea titulofield) {
 		this.titulofield = titulofield;
 	}
 
+	/**
+	 * Funcion que deveulve el texto de un apunte
+	 * @return texto
+	 */
 	public JTextArea getTextofield() {
 		return textofield;
 	}
 
+	/**
+	 * Funcion que modifica el texto de un apunte
+	 * @param textofield nuevo texto
+	 */
 	public void setTextofield(JTextArea textofield) {
 		this.textofield = textofield;
 	}
 
+	/**
+	 * Funcion que obtiene el boton de modificar apunte
+	 * @return boton de modifica
+	 */
 	public JButton getModificar() {
 		return modificar;
 	}
 
+	/**
+	 * Funcion que modifica el boton de modificar
+	 * @param modificar nuevo boton
+	 */
 	public void setModificar(JButton modificar) {
 		this.modificar = modificar;
 	}
 
+	/**
+	 * Funcion que devulve el checkbox de visibilidad
+	 * @return checkbox de visibilidad
+	 */
 	public JCheckBox getCheck1() {
 		return check1;
 	}

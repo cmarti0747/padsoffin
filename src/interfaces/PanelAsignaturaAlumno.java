@@ -12,16 +12,22 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
+/**
+ * Modulo de la clase PanelAsignaturaAlumno
+ * @author Javier Senit y Carlos Marti
+ *
+ */
 public class PanelAsignaturaAlumno extends JPanel{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private DefaultListModel<String> model;
 	private JList<String> listatemas;
 	private JLabel labeltemas, volver,nombreAsignatura;
 	private JScrollPane barraDesplazamiento;
 	
+	/**
+	 * Constructor de la clase PanelAsignaturaAlumno
+	 */
 	public PanelAsignaturaAlumno(){
 		
 		model = new DefaultListModel<String>();
@@ -71,36 +77,55 @@ public class PanelAsignaturaAlumno extends JPanel{
 	}
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 
 
+	/**
+	 * Funcion que devuelve el modelo de una lista
+	 * @return modelo de una lista
+	 */
 	public DefaultListModel<String> getModel() {
 		return model;
 	}
 
 
+	/**
+	 * Funcion que devuelve la lista de temas de la asignatura
+	 * @return lista de temas
+	 */
 	public JList<String> getListatemas() {
 		return listatemas;
 	}
 
 
+	/**
+	 * Funcion que devuelve el label de temas
+	 * @return label de temas
+	 */
 	public JLabel getLabeltemas() {
 		return labeltemas;
 	}
 
-
+	/**
+	 * Funcion que devuelve el label de volver
+	 * @return label de volver
+	 */
 	public JLabel getVolver() {
 		return volver;
 	}
 
-
+	/**
+	 * Funcion que devuelve el label de nombre de asignatura
+	 * @return label de nombre de asignatura
+	 */
 	public JLabel getNombreAsignatura() {
 		return nombreAsignatura;
 	}
 
-
+/**
+ * Funcion que modifica el nombre de una asignatura
+ * @param nombreAsignatura nuevo nombre
+ */
 	public void setNombreAsignatura(String nombreAsignatura) {
 		this.nombreAsignatura.setText(nombreAsignatura);
 	}
