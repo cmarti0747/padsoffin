@@ -10,6 +10,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+/**
+ * Modulo de la clase PanelCrearAsignatura
+ * @author Javier Senit y Carlos Marti
+ *
+ */
 public class PanelCrearAsignatura extends JPanel{
 
 	private static final long serialVersionUID = 1L;
@@ -18,6 +23,9 @@ public class PanelCrearAsignatura extends JPanel{
 	private JLabel introduzca, volver;
 	private JCheckBox check1;
 	
+	/**
+	 * Constructor de la clase PanelCrearAsignatura
+	 */
 	public PanelCrearAsignatura(){
 		
 		crear=new JButton("Crear");
@@ -66,19 +74,35 @@ public class PanelCrearAsignatura extends JPanel{
 		
 	}
 
+	/**
+	 * Funcion que devuelve el titulo de la asignatura
+	 * @return titulo
+	 */
 	public JTextField getTitulo() {
 		return titulo;
 	}
 
+	/**
+	 * Funcion que devuelve el el checkbox de la visibilidad
+	 * @return checkbox de la visibilidad
+	 */
 	public JCheckBox getCheck1() {
 		return check1;
 	}
 
+	/**
+	 * Funcion que deveulve el boton de crear asignatura
+	 * @return boton de crear asignatura
+	 */
 	public JButton getCrear() {
 		return crear;
 	}
 
 
+	/**
+	 * Funcion que deveulve el label de volver
+	 * @return label de volver
+	 */
 	public JLabel getVolver() {
 		return volver;
 	}

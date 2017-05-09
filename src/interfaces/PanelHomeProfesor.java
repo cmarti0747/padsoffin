@@ -16,6 +16,13 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
+
+/**
+ * Módulo de la clase PanelHomeProfesor
+ * 
+ * @author Javier Senit y Carlos Marti
+ *
+ */
 public class PanelHomeProfesor extends JPanel{
 	
 	/**
@@ -29,6 +36,10 @@ public class PanelHomeProfesor extends JPanel{
 	private JScrollPane matriculas,asignaturas;
 	private JButton cambiarvis;
 	private JLabel labelalumnos, labelasignaturas, labelmatriculas;
+	
+	/**
+	 * Contructor de la clase PanelHomeProfesor
+	 */
 	public PanelHomeProfesor() {
 
 		n= new JButton("");
@@ -138,76 +149,126 @@ layout.putConstraint(SpringLayout.SOUTH, labelmatriculas, -15, SpringLayout.NORT
       add(labelmatriculas);
   }
 
-
+	/**
+	 * Funcion que devuelve el string del combobox
+	 * @return string del combobox
+	 */
 	public JComboBox<String> getCombobox() {
 		return alumnos;
 	}
 
+	/**
+	 * Funcion que devuelve el boton de crear asignatura 
+	 * @return botont de crear asignatura
+	 */
 	public JButton getCrearAsignatura() {
 		return crearAsignatura;
 	}
 
-
+	/**
+	 * Funcion que devuelve el boton de aceptar asignatura 
+	 * @return botont de aceptar asignatura
+	 */
 	public JButton getAceptar() {
 		return aceptar;
 	}
 
-
+	/**
+	 * Funcion que devuelve el boton de denegar 
+	 * @return boton de denegar asignatura
+	 */
 	public JButton getDenegar() {
 		return denegar;
 	}
 
 
+	/**
+	 * Funcion que devuelve la lista de matriculas
+	 * @return lista de matriculas
+	 */
 	public JList<String> getListaMatriculas() {
 		return listaMatriculas;
 	}
 
 
+	/**
+	 * Funcion que devuelve la lista de asignaturas
+	 * @return lista de asignaturas
+	 */
 	public JList<String> getListaAsignaturas() {
 		return listaAsignaturas;
 	}
 
-
+	
+	/**
+	 * Funcion que devuelve la lista scroll de matriculas
+	 * @return lista scroll de matriculas
+	 */
 	public JScrollPane getBarraDesplazamiento() {
 		return matriculas;
 	}
 
 
+
+	/**
+	 * Funcion que devuelve la lista scroll de asignaturas
+	 * @return lista scroll de asignaturas
+	 */
 	public JScrollPane getBarraDesplazamiento2() {
 		return asignaturas;
 	}
 
 
+
+	/**
+	 * Funcion que devuelve el modelo de una lista
+	 * @return modelo de una lista
+	 */
 	public DefaultListModel<String> getModel() {
 		return model;
 	}
 
-
+	/**
+	 * Funcion que devuelve el modelo de una lista
+	 * @return modelo de una lista
+	 */
 	public DefaultListModel<String> getModelo() {
 		return modelo;
 	}
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
-
+	/**
+	 * Funcion que devuelve el los strings del combobox de alumno
+	 * @return strings del combobox de alumno
+	 */
 	public JComboBox<String> getAlumnos() {
 		return alumnos;
 	}
 
 
+	/**
+	 * Funcion que devuelve el scrollpane de matriculas
+	 * @return scrollpane de matriculas
+	 */
 	public JScrollPane getMatriculas() {
 		return matriculas;
 	}
 
 
+	/**
+	 * Funcion que devuelve el scrollpane de asignaturas
+	 * @return scrollpane de asignaturas
+	 */
 	public JScrollPane getAsignaturas() {
 		return asignaturas;
 	}
 
 
+	/**
+	 * Funcion que devuelve la visibilidad de una asignatura
+	 * @return visibilidad de la asignatura
+	 */
 	public JButton getCambiarvis() {
 		return cambiarvis;
 	}

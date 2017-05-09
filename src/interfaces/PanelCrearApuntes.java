@@ -11,12 +11,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
 
+/**
+ * Modulo de la clase PanelCrearApuntes
+ * @author Javier Senit y Carlos Marti
+ *
+ */
 public class PanelCrearApuntes extends JPanel{
 
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JLabel titulo, texto, volver;
 	private JTextArea titulofield;
@@ -24,6 +27,9 @@ public class PanelCrearApuntes extends JPanel{
 	private JButton crearapunte;
 	private JCheckBox check1;
 	
+	/**
+	 * Constructor de la clase PanelCrearApuntes
+	 */
 	public PanelCrearApuntes(){
 		
 		crearapunte = new JButton("Crear apunte");
@@ -90,30 +96,58 @@ public class PanelCrearApuntes extends JPanel{
 		
 	}
 
+	/**
+	 * Funcion que devuelve la label de titulo
+	 * @return label de titulo
+	 */
 	public JLabel getTitulo() {
 		return titulo;
 	}
 
+	/**
+	 * Funcion que devuelve la label de texto
+	 * @return label de texto
+	 */
 	public JLabel getTexto() {
 		return texto;
 	}
 
+	/**
+	 * Funcion que devuelve la label de volver
+	 * @return label de volver
+	 */
 	public JLabel getVolver() {
 		return volver;
 	}
 
+	/**
+	 * Funcion que devuelve el contenido del campo de titulo
+	 * @return titulo
+	 */
 	public JTextArea getTitulofield() {
 		return titulofield;
 	}
 
+	/**
+	 * Funcion que devuelve el contenido del campo de texto
+	 * @return texto
+	 */
 	public JTextArea getTextofield() {
 		return textofield;
 	}
 
+	/**
+	 * Funcion que devuelve  el boton para crear apuntes
+	 * @return boton de crear apuntes
+	 */
 	public JButton getCrearapunte() {
 		return crearapunte;
 	}
 
+	/**
+	 * Funcion que devuelve  el el checkbox de la visibilidad
+	 * @return checkbox de la visibilidad
+	 */
 	public JCheckBox getCheck1() {
 		return check1;
 	}

@@ -10,11 +10,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+/**
+ * Modulo de la clase PanelCrearTema
+ * @author Javier Senit y Carlos Marti
+ *
+ */
 public class PanelCrearTema extends JPanel{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	JButton boton;
 	JTextField titulo;
@@ -69,22 +72,44 @@ layout.putConstraint(SpringLayout.WEST, check1, 0, SpringLayout.WEST, titulo);
 		
 	}
 
+	/**
+	 * Funcion que deveulve el boton de crear tema
+	 * @returnboton de crear tema
+	 */
 	public JButton getBoton() {
 		return boton;
 	}
 
+	/**
+	 * Funcion que deveulve el label de volver
+	 * @return label de volver
+	 */
 	public JLabel getVolver() {
 		return volver;
 	}
 
+
+	/**
+	 * Funcion que deveulve el titulo de la asignatura
+	 * @return titulo
+	 */
 	public JTextField getTitulo() {
 		return titulo;
 	}
 
+
+	/**
+	 * Funcion que deveulve el label de introduzca
+	 * @return label de introduzca
+	 */
 	public JLabel getIntroduzca() {
 		return introduzca;
 	}
 
+	/**
+	 * Funcion que devuelve el checkBox de visibilidad
+	 * @return checkbox de visibilidad
+	 */
 	public JCheckBox getCheck1() {
 		return check1;
 	}

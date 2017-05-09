@@ -13,11 +13,14 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
+/**
+ * Módulo de la clase PanelHomeAlumno
+ * 
+ * @author Javier Senit y Carlos Marti
+ *
+ */
 public class PanelHomeAlumno extends JPanel{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel labelmisasignaturaas, logeadocomo, labeltodasasignaturas;
 	private JList<String> todasasignaturas,listamisasignaturas;
@@ -25,7 +28,9 @@ public class PanelHomeAlumno extends JPanel{
 	private DefaultListModel<String> model,modelo;
 	JScrollPane barraDesplazamiento, barradesplazamiento2;
 	
-	
+	/**
+	 * Constructor de la clase PanelHomeAlumno
+	 */
 	public PanelHomeAlumno(){
 		
 		model = new DefaultListModel<String>();
@@ -94,13 +99,20 @@ public class PanelHomeAlumno extends JPanel{
 		
 	}
 
+	/**
+	 * Funcion que devuelve todas las asignaturas de una lista
+	 * @return todas las asignaturas de una lista
+	 */
 	public JList<String> getTodasasignaturas() {
 		return todasasignaturas;
 	}
 
 
 
-
+	/**
+	 * Funcion que devuelve el boton de pedir matricula
+	 * @returnboton de pedir matricula
+	 */
 
 	public JButton getPedirmatricula() {
 		return pedirmatricula;
@@ -109,39 +121,67 @@ public class PanelHomeAlumno extends JPanel{
 
 
 
-
+	/**
+	 * Funcion que devuelve el modelo de una lista
+	 * @return modelo de una lista
+	 */
 	public DefaultListModel<String> getModel() {
 		return model;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
+	/**
+	 * Funcion que devuelve el label de asignaturas
+	 * @return label de asignaturas
+	 */
 	public JLabel getLabelmisasignaturaas() {
 		return labelmisasignaturaas;
 	}
 
+	/**
+	 * Funcion que devuelve el label de logeadocomo
+	 * @return label de logeadocomo
+	 */
 	public JLabel getLogeadocomo() {
 		return logeadocomo;
 	}
 
+	/**
+	 * Funcion que devuelve el label de todas las asignaturas
+	 * @return label de todas las asignaturas
+	 */
 	public JLabel getLabeltodasasignaturas() {
 		return labeltodasasignaturas;
 	}
 
+	/**
+	 * Funcion que devuelve la lista de todas mis asignaturas
+	 * @return lista de todas mis asignaturas
+	 */
 	public JList<String> getListamisasignaturas() {
 		return listamisasignaturas;
 	}
 
+	/**
+	 * Funcion que devuelve la el modelo de una lista
+	 * @return modelo de una lista
+	 */
 	public DefaultListModel<String> getModelo() {
 		return modelo;
 	}
 
+	/**
+	 * Funcion que devuelve la lista scroll de asignaturaas disponibles
+	 * @return lista scroll de asignaturas disponibles
+	 */
 	public JScrollPane getBarraDesplazamiento() {
 		return barraDesplazamiento;
 	}
 
+	/**
+	 * Funcion que devuelve la lista scroll de asignaturaas 
+	 * @return lista scroll de asignaturas 
+	 */
 	public JScrollPane getBarradesplazamiento2() {
 		return barradesplazamiento2;
 	}
