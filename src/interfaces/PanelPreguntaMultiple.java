@@ -27,7 +27,7 @@ public class PanelPreguntaMultiple extends JPanel{
 	
 	private JList<String> opciones;
 	private DefaultListModel<String> lOpciones;
-	private JButton anterior, siguiente, anteriorbien;
+	private JButton anterior, siguiente;
 
 	
 	public PanelPreguntaMultiple() {

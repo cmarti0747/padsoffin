@@ -736,6 +736,7 @@ public class PanelControlador {
 					paneltema.getlSubtemas().clear();
 					controlador.cargarApuntesProfesor(t);
 					controlador.cargarSubtemasProfesor(t);
+					controlador.cargarEjerciciosProfesor(t);
 
 					// Double-click detected
 					cl.show(panelcontenedor, "panelTema");

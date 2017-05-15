@@ -89,7 +89,7 @@ public class PreguntaMultiple extends Preguntas {
 	public boolean corregirPregunta(int[] respuesta) {
 		int a =0;
 		int flag=0;
-		for(int i =0;i<respuesta.length || i<soluciones.size();i++){
+		for(int i =0;i<respuesta.length && i<soluciones.size();i++){
 			if (this.soluciones.get(i) == respuesta[i]) {
 				flag++;
 			}

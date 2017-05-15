@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import academia.Asignaturas;
 import academia.Temas;
-import academia.Visibilidad;
 
 public class TemasTest {
 
