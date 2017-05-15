@@ -1277,7 +1277,10 @@ public class ControladorPanelControlador {
 		Alumno a = null;
 		for (Matriculado m : AcademiaLopez.getMatriculas()) {
 			a = (Alumno) m.getUsuario();
-			academia.buscarAsignatura(m.getAsignatura().getTitulo()).calcularMedia();
+			if(academia.buscarAsignatura(m.getAsignatura().getTitulo()).getNotaMedia()==0){
+				academia.buscarAsignatura(m.getAsignatura().getTitulo()).calcularMedia();
+			}
+			
 			if (a.getNombre().equals(partes[0]) && a.getApellidos().equals(partes[1])) {
 				vista.getPanelestadistica().getModel().addElement("Nombre de la asignatura: "
 						+ m.getAsignatura().getTitulo() + "Nota media: " + m.getAsignatura().getNotaMedia());

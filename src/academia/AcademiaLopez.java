@@ -17,6 +17,7 @@ import java.util.StringTokenizer;
 
 /**
  * Modulo que se encarga de gestionar la academia
+ * 
  * @author Javie Senit Velasco y Carlos Marti Gonzalez
  *
  */
@@ -28,34 +29,37 @@ public class AcademiaLopez implements Serializable {
 	private List<Alumno> alumnos;
 	private static List<Matriculado> matriculas;
 	private Profesor profesor;
-	
 
 	boolean online;
 	Usuario usuarioOnline;
-	
-	
-/**
- * Contructor de la clase AcademiaLopez
- */
+
+	/**
+	 * Contructor de la clase AcademiaLopez
+	 */
 	public AcademiaLopez() {
-			this.online=false;
-			matriculas = new ArrayList<Matriculado>();
-			alumnos = new ArrayList<Alumno>();
-			asignaturas = new ArrayList<Asignaturas>();
-			this.usuarioOnline=null;
+		this.online = false;
+		matriculas = new ArrayList<Matriculado>();
+		alumnos = new ArrayList<Alumno>();
+		asignaturas = new ArrayList<Asignaturas>();
+		this.usuarioOnline = null;
 	}
 
 	@SuppressWarnings({ "unchecked" })
 	/**
 	 * Funcion que se encarga del inicio de sesion de un usuario en la academia
-	 * @param nia: Nia de identificacion
-	 * @param pass: Contrasenia de identificacion
+	 * 
+	 * @param nia:
+	 *            Nia de identificacion
+	 * @param pass:
+	 *            Contrasenia de identificacion
 	 * @return Usuario autenticado
-	 * @throws FileNotFoundException: Error que salta si no se ha encontrado el .obj
-	 * @throws ClassNotFoundException: Error que salta si no ha encotrado una clase
+	 * @throws FileNotFoundException:
+	 *             Error que salta si no se ha encontrado el .obj
+	 * @throws ClassNotFoundException:
+	 *             Error que salta si no ha encotrado una clase
 	 */
 	public Usuario loggin(int nia, String pass) throws FileNotFoundException, IOException, ClassNotFoundException {
-		if(this.online==true){
+		if (this.online == true) {
 			System.out.println("Ya hay un usuario conectado");
 			return null;
 		}
@@ -67,18 +71,18 @@ public class AcademiaLopez implements Serializable {
 			matriculas = (List<Matriculado>) entrada.readObject();
 			profesor = (Profesor) entrada.readObject();
 			entrada.close();
-			
+
 			if (nia == profesor.getNia() && pass.equals(profesor.getPass()) == true) {
-				this.online=true;
-				this.usuarioOnline=this.profesor;
-				System.out.println("Inicio de sesion\n" +this.profesor);
+				this.online = true;
+				this.usuarioOnline = this.profesor;
+				System.out.println("Inicio de sesion\n" + this.profesor);
 				return this.profesor;
 			} else {
 				for (int i = 0; i < alumnos.size(); i++) {
 					if (nia == alumnos.get(i).getNia() && pass.equals(alumnos.get(i).getPass()) == true) {
-						this.online=true;
-						this.usuarioOnline=this.alumnos.get(i);
-						System.out.println("Inicio de sesion\n" +this.alumnos.get(i));
+						this.online = true;
+						this.usuarioOnline = this.alumnos.get(i);
+						System.out.println("Inicio de sesion\n" + this.alumnos.get(i));
 						return this.alumnos.get(i);
 					}
 				}
@@ -86,16 +90,16 @@ public class AcademiaLopez implements Serializable {
 		} else {
 			cargarUsuarios();
 			if (nia == profesor.getNia() && pass.equals(profesor.getPass()) == true) {
-				this.online=true;
-				this.usuarioOnline=this.profesor;
-				System.out.println("Inicio de sesion\n" +this.profesor);
+				this.online = true;
+				this.usuarioOnline = this.profesor;
+				System.out.println("Inicio de sesion\n" + this.profesor);
 				return this.profesor;
 			} else {
 				for (int i = 0; i < alumnos.size(); i++) {
-					if (nia == alumnos.get(i).getNia() && pass.equals(alumnos.get(i).getPass()) == true ) {
-						this.online=true;
-						this.usuarioOnline=this.alumnos.get(i);
-						System.out.println("Inicio de sesion\n" +this.alumnos.get(i));
+					if (nia == alumnos.get(i).getNia() && pass.equals(alumnos.get(i).getPass()) == true) {
+						this.online = true;
+						this.usuarioOnline = this.alumnos.get(i);
+						System.out.println("Inicio de sesion\n" + this.alumnos.get(i));
 						return this.alumnos.get(i);
 					}
 				}
@@ -108,7 +112,9 @@ public class AcademiaLopez implements Serializable {
 
 	/**
 	 * Funcion que busca un alumno de una lista
-	 * @param nia: Nia del alumno a buscar
+	 * 
+	 * @param nia:
+	 *            Nia del alumno a buscar
 	 * @return Alumno buscado
 	 */
 	public Alumno buscarAlumno(int nia) {
@@ -124,7 +130,9 @@ public class AcademiaLopez implements Serializable {
 
 	/**
 	 * Funcion que busca una asignatura de una lista
-	 * @param titulo: Ttulo de la asignatura a buscar
+	 * 
+	 * @param titulo:
+	 *            Ttulo de la asignatura a buscar
 	 * @return: Asignatura buscada
 	 */
 	public Asignaturas buscarAsignatura(String titulo) {
@@ -137,95 +145,104 @@ public class AcademiaLopez implements Serializable {
 		}
 		return null;
 	}
-	
-	
-	public Matriculado buscarMatricula(String asignatura,int nombre) {
+
+	public Matriculado buscarMatricula(String asignatura, int nombre) {
 
 		for (int i = 0; i < matriculas.size(); i++) {
-			if (matriculas.get(i).getAsignatura().getTitulo().equals(asignatura) && 
-					matriculas.get(i).getUsuario().getNia() == nombre) {
+			if (matriculas.get(i).getAsignatura().getTitulo().equals(asignatura)
+					&& matriculas.get(i).getUsuario().getNia() == nombre) {
 				System.out.println(matriculas.get(i));
 				return matriculas.get(i);
 			}
 		}
 		return null;
 	}
-	
-	public Temas buscarTema(String titulo){
-		for(Asignaturas a: asignaturas){
-			return a.buscarTemas(titulo);
+
+	public Temas buscarTema(String titulo) {
+		for (Asignaturas a : asignaturas) {
+			Temas t = a.buscarTemas(titulo);
+			if (t != null) {
+				return t;
+			}
+
 		}
 		return null;
 	}
-	
-	public Apuntes buscarApuntes(String titulo){
-		for(Asignaturas a : asignaturas){
-			for(Temas t: a.getTemas()){
-				 return t.buscarApuntes(titulo);
-				}
+
+	public Apuntes buscarApuntes(String titulo) {
+		for (Asignaturas a : asignaturas) {
+			for (Temas t : a.getTemas()) {
+				return t.buscarApuntes(titulo);
 			}
+		}
 		return null;
 	}
-	
-	public Temas buscarSubtemas(String titulo){
-		for(Asignaturas a : asignaturas){
-			for(Temas t: a.getTemas()){
+
+	public Temas buscarSubtemas(String titulo) {
+		for (Asignaturas a : asignaturas) {
+			for (Temas t : a.getTemas()) {
 				Temas st = t.buscarSubtemas(titulo);
-				if(st!=null){
-					 if(st.getTitulo().equals(titulo)){
-						 return st;
-					 }
-				}
+				if (st != null) {
+					if (st.getTitulo().equals(titulo)) {
+						return st;
+					}
 				}
 			}
+		}
 		return null;
 	}
-	
-	public Ejercicio buscarEjercicio(String titulo){
-		for(Asignaturas a : asignaturas){
-			for(Temas t: a.getTemas()){
-				return t.buscarEjercicio(titulo);
-					 
-				 }
+
+	public Ejercicio buscarEjercicio(String titulo) {
+		for (Asignaturas a : asignaturas) {
+			for (Temas t : a.getTemas()) {
+				Ejercicio e = t.buscarEjercicio(titulo);
+				if (e != null) {
+					return e;
 				}
-	return null;
+
+			}
+		}
+		return null;
 	}
-	
-	public Temas buscarTemaPadre(String titulo){
-		for(Asignaturas a : asignaturas){
-			for(Temas t: a.getTemas()){
+
+	public Temas buscarTemaPadre(String titulo) {
+		for (Asignaturas a : asignaturas) {
+			for (Temas t : a.getTemas()) {
 				Temas st = t.buscarSubtemasPadre(titulo);
-				if(st!=null){
-						 return st;
-					 
-				}
+				if (st != null) {
+					return st;
+
 				}
 			}
+		}
 		return null;
-		
+
 	}
 
 	/**
 	 * Funci�n que desconecta a un usuario de la academia y guarda los cambios
+	 * 
 	 * @return null
-	 * @throws FileNotFoundException: Error que salta si no se ha encontrado el .obj
+	 * @throws FileNotFoundException:
+	 *             Error que salta si no se ha encontrado el .obj
 	 */
 	public Usuario desconectar() throws FileNotFoundException, IOException {
-	
+
 		ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("academia.obj"));
 		salida.writeObject(asignaturas);
 		salida.writeObject(alumnos);
 		salida.writeObject(matriculas);
 		salida.writeObject(profesor);
 		salida.close();
-		this.usuarioOnline=null;
-		this.online=false;
+		this.usuarioOnline = null;
+		this.online = false;
 		System.out.println("Se ha desconectado correctamente");
 		return null;
 	}
 
 	/**
 	 * Funcion que devuelve una lista de asignaturas
+	 * 
 	 * @return Lista de asignaturas
 	 */
 	public static List<Asignaturas> isAsignaturas() {
@@ -234,11 +251,13 @@ public class AcademiaLopez implements Serializable {
 
 	/**
 	 * Funcion que crea una asignatura
-	 * @param titulo: Titulo de la asignatura
+	 * 
+	 * @param titulo:
+	 *            Titulo de la asignatura
 	 */
 	public void crearAsignaturas(String titulo) {
 		Asignaturas asignatura = new Asignaturas(titulo);
-		if(AcademiaLopez.asignaturas.contains(asignatura)==true){
+		if (AcademiaLopez.asignaturas.contains(asignatura) == true) {
 			System.out.println("Ya esta creada esa asignatura");
 			return;
 		}
@@ -248,6 +267,7 @@ public class AcademiaLopez implements Serializable {
 
 	/**
 	 * Funcion que obtiene una lista de alumnos
+	 * 
 	 * @return Lista de alumnos
 	 */
 	public List<Alumno> getAlumnos() {
@@ -256,6 +276,7 @@ public class AcademiaLopez implements Serializable {
 
 	/**
 	 * Funcion que obtiene una lista de matriculas
+	 * 
 	 * @return Lista de matriculas
 	 */
 	public static List<Matriculado> getMatriculas() {
@@ -264,7 +285,9 @@ public class AcademiaLopez implements Serializable {
 
 	/**
 	 * Funcion que a�ade un alumno a la lista de alumnos
-	 * @param a: Alumno a aniadir
+	 * 
+	 * @param a:
+	 *            Alumno a aniadir
 	 */
 	public void anyadirAlumno(Alumno a) {
 		this.alumnos.add(a);
@@ -299,12 +322,10 @@ public class AcademiaLopez implements Serializable {
 	public Usuario getUsuarioOnline() {
 		return usuarioOnline;
 	}
-	
+
 	public Profesor getProfesor() {
 		return profesor;
 	}
-	
-	
 
 	public static List<Asignaturas> getAsignaturas() {
 		return asignaturas;
@@ -313,6 +334,7 @@ public class AcademiaLopez implements Serializable {
 	@Override
 	/**
 	 * Funcion que imrpime los datos de la clase AcademiaLopez
+	 * 
 	 * @return Cadena con los datos de la academia
 	 */
 	public String toString() {
